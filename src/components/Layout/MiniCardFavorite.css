@@ -1,0 +1,70 @@
+.miniCard {
+    display: flex;
+    gap: 50px;
+}
+
+.miniCard img {
+    width: 120px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 1px 1px 5px #0003;
+}
+
+.miniCardData {
+    display: flex;
+    flex-direction: column;
+    width: 330px;
+    gap: 10px;
+}
+
+.miniCardData span {
+    color: #ddd;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.miniCardData label {
+    color: #666;
+    font-size: 16px;
+}
+
+.miniCard button {
+    background: transparent;
+    border: 1px solid #3fa897;
+    color: #3fa897;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 250ms;
+}
+
+.miniCard button:hover {
+    border-color: #666;
+    color: #666;
+}
+
+
+/* MB <= 767 - TB <= 1023 - */
+@media screen and (max-width: 767px) {
+
+    .miniCard {
+        flex-wrap: wrap;
+        gap: 0;
+    }
+
+    .miniCard img {
+        width: 100%;
+        height: auto;
+    }
+
+    .miniCardData {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .miniCard button {
+        top: 0;
+    }
+
+
+}

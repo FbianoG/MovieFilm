@@ -1,0 +1,119 @@
+header {
+  display: flex;
+  height: 70px;
+  align-items: center;
+  justify-content: space-evenly;
+  position: relative;
+  background: #222;
+}
+
+
+header span {
+  color: #3fa897;
+  font-size: 30px;
+  /* font-weight: 400; */
+}
+
+.searchBar {
+  width: 250px;
+  border-radius: 15px;
+  overflow: hidden;
+  background: #292929;
+  padding: 5px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: #555;
+
+}
+
+header nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+header nav a {
+  color: #fdfdfd;
+  text-decoration: none;
+}
+
+.listSearchMovies {
+  position: absolute;
+  z-index: 10;
+  width: 450px;
+  height: 400px;
+  top: 100%;
+  background: #222;
+  padding: 20px;
+  overflow: auto;
+  gap: 5px;
+  flex-wrap: wrap;
+  display: none;
+  /* border-radius: 15px; */
+  box-shadow: 5px 5px 10px #0003;
+}
+
+.listSearchMovies::-webkit-scrollbar {
+width: 7px;
+}
+
+.listSearchMovies::-webkit-scrollbar-track {
+background: #333;
+border-radius: 10px;
+}
+
+.listSearchMovies::-webkit-scrollbar-thumb {
+background: #3fa897;
+border-radius: 10px;
+}
+
+.cardMovieSearch {
+  display: flex;
+  height: 100px;
+  width: 100%;
+  gap: 15px;
+  cursor: pointer;
+}
+
+.cardMovieSearch img {
+  width: 70px;
+  object-fit: cover;
+}
+
+.cardMovieSearch:hover img {
+  filter: brightness(1.2);
+}
+
+.cardMovieSearch h3 {
+  color: #ddd;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+
+/* MB <= 767 - TB <= 1023 - */
+@media screen and (max-width: 767px) {
+  header {
+
+
+  }
+  header nav {
+    display: none;
+  }
+
+  .searchBar {
+    width: 190px;
+  }
+
+  .searchBar input {
+    width: 100%;
+  }
+
+  .listSearchMovies {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}

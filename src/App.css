@@ -1,0 +1,70 @@
+
+.content {
+  background: #292929;
+  width: 90%;
+  margin: 0 auto;
+  border-radius: 15px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+
+section {
+  background: #222;
+  border-radius: 15px;
+  padding: 20px;
+}
+
+section h1 {
+  color: #ddd;
+  font-size: 40px;
+  margin: 0 0 30px;
+}
+
+section button {
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  top: 40px;
+  height: 40px;
+  width: 200px;
+  border-radius: 20px;
+  border: 1px solid transparent;
+  background: #3fa897;
+  color: #fdfdfd;
+  font-weight: 500;
+  font-size: 16px;
+  transition: 250ms;
+  cursor: pointer;
+}
+
+section button:hover {
+  background: #222;
+  border-color:#3fa897;
+  color: #3fa897;
+}
+
+
+/* MB <= 767 - TB <= 1023 - */
+@media screen and (max-width: 767px) {
+
+  .content {
+    background: none;
+    width: 100%;
+    padding: 0 5%;
+  }
+
+  section {
+    padding: 0;
+  }
+
+  section h1 {
+    text-align: center;
+  }
+
+  .listMovies {
+    gap: 0;
+  }
+}
