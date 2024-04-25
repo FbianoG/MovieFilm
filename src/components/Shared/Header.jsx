@@ -26,6 +26,15 @@ export default function Header(props) {
         searchList.current.style.display = "flex"
     }
 
+
+    function movieFilm(params) {
+        location.href = `/movie?id=${params}`
+    }
+
+
+
+
+
     return (
         <header>
             <span>MovieFilm</span>
@@ -35,7 +44,7 @@ export default function Header(props) {
                 <div className="listSearchMovies" ref={searchList}>
                     {searchMovies &&
                         searchMovies.results.map(element => (
-                            <div className="cardMovieSearch" key={element.id} >
+                            <div className="cardMovieSearch" key={element.id} onClick={() => movieFilm(element.id)} >
                                 <img src={"https://image.tmdb.org/t/p/w200/" + element.poster_path} alt={element.title} />
                                 <h3>{element.title}</h3>
                             </div>

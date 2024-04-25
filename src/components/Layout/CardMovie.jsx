@@ -8,7 +8,8 @@ export default function CardMovie(props) {
     const cardMovie = useRef()
 
     function movieFilm(params) {
-        window.open(`/movie?id=${params}`, '_blank')
+        // window.open(`/movie?id=${params}`, '_blank')
+        location.href = `/movie?id=${params}`
     }
 
 
@@ -17,7 +18,7 @@ export default function CardMovie(props) {
     return (
         <div className="cardMovie" key={props.data.id} onClick={() => movieFilm(props.data.id)}>
 
-            <img src={"https://image.tmdb.org/t/p/w200/" + props.data.poster_path} alt={props.data.title} />
+            <img src={"https://image.tmdb.org/t/p/w300/" + props.data.poster_path} alt={props.data.title} />
 
             <div className="cardMovieData">
 

@@ -57,17 +57,17 @@ header nav a {
 }
 
 .listSearchMovies::-webkit-scrollbar {
-width: 7px;
+  width: 7px;
 }
 
 .listSearchMovies::-webkit-scrollbar-track {
-background: #333;
-border-radius: 10px;
+  background: #333;
+  border-radius: 10px;
 }
 
 .listSearchMovies::-webkit-scrollbar-thumb {
-background: #3fa897;
-border-radius: 10px;
+  background: #3fa897;
+  border-radius: 10px;
 }
 
 .cardMovieSearch {
@@ -81,6 +81,7 @@ border-radius: 10px;
 .cardMovieSearch img {
   width: 70px;
   object-fit: cover;
+  border-radius: 10px;
 }
 
 .cardMovieSearch:hover img {
@@ -96,10 +97,8 @@ border-radius: 10px;
 
 /* MB <= 767 - TB <= 1023 - */
 @media screen and (max-width: 767px) {
-  header {
+  header {}
 
-
-  }
   header nav {
     display: none;
   }
@@ -113,7 +112,7 @@ border-radius: 10px;
   }
 
   .listSearchMovies {
-    left: 50%;
-    transform: translateX(-50%);
+    width: 100%;
+    left: 0;
   }
 }

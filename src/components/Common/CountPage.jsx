@@ -1,0 +1,56 @@
+import { useRef } from 'react'
+import './CountPage.css'
+
+export default function CountPage(props) {
+
+    const showPage = useRef()
+    const countPage = useRef()
+    const conteinerCountPage = useRef()
+
+    function returnPage() {
+        if (props.page.page - 1 === 0) {
+            return
+        }
+        props.page.setpage(props.page.page -= 1)
+        window.scrollTo({ top: 0 })
+    }
+
+    function nextPage() {
+        props.page.setpage(props.page.page += 1)
+        window.scrollTo({ top: 0 })
+    }
+
+    function name() {
+        if (window.scrollY > 130) {
+            conteinerCountPage.current.style.width = "100%"
+            conteinerCountPage.current.style.padding = "20px 0 "
+            conteinerCountPage.current.style.position = "fixed"
+            conteinerCountPage.current.style.top = "0px"
+            conteinerCountPage.current.style.left = "50%"
+            conteinerCountPage.current.style.transform = "translateX(-50%)"
+            conteinerCountPage.current.style.background = "linear-gradient(to bottom, #222, 80%, transparent)"
+            conteinerCountPage.current.style.zIndex = "99"
+        } else {
+            conteinerCountPage.current.style.width = ""
+            conteinerCountPage.current.style.padding = ""
+            conteinerCountPage.current.style.position = ""
+            conteinerCountPage.current.style.top = ""
+            conteinerCountPage.current.style.left = ""
+            conteinerCountPage.current.style.transform = ""
+            conteinerCountPage.current.style.background = ""
+            conteinerCountPage.current.style.zIndex = ""
+        }
+    }
+
+    window.addEventListener('scroll', name)
+
+    return (
+        <div className="containerCountPage" ref={conteinerCountPage}>
+            <div className="countPage" ref={countPage}>
+                <button onClick={returnPage}>Return</button>
+                <span>{props.page.page}</span>
+                <button onClick={nextPage}>Next</button>
+            </div>
+        </div>
+    )
+}

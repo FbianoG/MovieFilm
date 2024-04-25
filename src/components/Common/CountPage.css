@@ -1,0 +1,37 @@
+.containerCountPage {
+    width: fit-content;
+    margin: 0 auto 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.countPage {
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    border-radius: 15px;
+    overflow: hidden;
+    background: #333;
+    background: ;
+}
+
+.countPage span {
+    font-size: 20px;
+    color: #fdfdfd;
+    font-weight: 500;
+    width: 50px;
+    text-align: center;
+}
+
+.countPage button {
+    top: 0;
+    border-radius: 0;
+}
+
+.countPage button:hover {
+    border: none;
+}

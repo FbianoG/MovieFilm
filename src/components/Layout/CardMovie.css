@@ -61,3 +61,38 @@
   font-size: 18px;
 
 }
+
+
+/* MB <= 767 - TB <= 1023 - */
+@media screen and (max-width: 767px) {
+  .cardMovie {
+    display: flex;
+    gap: 10px;
+    box-shadow: none;
+    width: 100%;
+    padding: 0;
+  }
+
+  .cardMovie img {
+    width: 100px;
+  }
+
+  .cardMovieData {
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 7px 0;
+  }
+
+  .cardMovieTitle {
+    width: 100%;
+  }
+
+  .cardMovieVote {
+    flex-direction: row;
+    height: fit-content;
+  }
+
+
+
+}
