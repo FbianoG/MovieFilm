@@ -49,7 +49,7 @@ export default function Home() {
             <Header />
             <div className="content">
                 <div className="banner">
-                    <img src="./public/freepik-export-20240424163048WEsm.jpeg" alt='' />
+                    <img src="/public/freepik-export-20240424163048WEsm.jpeg" alt='' />
                 </div>
                 <section>
                     <h1>Populares</h1>
