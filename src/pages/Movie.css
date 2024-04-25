@@ -61,6 +61,8 @@
 .movieContainer a {
     text-decoration: none;
     color: #3fa897;
+    margin: 0 0 20px;
+    overflow: hidden;
 }
 
 .movieContainer a:hover {
@@ -127,9 +129,18 @@
 
 .movieCosts span {
     color: #aaa;
+    display: block;
+    margin: 0 0 5px;
+}
+
+.movieCosts p i {
+color: #111;
 }
 
 .movieCosts p {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     margin: 0;
     font-weight: 500;
 }

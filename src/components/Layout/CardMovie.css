@@ -1,16 +1,14 @@
 .cardMovie {
   /* background: #292929; */
   border-radius: 15px;
-  padding: 15px;
   width: 300px;
-  box-shadow: 0 0 10px #0003;
   cursor: pointer;
 }
 
 .cardMovieData {
   display: flex;
   gap: 10px;
-  padding: 5px 0;
+  padding: 5px;
   /* height: 100px; */
 }
 
@@ -68,9 +66,7 @@
   .cardMovie {
     display: flex;
     gap: 10px;
-    box-shadow: none;
     width: 100%;
-    padding: 0;
   }
 
   .cardMovie img {

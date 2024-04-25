@@ -29,7 +29,7 @@ export default function CardMovie(props) {
 
                 <div className="cardMovieVote">
                     <span><i className="fa-solid fa-star"></i>{props.data.vote_average.toFixed(1)}</span>
-                    <span><i className="fa-solid fa-receipt"></i>{props.data.vote_count}</span>
+                    <span><i className="fa-solid fa-ticket"></i>{props.data.vote_count}</span>
                 </div>
 
             </div>

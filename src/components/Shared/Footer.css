@@ -18,6 +18,7 @@ footer .logo {
 footer .footerDescription {
     color: #aaa;
     text-align: center;
+    font-size: 14px;
 }
 
 footer nav {

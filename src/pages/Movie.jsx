@@ -79,11 +79,11 @@ export default function Movie() {
                             <a href={Movie.homepage} target='_blank'>{Movie.homepage}</a>
                         }
                         <div className="movieCosts">
-                            <p>Origem:</p>
+                            <p><i className="fa-regular fa-flag"></i>Origem:</p>
                             <span>{(Movie.origin_country[0])}</span>
-                            <p>Orçamento:</p>
+                            <p><i className="fa-solid fa-wallet"></i>Orçamento:</p>
                             <span>{formatarEmReais(Movie.budget * 5.2)}</span>
-                            <p>Lucro:</p>
+                            <p><i className="fa-solid fa-chart-line"></i>Lucro:</p>
                             <span>{formatarEmReais(Movie.revenue * 5.2)}</span>
                         </div>
                         <div className="movieProduction">

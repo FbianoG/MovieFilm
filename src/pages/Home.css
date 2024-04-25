@@ -3,7 +3,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  gap: 40px;
+  gap: 30px;
 }
 
 .banner {
@@ -45,5 +45,9 @@
   .banner {
     height: auto;
     margin: 30px 0;
+  }
+
+  .listMovies {
+    gap: 10px;
   }
 }
