@@ -13,7 +13,6 @@ export default function Header(props) {
     async function searchMovie() {
         if (searchInput.current.value.trim() === "") {
             searchList.current.style.display = ""
-            hiddenInput()
             return
         }
         const response = await fetch(`https://api.themoviedb.org/3/search/movie?query=${searchInput.current.value}&language=pt-BR`, {
