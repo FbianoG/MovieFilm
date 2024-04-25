@@ -2,9 +2,10 @@
 .content {
   background: #292929;
   width: 90%;
-  margin: 0 auto;
+  margin: 70px auto;
   border-radius: 15px;
   padding: 40px;
+
   display: flex;
   flex-direction: column;
   gap: 50px;
@@ -53,11 +54,13 @@ section button:hover {
   .content {
     background: none;
     width: 100%;
-    padding: 70px 5% 0;
+    padding: 0 5%;
+    gap: 0;
   }
 
   section {
     padding: 0;
+    margin: 0 0 50px;
   }
 
   section h1 {

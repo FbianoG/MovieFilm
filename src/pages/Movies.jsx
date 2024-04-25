@@ -3,6 +3,7 @@ import Header from "../components/Shared/Header";
 import CardMovie from "../components/Layout/CardMovie";
 import './Movies.css'
 import CountPage from "../components/Common/CountPage";
+import Footer from "../components/Shared/Footer";
 
 export default function TopRated() {
 
@@ -46,6 +47,7 @@ export default function TopRated() {
                     </div>
                 </section>
             </div >
+            <Footer />
         </>
     )
 }

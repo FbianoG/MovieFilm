@@ -3,6 +3,7 @@ import './Home.css'
 import Header from '../components/Shared/Header'
 import CardMovie from '../components/Layout/CardMovie'
 import MiniCardFavorite from '../components/Layout/MiniCardFavorite'
+import Footer from '../components/Shared/Footer'
 export default function Home() {
     const [topMovies, setTopMovies] = useState(false)
     const [popularMovies, setPopularMovies] = useState(false)
@@ -49,7 +50,7 @@ export default function Home() {
             <Header />
             <div className="content">
                 <div className="banner">
-                    <img src="/public/freepik-export-20240424163048WEsm.jpeg" alt='' />
+                    <img src="/freepik-export-20240424163048WEsm.jpeg" alt='' />
                 </div>
                 <section>
                     <h1>Populares</h1>
@@ -103,6 +104,7 @@ export default function Home() {
 
 
 
+            <Footer />
 
 
 

@@ -32,7 +32,7 @@ export default function Header(props) {
         location.href = `/movie?id=${params}`
     }
 
-    function showMobileMenu() {
+    function showMenu() {
         if (sideMenu.current.style.left === '0px') {
             sideMenu.current.style.left = '-100%'
             setTimeout(() => {
@@ -47,8 +47,7 @@ export default function Header(props) {
         }
     }
 
-
-    function showInput(params) {
+    function showInput() {
         logo.current.style.display = "none"
         searchInput.current.style.width = "200px"
         searchInput.current.style.display = "block"
@@ -65,10 +64,13 @@ export default function Header(props) {
 
     return (
         <header>
-            <div className="menuMobile" onClick={showMobileMenu}>
-                <span></span>
-                <span></span>
-                <span></span>
+            <div className="menu" onClick={showMenu}>
+                <button>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
                 <div className="sideMenu" ref={sideMenu}>
                     <nav>
                         <a href='/'>Início</a>
@@ -103,12 +105,6 @@ export default function Header(props) {
                     }
                 </div>
             </div>
-            <nav className='mainNav'>
-                <a href='' target='_blank'>Home</a>
-                <a href='' target='_blank'>About</a>
-                <a href='' target='_blank'>More</a>
-                <a href='' target='_blank'>Contact</a>
-            </nav>
             <button className='btnLogin'>Login <i className="fa-solid fa-user"></i></button>
         </header>
     )

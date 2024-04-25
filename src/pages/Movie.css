@@ -1,6 +1,7 @@
 .movieContainer {
     height: 60vw;
     max-height: 800px;
+    margin: 70px 0 0;
     position: relative;
 }
 
@@ -29,8 +30,15 @@
 .movieContainer h1 {
     font-size: 24px;
     color: #fdfdfd;
-    margin: 0 0 25px;
+
     font-weight: 500;
+}
+
+.movieContainer h2 {
+    font-size: 18px;
+    color: #aaa;
+    margin: 0 0 25px;
+    font-weight: 100;
 }
 
 .movieInfo {
@@ -59,36 +67,6 @@
     text-decoration: underline;
 }
 
-
-/* MB <= 767 - TB <= 1023 - */
-@media screen and (max-width: 767px) {
-    .movieContainer {
-        height: auto;
-        max-height: fit-content;
-    }
-
-    .movieData {
-        width: 100%;
-        min-width: auto;
-        padding: 0 5%;
-        height: auto;
-    }
-
-    .movieContainer img {
-        position: relative;
-    }
-
-    .movieContainer h1 {
-        margin: 0 0 10px;
-    }
-
-    .movieContainer p {
-        margin: 10px 0;
-    }
-}
-
-
-
 .movieActor h2 {
     color: #fdfdfd;
 
@@ -105,17 +83,17 @@
 }
 
 .actorList::-webkit-scrollbar {
-height: 5px;
+    height: 5px;
 }
 
 .actorList::-webkit-scrollbar-track {
-background: #333;
-border-radius: 10px;
+    background: #333;
+    border-radius: 10px;
 }
 
 .actorList::-webkit-scrollbar-thumb {
-background: #3fa897;
-border-radius: 10px;
+    background: #3fa897;
+    border-radius: 10px;
 }
 
 .cardActor {
@@ -139,18 +117,80 @@ border-radius: 10px;
     color: #fdfdfd;
     font-weight: 400;
 }
+
 .cardActor h3 {
     padding: 5px;
     font-size: 14px;
     color: #aaa;
     font-weight: 400;
-
 }
+
+.movieCosts span {
+    color: #aaa;
+}
+
+.movieCosts p {
+    margin: 0;
+    font-weight: 500;
+}
+
+.movieProduction {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+    margin: 20px 0 0;
+    align-items: center;
+    /* justify-content: space-evenly; */
+}
+
+.cardMovieProduction {
+    display: flex;
+    flex-direction: column;
+}
+
+.movieProduction span {
+    color: #fdfdfd;
+}
+
+.movieProduction img {
+    width: 50px;
+    height: 50px;
+    /* height: 80px; */
+    position: relative;
+    z-index: 1;
+    object-fit: contain;
+}
+
+
+
 
 
 /* MB <= 767 - TB <= 1023 - */
 @media screen and (max-width: 767px) {
     .movieContainer {
-        margin: 70px 0 0;
+        height: auto;
+        max-height: fit-content;
+    }
+
+    .movieData {
+        width: 100%;
+        min-width: auto;
+        padding: 0 5%;
+        height: auto;
+        background: none;
+    }
+
+    .movieContainer img {
+        position: relative;
+    }
+
+    .movieContainer p {
+        margin: 10px 0;
+    }
+
+
+    .movieCosts p {
+        margin: 0;
     }
 }

@@ -1,6 +1,7 @@
 import './Movie.css'
 import Header from '../components/Shared/Header'
 import { useEffect, useState } from 'react'
+import Footer from '../components/Shared/Footer'
 
 
 export default function Movie() {
@@ -32,13 +33,24 @@ export default function Movie() {
         })
         const data = await response.json()
         setActor(data)
-        console.log(data);
+        // console.log(data);
     }
 
     useEffect(() => {
         getMovie()
         getActor()
     }, [])
+
+
+
+    function formatarEmReais(numero) {
+        const formatador = new Intl.NumberFormat('pt-BR', {
+            style: 'currency',
+            currency: 'BRL'
+        });
+        return formatador.format(numero);
+    }
+
 
 
 
@@ -51,6 +63,7 @@ export default function Movie() {
                     <img src={"https://image.tmdb.org/t/p/original/" + Movie.backdrop_path} alt={Movie.title} />
                     <div className="movieData">
                         <h1>{Movie.title}</h1>
+                        <h2>{Movie.tagline}</h2>
                         <div className="movieInfo">
                             <span>{Movie.release_date.slice(0, 4)}</span>
                             <span>|</span>
@@ -60,13 +73,33 @@ export default function Movie() {
                             <span>|</span>
                             <span>{Movie.genres[0].name}{Movie.genres[1] && " e " + Movie.genres[1].name}</span>
                         </div>
-                        {/* <p>R$ {Movie.budget * 5.2},00</p>
-                        <p>R$ {Movie.revenue * 5.2},00</p> */}
+
                         <p>{Movie.overview}</p>
                         {Movie.homepage &&
-                        <a href={Movie.homepage} target='_blank'>{Movie.homepage}</a>
+                            <a href={Movie.homepage} target='_blank'>{Movie.homepage}</a>
                         }
-                        
+                        <div className="movieCosts">
+                            <p>Origem:</p>
+                            <span>{(Movie.origin_country[0])}</span>
+                            <p>Orçamento:</p>
+                            <span>{formatarEmReais(Movie.budget * 5.2)}</span>
+                            <p>Lucro:</p>
+                            <span>{formatarEmReais(Movie.revenue * 5.2)}</span>
+                        </div>
+                        <div className="movieProduction">
+                            {Movie.production_companies.map(element => {
+                                if (!element.logo_path) {
+                                    return
+                                }
+                                return (
+                                    <div className="cardMovieProduction" key={element.id}>
+                                        <img src={"https://image.tmdb.org/t/p/w200/" + element.logo_path} alt={element.name} />
+                                        {/* <span>{element.name}</span> */}
+                                    </div>
+                                )
+                            })}
+                        </div>
+
                     </div>
                 </div>
             }
@@ -93,6 +126,8 @@ export default function Movie() {
 
                 </section>
             </div>
+
+            <Footer />
         </>
     )
 }
