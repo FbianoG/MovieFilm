@@ -4,6 +4,7 @@ import './Header.css'
 export default function Header(props) {
     const searchInput = useRef()
     const searchList = useRef()
+    const sideMenu = useRef()
 
     const [searchMovies, setSearchMovies] = useState(false)
 
@@ -31,13 +32,50 @@ export default function Header(props) {
         location.href = `/movie?id=${params}`
     }
 
-
+    function showMobileMenu() {
+        if (sideMenu.current.style.left == '-100%') {
+            sideMenu.current.style.display = ''
+            setTimeout(() => {
+                sideMenu.current.style.left = '0'
+            }, 0);
+            
+        } else {
+            sideMenu.current.style.left = '-100%'
+            setTimeout(() => {
+                sideMenu.current.style.display = 'none'
+            }, 400);
+            
+        }
+    }
 
 
 
     return (
         <header>
-            <span>MovieFilm</span>
+            <div className="menuMobile" onClick={showMobileMenu}>
+                <span></span>
+                <span></span>
+                <span></span>
+                <div className="sideMenu" ref={sideMenu}>
+                    <nav>
+                        <a href='/'>Início</a>
+                        <h3>Filmes</h3>
+                        <a href='/movies?category=popular'>Populares</a>
+                        <a href='/movies?category=top_rated'>Melhores Filmes</a>
+                        <a href=''>Mais Votados</a>
+                        <a href=''>Em Breve</a>
+                        <a href=''>Mais Recentes</a>
+                        <a href=''>Categorias</a>
+                        <h3>Televisão</h3>
+                        <a href=''>Populares</a>
+                        <a href=''>Melhores Filmes</a>
+                        <a href=''>Mais Votados</a>
+                        <a href=''>Em Breve</a>
+                        <a href=''>Mais Recentes</a>
+                    </nav>
+                </div>
+            </div>
+            <div className='logo'>MovieFilm</div>
             <div className="searchBar">
                 <i className="fa-solid fa-magnifying-glass"></i>
                 <input type='search' name='' placeholder='Pesquisar' onChange={searchMovie} ref={searchInput} />
@@ -49,16 +87,16 @@ export default function Header(props) {
                                 <h3>{element.title}</h3>
                             </div>
                         ))
-
                     }
                 </div>
             </div>
-            <nav>
+            <nav className='mainNav'>
                 <a href='' target='_blank'>Home</a>
                 <a href='' target='_blank'>About</a>
                 <a href='' target='_blank'>More</a>
                 <a href='' target='_blank'>Contact</a>
             </nav>
+            <button className='btnLogin'>Login <i className="fa-solid fa-user"></i></button>
         </header>
     )
 }

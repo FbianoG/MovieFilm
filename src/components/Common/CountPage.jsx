@@ -21,15 +21,15 @@ export default function CountPage(props) {
     }
 
     function name() {
-        if (window.scrollY > 130) {
+        if (window.scrollY > 70) {
             conteinerCountPage.current.style.width = "100%"
             conteinerCountPage.current.style.padding = "20px 0 "
             conteinerCountPage.current.style.position = "fixed"
-            conteinerCountPage.current.style.top = "0px"
+            conteinerCountPage.current.style.top = "70px"
             conteinerCountPage.current.style.left = "50%"
             conteinerCountPage.current.style.transform = "translateX(-50%)"
             conteinerCountPage.current.style.background = "linear-gradient(to bottom, #222, 80%, transparent)"
-            conteinerCountPage.current.style.zIndex = "99"
+            conteinerCountPage.current.style.zIndex = "5"
         } else {
             conteinerCountPage.current.style.width = ""
             conteinerCountPage.current.style.padding = ""

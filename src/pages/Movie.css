@@ -146,3 +146,11 @@ border-radius: 10px;
     font-weight: 400;
 
 }
+
+
+/* MB <= 767 - TB <= 1023 - */
+@media screen and (max-width: 767px) {
+    .movieContainer {
+        margin: 70px 0 0;
+    }
+}

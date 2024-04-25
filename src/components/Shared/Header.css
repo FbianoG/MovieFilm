@@ -8,7 +8,7 @@ header {
 }
 
 
-header span {
+header .logo {
   color: #3fa897;
   font-size: 30px;
   /* font-weight: 400; */
@@ -28,7 +28,7 @@ header span {
 
 }
 
-header nav {
+header .mainNav {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -95,24 +95,90 @@ header nav a {
 }
 
 
+
+
+
+.menuMobile {
+  /* border: 1px solid red; */
+  width: 30px;
+  height: 30px;
+  /* padding: 0 20px; */
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  justify-content: center;
+}
+
+.menuMobile span {
+  width: 100%;
+  height: 3px;
+  background: #fdfdfd;
+  border-radius: 3px;
+
+}
+
+.sideMenu {
+  /* display: none; */
+  position: fixed;
+  background: #222;
+  height: calc(100vh - 70px);
+  top: 70px;
+  left: 0;
+  width: 70%;
+  transition: 350ms;
+}
+
+.sideMenu nav {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 5vw;
+  gap: 5px;
+}
+
+.sideMenu nav h3 {
+  font-size: 20px;
+  font-weight: 400;
+  color: #3fa897;
+}
+
+.sideMenu nav a {
+  padding: 0 0 0 10px;
+  font-weight: 300;
+}
+
+
+
+
+
 /* MB <= 767 - TB <= 1023 - */
 @media screen and (max-width: 767px) {
-  header {}
+  header {
+    justify-content: space-between;
+    padding: 0 5%;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+  }
 
-  header nav {
+  header .mainNav {
     display: none;
   }
 
   .searchBar {
-    width: 190px;
+    width: 30px;
   }
 
   .searchBar input {
-    width: 100%;
+    width: 0%;
   }
 
   .listSearchMovies {
     width: 100%;
     left: 0;
+  }
+
+  .btnLogin {
+    display: none;
   }
 }

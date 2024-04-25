@@ -53,7 +53,7 @@ section button:hover {
   .content {
     background: none;
     width: 100%;
-    padding: 0 5%;
+    padding: 70px 5% 0;
   }
 
   section {
