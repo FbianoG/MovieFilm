@@ -5,14 +5,15 @@ export default function Header(props) {
     const searchInput = useRef()
     const searchList = useRef()
     const sideMenu = useRef()
+    const logo = useRef()
+    const searchBar = useRef()
 
     const [searchMovies, setSearchMovies] = useState(false)
-
-
 
     async function searchMovie() {
         if (searchInput.current.value.trim() === "") {
             searchList.current.style.display = ""
+            hiddenInput()
             return
         }
         const response = await fetch(`https://api.themoviedb.org/3/search/movie?query=${searchInput.current.value}&language=pt-BR`, {
@@ -48,6 +49,20 @@ export default function Header(props) {
     }
 
 
+    function showInput(params) {
+        logo.current.style.display = "none"
+        searchInput.current.style.width = "200px"
+        searchInput.current.style.display = "block"
+        // searchBar.current.style.display = "none"
+    }
+
+    function hiddenInput() {
+        logo.current.style.display = "block"
+        searchInput.current.style.width = ""
+        searchInput.current.style.display = "none"
+    }
+
+
 
     return (
         <header>
@@ -74,10 +89,10 @@ export default function Header(props) {
                     </nav>
                 </div>
             </div>
-            <div className='logo'>MovieFilm</div>
-            <div className="searchBar">
-                <i className="fa-solid fa-magnifying-glass"></i>
-                <input type='search' name='' placeholder='Pesquisar' onChange={searchMovie} ref={searchInput} />
+            <div className='logo' ref={logo}>MovieFilm</div>
+            <div className="searchBar" ref={searchBar}>
+                <i className="fa-solid fa-magnifying-glass" onClick={showInput} ></i>
+                <input type='search' name='' placeholder='Pesquisar' onChange={searchMovie} onBlur={hiddenInput} ref={searchInput} />
                 <div className="listSearchMovies" ref={searchList}>
                     {searchMovies &&
                         searchMovies.results.map(element => (

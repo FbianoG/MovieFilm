@@ -166,12 +166,16 @@ header nav a {
   }
 
   .searchBar {
-    width: 30px;
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
   }
 
   .searchBar input {
-    width: 0%;
+    display: none;
   }
+
 
   .listSearchMovies {
     width: 100%;
