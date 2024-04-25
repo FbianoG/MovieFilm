@@ -123,7 +123,7 @@ header nav a {
   background: #222;
   height: calc(100vh - 70px);
   top: 70px;
-  left: 0;
+  left: -100%;
   width: 70%;
   transition: 350ms;
 }

@@ -33,18 +33,17 @@ export default function Header(props) {
     }
 
     function showMobileMenu() {
-        if (sideMenu.current.style.left == '-100%') {
-            sideMenu.current.style.display = ''
-            setTimeout(() => {
-                sideMenu.current.style.left = '0'
-            }, 0);
-            
-        } else {
+        if (sideMenu.current.style.left === '0px') {
             sideMenu.current.style.left = '-100%'
             setTimeout(() => {
                 sideMenu.current.style.display = 'none'
             }, 400);
-            
+
+        } else {
+            sideMenu.current.style.display = ''
+            setTimeout(() => {
+                sideMenu.current.style.left = '0'
+            }, 0);
         }
     }
 
