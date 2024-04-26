@@ -1,0 +1,67 @@
+.commentList {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 20px 0;
+}
+
+
+
+.cardComments {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+}
+
+.cardComments img {
+    width: 65px;
+    height: 65px;
+    min-width: 65px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 3px 3px 5px #0003;
+}
+
+.cardComments .cardCommentTitle {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 0 10px;
+}
+
+.cardComments .cardCommentTitle h3 {
+    color: #3fa897;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.cardComments .cardCommentTitle span {
+    color: #666;
+    font-size: 14px;
+}
+
+.cardComments .cardCommentsData {}
+
+.cardComments .cardCommentsData p {
+    background: #292929;
+    padding: 20px;
+    color: #bbb;
+    border-radius: 15px;
+}
+
+
+/* MB <= 767 - TB <= 1023 - */
+@media screen and (max-width: 767px) {
+    .cardComments img {
+        display: none;
+    }
+    .cardComments .cardCommentsData p {
+        background: none;
+        padding: 0;
+    }
+
+    .cardComments {
+        background: #292929;
+        padding: 20px;
+        border-radius: 15px;
+    }
+}

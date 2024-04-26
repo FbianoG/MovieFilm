@@ -4,14 +4,17 @@ import { useEffect, useState } from 'react'
 import Footer from '../components/Shared/Footer'
 import getUser from '../api/getUser'
 import includeFavorite from '../api/includeFavorite'
-
+import CardMovie from '../components/Layout/CardMovie'
+import CardComments from '../components/Layout/CardComments'
 
 export default function Movie(props) {
-    console.log(props);
-    const [User, setUser] = useState(false)
+
+    const movieId = new URLSearchParams(window.location.search).get("id")
     const [Movie, setMovie] = useState(false)
     const [Actor, setActor] = useState(false)
-    const movieId = new URLSearchParams(window.location.search).get("id")
+    const [Providers, setProviders] = useState(false)
+    const [Similar, setSimilar] = useState(false)
+    const [Comments, setComments] = useState(false)
 
     async function getMovie() {
         const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?language=pt-BR`, {
@@ -39,34 +42,49 @@ export default function Movie(props) {
         // console.log(data);
     }
 
-    useEffect(() => {
-        getMovie()
-        getActor()
-        props.bring()
-        // async function name() {
-        //     setUser(await getUser())
-        // }
-        // name()
-    }, [])
+    async function getProviders() {
+        const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/watch/providers`, {
+            method: 'GET',
+            headers: {
+                accept: 'application/json',
+                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNGU3MDE2YjAyYjdiYmI4ODEyODJlNzNjNGM4MWJmMSIsInN1YiI6IjY0ZjdkNWVjMWI3MjJjMDBlMzRlYWRmMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.3Ft4MagkdYM-1JNdJTiPpK6Er7VgEbUOQxC0_ZLX-SI'
+            }
+        })
+        const data = await response.json()
+        setProviders(data.results.BR.rent)
+    }
 
+    async function getSimilar() {
+        const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/similar?language=pt-br`, {
+            method: 'GET',
+            headers: {
+                accept: 'application/json',
+                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNGU3MDE2YjAyYjdiYmI4ODEyODJlNzNjNGM4MWJmMSIsInN1YiI6IjY0ZjdkNWVjMWI3MjJjMDBlMzRlYWRmMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.3Ft4MagkdYM-1JNdJTiPpK6Er7VgEbUOQxC0_ZLX-SI'
+            }
+        })
+        const data = await response.json()
+        // console.log(data.results);
+        setSimilar(data.results)
+    }
 
-    // function changeUser(e) {
-    //     let newUser = { ...User }
-    //     if (User.like.some(element => element.id === e.id)) {
-    //         newUser.like = User.like.filter(element => element.id != e.id)
-    //     } else {
-    //         newUser.like.push(e)
-    //     }
-    //     setUser(newUser)
-    //     includeFavorite(e)
-    // }
+    async function getComments() {
+        const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/reviews?language=pt-br`, {
+            method: 'GET',
+            headers: {
+                accept: 'application/json',
+                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNGU3MDE2YjAyYjdiYmI4ODEyODJlNzNjNGM4MWJmMSIsInN1YiI6IjY0ZjdkNWVjMWI3MjJjMDBlMzRlYWRmMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.3Ft4MagkdYM-1JNdJTiPpK6Er7VgEbUOQxC0_ZLX-SI'
+            }
+        })
+        const data = await response.json()
+        setComments(data.results)
+    }
 
     async function addFavorite(e) {
         await includeFavorite(e)
         await props.bring()
     }
 
-    function formatarEmReais(numero) {
+    function formatMoney(numero) {
         const formatador = new Intl.NumberFormat('pt-BR', {
             style: 'currency',
             currency: 'BRL'
@@ -75,12 +93,27 @@ export default function Movie(props) {
     }
 
 
+    useEffect(() => {
+        getMovie()
+        getActor()
+        getProviders()
+        getSimilar()
+        getComments()
+        props.bring()
+        // async function name() {
+        //     setUser(await getUser())
+        // }
+        // name()
+    }, [])
+
+
     return (
         <>
             <Header user={props.user} />
 
             {Movie &&
                 <div className='movieContainer'>
+
                     <img src={"https://image.tmdb.org/t/p/original/" + Movie.backdrop_path} alt={Movie.title} />
                     <div className="movieData">
                         <h1>{Movie.title}</h1>
@@ -103,18 +136,18 @@ export default function Movie(props) {
                             <p><i className="fa-regular fa-flag"></i>Origem:</p>
                             <span>{(Movie.origin_country[0])}</span>
                             <p><i className="fa-solid fa-wallet"></i>Orçamento:</p>
-                            <span>{formatarEmReais(Movie.budget * 5.2)}</span>
+                            <span>{formatMoney(Movie.budget * 5.2)}</span>
                             <p><i className="fa-solid fa-chart-line"></i>Lucro:</p>
-                            <span>{formatarEmReais(Movie.revenue * 5.2)}</span>
+                            <span>{formatMoney(Movie.revenue * 5.2)}</span>
                         </div>
                         <div className="movieProduction">
-                            {Movie.production_companies.map(element => {
+                            {Providers && Providers.map(element => {
                                 if (!element.logo_path) {
                                     return
                                 }
                                 return (
-                                    <div className="cardMovieProduction" key={element.id}>
-                                        <img src={"https://image.tmdb.org/t/p/w200/" + element.logo_path} alt={element.name} />
+                                    <div className="cardMovieProduction" key={element.provider_name}>
+                                        <img src={"https://image.tmdb.org/t/p/w200/" + element.logo_path} alt={element.provider_name} />
                                         {/* <span>{element.name}</span> */}
                                     </div>
                                 )
@@ -122,7 +155,7 @@ export default function Movie(props) {
                         </div>
 
                     </div>
-                </div>
+                </div >
             }
             <div className="content">
                 <section className="movieActor">
@@ -144,7 +177,17 @@ export default function Movie(props) {
                     </div>
                 </section>
                 <section>
+                    <h2>Semelhantes</h2>
+                    <div className="actorList">
+                        {Similar && Similar.map(element => <CardMovie key={element.id} movie={element} user={props.user} bring={props.bring} />)}
+                    </div>
+                </section>
 
+                <section>
+                    <h2>Comentários</h2>
+                    <div className="commentList">
+                        {Comments && Comments.map(element => <CardComments key={element.id} comment={element} />)}
+                    </div>
                 </section>
             </div>
 

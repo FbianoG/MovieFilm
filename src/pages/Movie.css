@@ -145,7 +145,7 @@
 }
 
 .movieCosts p i {
-color: #111;
+    color: #111;
 }
 
 .movieCosts p {
@@ -182,7 +182,10 @@ color: #111;
     position: relative;
     z-index: 1;
     object-fit: contain;
+    border-radius: 10px;
 }
+
+
 
 
 
@@ -214,5 +217,35 @@ color: #111;
 
     .movieCosts p {
         margin: 0;
+    }
+
+    .actorList .cardMovie img {
+        width: 150px;
+    }
+
+    .actorList .cardMovie {
+        min-width: auto;
+        flex-direction: column;
+    }
+
+    .actorList .cardMovie .cardMovieData .cardMovieVote{
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .actorList .cardMovie #btnLike {
+        width: 35px;
+        height: 35px;
+        background: #292929;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        z-index: 4;
+        top: 10px;
+        right: 10px;
+        font-size: 20px;
+        box-shadow: 3px 3px 5px #000
     }
 }

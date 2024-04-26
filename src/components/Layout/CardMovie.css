@@ -1,6 +1,7 @@
 .cardMovie {
   /* background: #292929; */
   border-radius: 15px;
+  min-width: 200px;
   width: 200px;
   cursor: pointer;
   position: relative;

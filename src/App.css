@@ -23,6 +23,9 @@ section h1 {
   font-size: 40px;
   margin: 0 0 30px;
 }
+section h2 {
+  color: #fdfdfd;
+}
 
 section button {
   display: block;
