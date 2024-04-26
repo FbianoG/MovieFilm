@@ -9,6 +9,11 @@ export default function Perfil() {
 
     const [User, setUser] = useState(false)
 
+    function logout() {
+        localStorage.clear()
+        location.href = '/'
+    }
+
     useEffect(() => {
         async function name() {
             setUser(await getUser())
@@ -29,7 +34,7 @@ export default function Perfil() {
                                 <div className="logoPerfil">{User.name.slice(0, 1)}</div>
                                 <p>{User.name}</p>
                                 <span>{User.email}</span>
-                                <button>Sair</button>
+                                <button onClick={logout}>Sair</button>
                             </div>
 
                             <div className="perfilData sectionPerfil">

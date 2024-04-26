@@ -1,8 +1,5 @@
 .contentPerfil {
-    display: grid;
-    grid-template-columns: 350px 1fr 1fr;
-    gap: 80px;
-    grid-template-rows: 350px 350px;
+
 }
 
 .sectionPerfil {
@@ -12,7 +9,6 @@
 }
 
 .sidePerfil {
-    /* height: 700px; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -47,6 +43,7 @@
 .sidePerfil span {
     color: #3fa897;
     font-size: 14px;
+    margin: 0 0 30px;
 }
 
 .sidePerfil button {
@@ -86,4 +83,15 @@
     width: 100%;
     height: 100%;
     overflow-Y: auto;
+}
+
+
+/* MB <= 767 - TB <= 1023 - */
+@media screen and (max-width: 767px) {
+
+
+
+
+
+
 }
