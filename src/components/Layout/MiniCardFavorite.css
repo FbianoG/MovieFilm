@@ -1,6 +1,9 @@
 .miniCard {
     display: flex;
-    gap: 50px;
+    flex-wrap: wrap;
+    width: 100%;
+    grid-template-columns: 120px 350px 1fr 1fr 1fr;
+    gap: 20px;
 }
 
 .miniCard img {
@@ -9,12 +12,12 @@
     object-fit: cover;
     border-radius: 15px;
     box-shadow: 1px 1px 5px #0003;
+    margin: 0 10px 0 0;
 }
 
 .miniCardData {
     display: flex;
     flex-direction: column;
-    width: 330px;
     gap: 10px;
 }
 
@@ -36,6 +39,8 @@
     font-weight: 500;
     cursor: pointer;
     transition: 250ms;
+    height: 50px;
+    
 }
 
 .miniCard button:hover {

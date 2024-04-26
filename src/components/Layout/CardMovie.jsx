@@ -8,19 +8,15 @@ export default function CardMovie(props) {
 
     function movieFilm(e, params) {
         if (e.target.id === 'btnLike') {
-
             if (e.target.className === "fa-solid fa-heart") {
-                console.log("é solid");
                 e.target.className = "fa-regular fa-heart"
             } else {
                 e.target.className = "fa-solid fa-heart"
             }
             return
         }
-        // window.open(`/movie?id=${params}`, '_blank')
         location.href = `/movie?id=${params}`
     }
-
 
 
     return (

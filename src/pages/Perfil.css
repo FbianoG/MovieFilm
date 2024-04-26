@@ -1,0 +1,89 @@
+.contentPerfil {
+    display: grid;
+    grid-template-columns: 350px 1fr 1fr;
+    gap: 80px;
+    grid-template-rows: 350px 350px;
+}
+
+.sectionPerfil {
+    background: #222;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.sidePerfil {
+    /* height: 700px; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    grid-row: span 2;
+}
+
+.sidePerfil .logoPerfil {
+    width: 65px;
+    height: 65px;
+    border: 1px solid #3fa897;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+    font-weight: 500;
+    color: #3fa897;
+    text-transform: uppercase;
+    margin: 0 0 10px;
+    background: #333;
+}
+
+.sidePerfil p {
+    text-align: center;
+    color: #ddd;
+    text-transform: capitalize;
+    margin: 0 0 5px;
+    font-size: 20px;
+}
+
+.sidePerfil span {
+    color: #3fa897;
+    font-size: 14px;
+}
+
+.sidePerfil button {
+    margin: auto 0 0 0;
+    background: none;
+    padding: 10px 0;
+    width: 100%;
+    font-size: 18px;
+    color: rgb(204, 23, 23);
+    /* font-weight: 500; */
+    border: none;
+    border-top: 1px solid #333;
+    cursor: pointer;
+    transition: 250ms;
+}
+
+.sidePerfil button:hover {
+    color: #3fa897;
+}
+
+
+
+.perfilData {
+    height: 400px;
+    background: #222;
+}
+
+
+.perfilFavorites {
+    grid-column: span 2;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.perfilFavorites .listFavorites {
+    width: 100%;
+    height: 100%;
+    overflow-Y: auto;
+}

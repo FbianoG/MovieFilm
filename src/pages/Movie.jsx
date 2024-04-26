@@ -2,10 +2,12 @@ import './Movie.css'
 import Header from '../components/Shared/Header'
 import { useEffect, useState } from 'react'
 import Footer from '../components/Shared/Footer'
+import getUser from '../api/getUser'
+import includeFavorite from '../api/includeFavorite'
 
 
 export default function Movie() {
-
+    const [User, setUser] = useState(false)
     const [Movie, setMovie] = useState(false)
     const [Actor, setActor] = useState(false)
     const movieId = new URLSearchParams(window.location.search).get("id")
@@ -20,7 +22,7 @@ export default function Movie() {
         })
         const data = await response.json()
         setMovie(data)
-        console.log(data);
+        // console.log(data);
     }
 
     async function getActor() {
@@ -39,7 +41,25 @@ export default function Movie() {
     useEffect(() => {
         getMovie()
         getActor()
+        async function name() {
+            setUser(await getUser())
+        }
+        name()
     }, [])
+
+
+    function changeUser(e) {
+        let newUser = { ...User }
+        if (User.like.some(element => element.id === e.id)) {
+            newUser.like = User.like.filter(element => element.id != e.id)
+        } else {
+            newUser.like.push(e)
+        }
+        setUser(newUser)
+        includeFavorite(e)
+    }
+
+
 
 
 
@@ -52,11 +72,9 @@ export default function Movie() {
     }
 
 
-
-
     return (
         <>
-            <Header />
+            <Header user={User} />
 
             {Movie &&
                 <div className='movieContainer'>
@@ -75,9 +93,9 @@ export default function Movie() {
                         </div>
 
                         <p>{Movie.overview}</p>
-                        {Movie.homepage &&
-                            <a href={Movie.homepage} target='_blank'>{Movie.homepage}</a>
-                        }
+                        {User && User.like.some(element => element.id == Movie.id) && <button onClick={() => changeUser(Movie)}>Remover do Favoritos</button>}
+                        {User && !User.like.some(element => element.id == Movie.id) && <button onClick={() => changeUser(Movie)}>Adicionar ao Favoritos</button>}
+                        {Movie.homepage && <a href={Movie.homepage} target='_blank'>{Movie.homepage}</a>}
                         <div className="movieCosts">
                             <p><i className="fa-regular fa-flag"></i>Origem:</p>
                             <span>{(Movie.origin_country[0])}</span>

@@ -15,7 +15,7 @@ export default function TopRated() {
 
 
     async function getMovies() {
-        const response = await fetch(`https://api.themoviedb.org/3/movie/${urlQuery}?language=pt-BR&page=${page}`, {
+        const response = await fetch(`https://api.themoviedb.org/3/movie/${urlQuery}?language=pt-BR&page=${page}&region=br`, {
             method: 'GET',
             headers: {
                 accept: 'application/json',
@@ -42,7 +42,13 @@ export default function TopRated() {
     //     name()
     // }, [])
 
-
+    function getTitle(params) {
+        if (urlQuery === 'top_rated') {
+            return 'Melhores Filmes'
+        } else if (urlQuery === 'popular') {
+            return 'Populares'
+        }
+    }
 
 
     return (
@@ -50,7 +56,7 @@ export default function TopRated() {
             <Header user={User} />
             <div className="content">
                 <section>
-                    <h1>Melhores Filmes</h1>
+                    <h1>{getTitle()}</h1>
                     <CountPage page={{ page, setpage }} />
                     <div className="listMovies">
                         {Movies && Movies.results.map(element => <CardMovie movie={element} user={User} key={element.id} />)}

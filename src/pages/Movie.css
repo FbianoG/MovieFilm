@@ -55,13 +55,24 @@
 .movieContainer p {
     color: #fdfdfd;
     font-size: 16px;
-    margin: 25px 0;
+    margin: 25px 0 0;
+}
+
+.movieData button {
+    padding: 10px 0;
+    width: 150px;
+    background: none;
+    border: 1px solid #3fa897;
+    font-weight: 500;
+    color: #fdfdfd;
+    cursor: pointer;
+    margin: 10px 0;
 }
 
 .movieContainer a {
     text-decoration: none;
     color: #3fa897;
-    margin: 0 0 20px;
+    margin: 20px 0;
     overflow: hidden;
 }
 

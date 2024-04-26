@@ -9,7 +9,8 @@ import getUser from '../api/getUser'
 
 export default function Home() {
     const [topMovies, setTopMovies] = useState(false)
-    const [popularMovies, setPopularMovies] = useState(false)
+    const [upcomingMovies, setUpcomingMovies] = useState(false)
+    const [trending, setTrending] = useState(false)
     const [User, setUser] = useState(false)
 
 
@@ -25,8 +26,8 @@ export default function Home() {
         setTopMovies(data)
     }
 
-    async function getPopular() {
-        const response = await fetch('https://api.themoviedb.org/3/movie/popular?language=pt-BR', {
+    async function getUpcoming() {
+        const response = await fetch('https://api.themoviedb.org/3/movie/upcoming?language=pt-br&region=br', {
             method: 'GET',
             headers: {
                 accept: 'application/json',
@@ -34,13 +35,26 @@ export default function Home() {
             }
         })
         const data = await response.json()
-        setPopularMovies(data)
+        setUpcomingMovies(data)
+    }
+
+    async function getTrending() {
+        const response = await fetch('https://api.themoviedb.org/3/trending/movie/week?language=pt-BR', {
+            method: 'GET',
+            headers: {
+                accept: 'application/json',
+                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNGU3MDE2YjAyYjdiYmI4ODEyODJlNzNjNGM4MWJmMSIsInN1YiI6IjY0ZjdkNWVjMWI3MjJjMDBlMzRlYWRmMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.3Ft4MagkdYM-1JNdJTiPpK6Er7VgEbUOQxC0_ZLX-SI'
+            }
+        })
+        const data = await response.json()
+        setTrending(data)
     }
 
 
     useEffect(() => {
         getTopRated()
-        getPopular()
+        getUpcoming()
+        getTrending()
         async function name() {
             setUser(await getUser())
         }
@@ -55,7 +69,7 @@ export default function Home() {
     }
 
 
-    
+
 
 
     return (
@@ -66,10 +80,10 @@ export default function Home() {
                     <img src="/freepik-export-20240424163048WEsm.jpeg" alt='' />
                 </div>
                 <section>
-                    <h1>Populares</h1>
+                    <h1>Em Alta</h1>
                     <div className="listMovies">
-                        {popularMovies &&
-                            popularMovies.results.map((element, index) => {
+                        {trending &&
+                            trending.results.map((element, index) => {
                                 if (index > 13) {
                                     return
                                 }
@@ -80,6 +94,22 @@ export default function Home() {
                         }
                     </div>
                     <button onClick={() => moreMovies('popular')}>Veja mais...</button>
+                </section>
+                <section>
+                    <h1>Em Breve</h1>
+                    <div className="listMovies">
+                        {upcomingMovies &&
+                            upcomingMovies.results.map((element, index) => {
+                                if (index > 13) {
+                                    return
+                                }
+                                return (
+                                    <CardMovie movie={element} user={User} key={element.id} />
+                                )
+                            })
+                        }
+                    </div>
+                    
                 </section>
                 <div className="banner">
                     <img src="https://skycms.s3.amazonaws.com/images/43136174/Banner_large.png" alt='' />
@@ -100,30 +130,8 @@ export default function Home() {
                     </div>
                     <button onClick={() => moreMovies('top_rated')}>Veja mais...</button>
                 </section>
-
-                <section>
-                    <h1>Favoritos</h1>
-                    <div className="listFavorites">
-                        {/* {User &&
-                            User.like.map(element => <MiniCardFavorite data={element} key={element.id}/>)
-                        } */}
-                    </div>
-
-                </section>
-
-
             </div>
-
-
-
-
             <Footer />
-
-
-
-
-
-
         </>
     )
 }

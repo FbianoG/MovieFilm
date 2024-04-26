@@ -27,6 +27,7 @@
 
 .cardMovie img {
   width: 100%;
+  min-height: 300px;
   border-radius: 15px;
   transition: 250ms;
   object-fit: cover;

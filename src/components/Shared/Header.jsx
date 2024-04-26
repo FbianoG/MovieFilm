@@ -97,9 +97,6 @@ export default function Header(props) {
                         <a href='/movies?category=popular'>Populares</a>
                         <a href='/movies?category=top_rated'>Melhores Filmes</a>
                         <a href=''>Mais Votados</a>
-                        <a href=''>Em Breve</a>
-                        <a href=''>Mais Recentes</a>
-                        <a href=''>Categorias</a>
                     </nav>
                 </div>
             </div>
