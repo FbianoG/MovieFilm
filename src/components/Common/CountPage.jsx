@@ -45,11 +45,15 @@ export default function CountPage(props) {
     window.addEventListener('scroll', name)
 
     return (
-        <div className="containerCountPage" ref={conteinerCountPage}>
-            <div className="countPage" ref={countPage}>
-                <button onClick={returnPage}>Return</button>
-                <span>{props.page.page}</span>
-                <button onClick={nextPage}>Next</button>
+        <div className="contentCount">
+
+
+            <div className="containerCountPage" ref={conteinerCountPage}>
+                <div className="countPage" ref={countPage}>
+                    <button onClick={returnPage}>Return</button>
+                    <span>{props.page.page}</span>
+                    <button onClick={nextPage}>Next</button>
+                </div>
             </div>
         </div>
     )

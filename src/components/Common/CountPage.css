@@ -35,3 +35,8 @@
 .countPage button:hover {
     border: none;
 }
+
+
+.contentCount {
+    height: 90px;
+}

@@ -52,7 +52,7 @@ export default function TopRated() {
                     <div className="listMovies">
                         {Movies &&
                             Movies.results.map(element => (
-                                <CardMovie movie={element} user={User} />
+                                <CardMovie movie={element} user={User} key={element.id}/>
                             ))
                         }
                     </div>
