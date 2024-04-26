@@ -183,3 +183,8 @@ header .logo {
     display: none;
   }
 }
+
+header span {
+  text-transform: capitalize;
+  color: #fdfdfd;
+}

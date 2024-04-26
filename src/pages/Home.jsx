@@ -56,7 +56,7 @@ export default function Home() {
 
     return (
         <>
-            <Header />
+            <Header user={User} />
             <div className="content">
                 <div className="banner">
                     <img src="/freepik-export-20240424163048WEsm.jpeg" alt='' />
@@ -89,7 +89,7 @@ export default function Home() {
                                     return
                                 }
                                 return (
-                                    <CardMovie movie={element} user={User}  key={element.id}/>
+                                    <CardMovie movie={element} user={User} key={element.id} />
                                 )
                             })
                         }

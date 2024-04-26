@@ -106,7 +106,13 @@ export default function Header(props) {
                     }
                 </div>
             </div>
-            <a href='/login' className=''>Login</a>
+            {props.user &&
+                <span>{props.user.name.split(' ').slice(0, 1).join(' ')}</span>
+            }
+            {!props.user &&
+                <a href='/login' className=''>Login</a>
+            }
+
         </header>
     )
 }

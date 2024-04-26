@@ -44,7 +44,7 @@ export default function TopRated() {
 
     return (
         <>
-            <Header />
+            <Header user={User}/>
             <div className="content">
                 <section>
                     <h1>Melhores Filmes</h1>
