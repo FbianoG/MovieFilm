@@ -107,6 +107,7 @@
 
   .cardMovie img {
     width: 100px;
+    min-height: auto;
   }
 
   .cardMovieData {
