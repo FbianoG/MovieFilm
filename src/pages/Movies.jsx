@@ -4,12 +4,16 @@ import CardMovie from "../components/Layout/CardMovie";
 import './Movies.css'
 import CountPage from "../components/Common/CountPage";
 import Footer from "../components/Shared/Footer";
+import getUser from "../api/getUser";
 
 export default function TopRated() {
 
     const urlQuery = new URLSearchParams(window.location.search).get("category")
     const [Movies, setMovies] = useState(false)
     const [page, setpage] = useState(1)
+    const [User, setUser] = useState(false)
+
+
 
 
     async function getMovies() {
@@ -30,6 +34,13 @@ export default function TopRated() {
         getMovies()
     }, [page])
 
+    useEffect(() => {
+        async function name() {
+            setUser(await getUser())
+        }
+        name()
+    }, [])
+
 
     return (
         <>
@@ -41,7 +52,7 @@ export default function TopRated() {
                     <div className="listMovies">
                         {Movies &&
                             Movies.results.map(element => (
-                                <CardMovie data={element} />
+                                <CardMovie movie={element} user={User} />
                             ))
                         }
                     </div>

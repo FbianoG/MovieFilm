@@ -1,25 +1,27 @@
 .cardMovie {
   /* background: #292929; */
   border-radius: 15px;
-  width: 300px;
+  width: 200px;
   cursor: pointer;
+  position: relative;
 }
 
 .cardMovieData {
   display: flex;
   gap: 10px;
   padding: 5px;
+  flex-direction: column;
   /* height: 100px; */
 }
 
 .cardMovieTitle {
-  width: 80%;
+  /* width: 80%; */
 }
 
 .cardMovieVote {
   display: flex;
-  flex-direction: column;
-  /* justify-content: center; */
+  /* flex-direction: column; */
+  justify-content: flex-end;
   gap: 10px;
 }
 
@@ -32,17 +34,20 @@
 }
 
 .cardMovie:hover img {
-  filter: brightness(1.2);
+  filter: brightness(0.5);
 }
 
 .cardMovie h3 {
   color: #ddd;
-  max-height: 80px;
+  max-height: 72px;
   overflow: hidden;
+  font-size: 18px;
+  font-weight: 500;
 
 }
 
 .cardMovie p {
+  margin: 0 auto 0 0;
   color: #555;
 }
 
@@ -60,6 +65,36 @@
 
 }
 
+#btnLike {
+  width: 35px;
+  height: 35px;
+  background: #292929;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  z-index: 4;
+  top: 10px;
+  right: 10px;
+  /* background: red; */
+  font-size: 20px;
+  /* color: #3fa897; */
+  box-shadow: 3px 3px 5px #000;
+}
+
+.fa-solid.fa-heart {
+  color: #de2727
+}
+
+.fa-regular.fa-heart {
+  color: #3fa897;
+}
+
+#btnLike:hover {
+  color: #de2727
+}
+
 
 /* MB <= 767 - TB <= 1023 - */
 @media screen and (max-width: 767px) {
@@ -75,7 +110,6 @@
 
   .cardMovieData {
     flex-wrap: wrap;
-    flex-direction: column;
     justify-content: space-between;
     padding: 7px 0;
   }
@@ -85,10 +119,19 @@
   }
 
   .cardMovieVote {
-    flex-direction: row;
-    height: fit-content;
+    flex-direction: column;
+    gap: 5px;
   }
 
+  .cardMovieVote span {
+    justify-content: flex-start;
+  }
 
+  #btnLike {
+    top: auto;
+    bottom: 5px;
+    box-shadow: none;
+    background: none;
+  }
 
 }

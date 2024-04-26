@@ -1,0 +1,98 @@
+.loginContainer {
+    display: flex;
+    height: 100vh;
+}
+
+.loginSideApresentation {
+    width: 50%;
+    background: #235850;
+}
+
+.formLogin {
+    width: 50%;
+    background: #fdfdfd;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.formLogin .logo {
+    font-size: 48px;
+    color: #3fa897;
+}
+
+.formLogin h3 {
+    font-weight: 400;
+    font-size: 20px;
+    color: #333;
+}
+
+.formLogin form {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.formLogin input {
+    width: 100%;
+    padding: 10px;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #bbb;
+}
+
+.formLogin input:focus {
+    border: 1px solid #3fa897;
+}
+
+.formLogin button {
+    width: 100%;
+    padding: 10px;
+    border-radius: 15px;
+    border: 1px solid #3fa897;
+    background: #333;
+    color: #fdfdfd;
+    font-weight: 500;
+    transition: 350ms;
+    cursor: pointer;
+}
+
+.formLogin button:hover {
+    background: #3fa897;
+    color: #fdfdfd;
+    border: 1px solid #3fa897;
+}
+
+.formLogin a {
+    text-decoration: none;
+    color: #666;
+    cursor: pointer;
+}
+
+.formLogin a:hover {
+    opacity: 0.6;
+}
+
+.loginAlert {
+    height: 21px;
+    color: red;
+}
+
+
+/* MB <= 767 - TB <= 1023 - */
+@media screen and (max-width: 767px) {
+    .loginContainer {
+        flex-wrap: wrap;
+    }
+    .loginSideApresentation {
+        width: 100%;
+        order: 2;
+    }
+    .formLogin {
+        width: 100%;
+    }
+}

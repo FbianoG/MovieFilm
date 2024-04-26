@@ -4,9 +4,13 @@ import Header from '../components/Shared/Header'
 import CardMovie from '../components/Layout/CardMovie'
 import MiniCardFavorite from '../components/Layout/MiniCardFavorite'
 import Footer from '../components/Shared/Footer'
+import getUser from '../api/getUser'
+
+
 export default function Home() {
     const [topMovies, setTopMovies] = useState(false)
     const [popularMovies, setPopularMovies] = useState(false)
+    const [User, setUser] = useState(false)
 
 
     async function getTopRated() {
@@ -33,9 +37,14 @@ export default function Home() {
         setPopularMovies(data)
     }
 
+
     useEffect(() => {
         getTopRated()
         getPopular()
+        async function name() {
+            setUser(await getUser())
+        }
+        name()
     }, [])
 
 
@@ -57,11 +66,11 @@ export default function Home() {
                     <div className="listMovies">
                         {popularMovies &&
                             popularMovies.results.map((element, index) => {
-                                if (index > 7) {
+                                if (index > 13) {
                                     return
                                 }
                                 return (
-                                    <CardMovie data={element} />
+                                    <CardMovie movie={element} user={User} key={element.id} />
                                 )
                             })
                         }
@@ -76,11 +85,11 @@ export default function Home() {
                     <div className="listMovies">
                         {topMovies &&
                             topMovies.results.map((element, index) => {
-                                if (index > 7) {
+                                if (index > 13) {
                                     return
                                 }
                                 return (
-                                    <CardMovie data={element} />
+                                    <CardMovie movie={element} user={User}  key={element.id}/>
                                 )
                             })
                         }
@@ -91,9 +100,9 @@ export default function Home() {
                 <section>
                     <h1>Favoritos</h1>
                     <div className="listFavorites">
-                        {topMovies &&
-                            topMovies.results.map(element => <MiniCardFavorite data={element} />)
-                        }
+                        {/* {User &&
+                            User.like.map(element => <MiniCardFavorite data={element} key={element.id}/>)
+                        } */}
                     </div>
 
                 </section>

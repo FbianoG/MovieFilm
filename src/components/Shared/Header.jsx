@@ -1,7 +1,10 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './Header.css'
+import UrlBack from '../../api/api.js'
+
 
 export default function Header(props) {
+    const token = localStorage.getItem('Token')
     const searchInput = useRef()
     const searchList = useRef()
     const sideMenu = useRef()
@@ -10,7 +13,7 @@ export default function Header(props) {
 
     const [searchMovies, setSearchMovies] = useState(false)
 
-    async function searchMovie() {
+    async function searchMovie() { // ! criar arquivo para separar function
         if (searchInput.current.value.trim() === "") {
             searchList.current.style.display = ""
             return
@@ -26,7 +29,6 @@ export default function Header(props) {
         setSearchMovies(data)
         searchList.current.style.display = "flex"
     }
-
 
     function movieFilm(params) {
         location.href = `/movie?id=${params}`
@@ -59,7 +61,6 @@ export default function Header(props) {
         searchInput.current.style.width = ""
         searchInput.current.style.display = "none"
     }
-
 
 
     return (
@@ -105,7 +106,7 @@ export default function Header(props) {
                     }
                 </div>
             </div>
-            <button className='btnLogin'>Login <i className="fa-solid fa-user"></i></button>
+            <a href='/login' className=''>Login</a>
         </header>
     )
 }

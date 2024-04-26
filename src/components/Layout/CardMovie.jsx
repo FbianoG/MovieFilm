@@ -1,37 +1,47 @@
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import './CardMovie.css'
+import includeFavorite from '../../api/includeFavorite'
 
 
 
 export default function CardMovie(props) {
 
-    const cardMovie = useRef()
+    function movieFilm(e, params) {
+        if (e.target.id === 'btnLike') {
 
-    function movieFilm(params) {
+            if (e.target.className === "fa-solid fa-heart") {
+                console.log("é solid");
+                e.target.className = "fa-regular fa-heart"
+            } else {
+                e.target.className = "fa-solid fa-heart"
+            }
+            return
+        }
         // window.open(`/movie?id=${params}`, '_blank')
         location.href = `/movie?id=${params}`
     }
 
 
 
-
     return (
-        <div className="cardMovie" key={props.data.id} onClick={() => movieFilm(props.data.id)}>
-
-            <img src={"https://image.tmdb.org/t/p/w300/" + props.data.poster_path} alt={props.data.title} />
+        <div className="cardMovie" onClick={(e) => movieFilm(e, props.movie.id)}>
+            {props.user &&
+                props.user.like.some(element => (element.id === props.movie.id)) &&
+                <i className="fa-solid fa-heart" id='btnLike' onClick={() => includeFavorite(props.movie)}></i>
+            }
+            {props.user &&
+                !props.user.like.some(element => (element.id === props.movie.id)) &&
+                <i className="fa-regular fa-heart" id='btnLike' onClick={() => includeFavorite(props.movie)}></i>
+            }
+            <img src={"https://image.tmdb.org/t/p/w300/" + props.movie.poster_path} alt={props.movie.title} />
 
             <div className="cardMovieData">
-
-                <div className="cardMovieTitle">
-                    <h3>{props.data.title}</h3>
-                    <p>{props.data.release_date.slice(0, 4)}</p>
-                </div>
-
+                <h3 className="cardMovieTitle">{props.movie.title}</h3>
                 <div className="cardMovieVote">
-                    <span><i className="fa-solid fa-star"></i>{props.data.vote_average.toFixed(1)}</span>
-                    <span><i className="fa-solid fa-ticket"></i>{props.data.vote_count}</span>
+                    <p>{props.movie.release_date.slice(0, 4)}</p>
+                    <span><i className="fa-solid fa-star"></i>{props.movie.vote_average.toFixed(1)}</span>
+                    <span><i className="fa-solid fa-ticket"></i>{props.movie.vote_count}</span>
                 </div>
-
             </div>
         </div>
 
