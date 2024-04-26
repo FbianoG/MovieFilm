@@ -48,10 +48,14 @@ export default function Home() {
     }, [])
 
 
+
+
     function moreMovies(params) {
         location.href = `/movies?category=${params}`
     }
 
+
+    
 
 
     return (

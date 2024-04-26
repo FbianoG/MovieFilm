@@ -35,6 +35,7 @@ export default function Header(props) {
     }
 
     function showMenu() {
+
         if (sideMenu.current.style.left === '0px') {
             sideMenu.current.style.left = '-100%'
             setTimeout(() => {
@@ -50,6 +51,9 @@ export default function Header(props) {
     }
 
     function showInput() {
+        if (window.innerWidth > 767) {
+            return
+        }
         logo.current.style.display = "none"
         searchInput.current.style.width = "200px"
         searchInput.current.style.display = "block"
@@ -57,6 +61,9 @@ export default function Header(props) {
     }
 
     function hiddenInput() {
+        if (window.innerWidth > 767) {
+            return
+        }
         logo.current.style.display = "block"
         searchInput.current.style.width = ""
         searchInput.current.style.display = "none"
@@ -74,20 +81,25 @@ export default function Header(props) {
 
                 <div className="sideMenu" ref={sideMenu}>
                     <nav>
-                        <a href='/'>Início</a>
+                        {props.user && <div className='miniPerfil'>
+                            <span>{props.user.name.slice(0, 1)}</span>
+                            <p>{props.user.name.split(' ').slice(0, 2).join(' ')}</p>
+                        </div>}
+                        {!props.user && <a href='/login' id='btnLogin'>Login</a>}
+                        {props.user &&
+                            <>
+                                <a href='/perfil'>Perfil</a>
+                                <a href='/favorites'>Favoritos</a>
+                            </>
+                        }
                         <h3>Filmes</h3>
+                        <a href='/'>Início</a>
                         <a href='/movies?category=popular'>Populares</a>
                         <a href='/movies?category=top_rated'>Melhores Filmes</a>
                         <a href=''>Mais Votados</a>
                         <a href=''>Em Breve</a>
                         <a href=''>Mais Recentes</a>
                         <a href=''>Categorias</a>
-                        <h3>Televisão</h3>
-                        <a href=''>Populares</a>
-                        <a href=''>Melhores Filmes</a>
-                        <a href=''>Mais Votados</a>
-                        <a href=''>Em Breve</a>
-                        <a href=''>Mais Recentes</a>
                     </nav>
                 </div>
             </div>
@@ -96,23 +108,15 @@ export default function Header(props) {
                 <i className="fa-solid fa-magnifying-glass" onClick={showInput} ></i>
                 <input type='search' name='' placeholder='Pesquisar' onChange={searchMovie} onBlur={hiddenInput} ref={searchInput} />
                 <div className="listSearchMovies" ref={searchList}>
-                    {searchMovies &&
-                        searchMovies.results.map(element => (
-                            <div className="cardMovieSearch" key={element.id} onClick={() => movieFilm(element.id)} >
-                                <img src={"https://image.tmdb.org/t/p/w200/" + element.poster_path} alt={element.title} />
-                                <h3>{element.title}</h3>
-                            </div>
-                        ))
+                    {searchMovies && searchMovies.results.map(element => (
+                        <div className="cardMovieSearch" key={element.id} onClick={() => movieFilm(element.id)} >
+                            <img src={"https://image.tmdb.org/t/p/w200/" + element.poster_path} alt={element.title} />
+                            <h3>{element.title}</h3>
+                        </div>
+                    ))
                     }
                 </div>
             </div>
-            {props.user &&
-                <span>{props.user.name.split(' ').slice(0, 1).join(' ')}</span>
-            }
-            {!props.user &&
-                <a href='/login' className=''>Login</a>
-            }
-
         </header>
     )
 }

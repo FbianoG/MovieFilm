@@ -5,7 +5,8 @@ header {
   top: 0;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  padding: 0 5%;
   background: #222;
   z-index: 10;
 }
@@ -83,6 +84,7 @@ header .logo {
   color: #ddd;
   font-size: 18px;
   font-weight: 400;
+  
 }
 
 .menu {}
@@ -109,7 +111,7 @@ header .logo {
   height: 3px;
   background: #fdfdfd;
   border-radius: 3px;
-  
+
 }
 
 .sideMenu {
@@ -119,6 +121,7 @@ header .logo {
   top: 70px;
   left: -100%;
   width: 70%;
+  max-width: 360px;
   transition: 350ms;
 }
 
@@ -130,9 +133,11 @@ header .logo {
 }
 
 .sideMenu nav h3 {
+  margin: 20px 0 5px;
   font-size: 20px;
   font-weight: 400;
   color: #3fa897;
+  text-align: center;
 }
 
 .sideMenu nav a {
@@ -142,6 +147,12 @@ header .logo {
   text-decoration: none;
   margin: 0 0 10px;
 }
+
+.sideMenu nav a:hover {
+  opacity: 0.6;
+}
+
+
 
 
 
@@ -184,7 +195,54 @@ header .logo {
   }
 }
 
-header span {
+.miniPerfil {
+  width: fit-content;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0px 10px;
+  padding: 0 0 10px;
+  margin: 0 0 5px;
+  border-bottom: 1px solid #333;
+}
+
+.miniPerfil p {
+  color: #3fa897;
+  text-transform: capitalize;
+}
+
+.miniPerfil span {
   text-transform: capitalize;
   color: #fdfdfd;
+  background: #333;
+  color: #3fa897;
+  font-weight: 500;
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.miniPerfil button {
+  width: 100%;
+
+}
+
+header #btnLogin {
+  border: 1px solid #3fa897;
+  width: 100%;
+  padding: 5px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  font-weight: 500;
+  transition: 300ms;
+}
+
+header #btnLogin:hover {
+  background: #3fa897;
 }

@@ -14,8 +14,6 @@ export default function TopRated() {
     const [User, setUser] = useState(false)
 
 
-
-
     async function getMovies() {
         const response = await fetch(`https://api.themoviedb.org/3/movie/${urlQuery}?language=pt-BR&page=${page}`, {
             method: 'GET',
@@ -29,32 +27,33 @@ export default function TopRated() {
     }
 
 
-
     useEffect(() => {
         getMovies()
-    }, [page])
-
-    useEffect(() => {
         async function name() {
             setUser(await getUser())
         }
         name()
-    }, [])
+    }, [page])
+
+    // useEffect(() => {
+    //     async function name() {
+    //         setUser(await getUser())
+    //     }
+    //     name()
+    // }, [])
+
+
 
 
     return (
         <>
-            <Header user={User}/>
+            <Header user={User} />
             <div className="content">
                 <section>
                     <h1>Melhores Filmes</h1>
                     <CountPage page={{ page, setpage }} />
                     <div className="listMovies">
-                        {Movies &&
-                            Movies.results.map(element => (
-                                <CardMovie movie={element} user={User} key={element.id}/>
-                            ))
-                        }
+                        {Movies && Movies.results.map(element => <CardMovie movie={element} user={User} key={element.id} />)}
                     </div>
                 </section>
             </div >

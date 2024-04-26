@@ -4,6 +4,7 @@ import Home from './pages/Home'
 import Movie from './pages/Movie'
 import Movies from './pages/Movies'
 import Login from './pages/Login'
+import Favorites from './pages/Favotites'
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
         <Route path="/movie" element={<Movie />} />
         <Route path="/movies" element={<Movies />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/favorites" element={<Favorites />} />
       </Routes>
     </Router>
   )
