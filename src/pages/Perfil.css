@@ -1,5 +1,14 @@
 .contentPerfil {
+    height: calc(100vh - 150px);
+}
 
+.contentPerfil {
+    display: grid;
+    width: auto;
+    flex-wrap: wrap;
+    gap: 30px;
+    grid-template-columns: minmax(300px, 300px) minmax(300px, 1fr)  minmax(300px, 1fr) ;
+    grid-template-rows: 1fr 1fr;
 }
 
 .sectionPerfil {
@@ -13,7 +22,8 @@
     flex-direction: column;
     align-items: center;
     flex-wrap: wrap;
-    grid-row: span 2;
+    /* min-width: 350px; */
+    /* grid-row: span 2; */
 }
 
 .sidePerfil .logoPerfil {
@@ -46,6 +56,25 @@
     margin: 0 0 30px;
 }
 
+.sidePerfil .btnChangePassword {
+    color: #ddd;
+    display: flex;
+    gap: 5px;
+    cursor: pointer;
+    transition: 250ms;
+    margin: 0 0 40px;
+}
+
+.sidePerfil .btnChangePassword:hover {
+    opacity: 0.5;
+}
+
+.sidePerfil .btnChangePassword i {
+    display: flex;
+    align-items: center;
+    color: #3fa897;
+}
+
 .sidePerfil button {
     margin: auto 0 0 0;
     background: none;
@@ -64,16 +93,13 @@
     color: #3fa897;
 }
 
-
-
 .perfilData {
-    height: 400px;
     background: #222;
 }
 
 
 .perfilFavorites {
-    grid-column: span 2;
+    grid-column: span 3;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -85,13 +111,36 @@
     overflow-Y: auto;
 }
 
+.perfilFavorites .listFavorites::-webkit-scrollbar {
+width: 10px;
+}
+
+.perfilFavorites .listFavorites::-webkit-scrollbar-track {
+background: #333;
+border-radius: 10px;
+}
+
+.perfilFavorites .listFavorites::-webkit-scrollbar-thumb {
+background: #3fa897;
+border-radius: 10px;
+
+}
+
 
 /* MB <= 767 - TB <= 1023 - */
 @media screen and (max-width: 767px) {
+    .contentPerfil {
+        display: block;
+    }
+    .perfilData {
+        display: none;
+    }
 
+    .perfilFavorites {
+        display: none;
+    }
 
-
-
-
-
+    .sidePerfil {
+        height: calc(100vh - 70px);
+    }
 }

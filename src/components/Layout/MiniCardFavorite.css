@@ -7,8 +7,8 @@
 }
 
 .miniCard img {
-    width: 120px;
-    height: 100px;
+    width: 100px;
+    height: 100%;
     object-fit: cover;
     border-radius: 15px;
     box-shadow: 1px 1px 5px #0003;
@@ -19,6 +19,7 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    height: 80px;
 }
 
 .miniCardData span {
@@ -51,25 +52,6 @@
 
 /* MB <= 767 - TB <= 1023 - */
 @media screen and (max-width: 767px) {
-
-    .miniCard {
-        flex-wrap: wrap;
-        gap: 0;
-    }
-
-    .miniCard img {
-        width: 100%;
-        height: auto;
-    }
-
-    .miniCardData {
-        flex-direction: row;
-        align-items: center;
-    }
-
-    .miniCard button {
-        top: 0;
-    }
 
 
 }

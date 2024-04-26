@@ -34,6 +34,7 @@ export default function Perfil() {
                                 <div className="logoPerfil">{User.name.slice(0, 1)}</div>
                                 <p>{User.name}</p>
                                 <span>{User.email}</span>
+                                <div className="btnChangePassword"><i className="fa-solid fa-gear"></i>Alterar Senha</div>
                                 <button onClick={logout}>Sair</button>
                             </div>
 
