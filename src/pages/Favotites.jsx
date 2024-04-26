@@ -8,14 +8,15 @@ import Footer from '../components/Shared/Footer'
 
 
 
-export default function Favorites() {
+export default function Favorites(props) {
     const [User, setUser] = useState(false)
 
     useEffect(() => {
-        async function name(params) {
-            setUser(await getUser())
-        }
-        name()
+        props.bring()
+        // async function name(params) {
+        //     setUser(await getUser())
+        // }
+        // name()
     }, [])
 
 
@@ -23,13 +24,13 @@ export default function Favorites() {
 
     return (
         <>
-            <Header user={User} />
+            <Header user={props.user} />
             <div className="content">
                 <h1>Lista de Favoritos</h1>
                 <div className="listMovies">
-                    {User && User.like.length > 0 && User.like.map(element => <CardMovie key={element.id} movie={element} user={User} />)}
-                    {User && User.like.length === 0 && <p>Não há filmes salvos em seus favoritos.</p>}
-                    {!User && <p>Faça login para acessar esta página.</p>}
+                    {props.user && props.user.like.length > 0 && props.user.like.map(element => <CardMovie key={element.id} movie={element} user={props.user} bring={props.bring} />)}
+                    {props.user && props.user.like.length === 0 && <p>Não há filmes salvos em seus favoritos.</p>}
+                    {!props.user && <p>Faça login para acessar esta página.</p>}
                 </div>
             </div>
 

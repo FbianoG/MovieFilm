@@ -4,8 +4,8 @@ import UrlBack from '../api/api.js'
 
 
 
-export default function Login() {
-
+export default function Login(props) {
+    console.log(props.bring);
     const [formCreateUser, setFormCreateUser] = useState(false)
     const loginAlert = useRef()
     const createEmail = useRef()
@@ -53,6 +53,7 @@ export default function Login() {
             localStorage.setItem("Token", data.token)
             loginAlert.current.textContent = ""
             loginAlert.current.style.color = ''
+            props.bring()
             location.href = "/"
         } else {
             loginAlert.current.textContent = data.message

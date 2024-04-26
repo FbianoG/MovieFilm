@@ -7,11 +7,11 @@ import Footer from '../components/Shared/Footer'
 import getUser from '../api/getUser'
 
 
-export default function Home() {
+export default function Home(props) {
     const [topMovies, setTopMovies] = useState(false)
     const [upcomingMovies, setUpcomingMovies] = useState(false)
     const [trending, setTrending] = useState(false)
-    const [User, setUser] = useState(false)
+    // const [User, setUser] = useState(false)
 
 
     async function getTopRated() {
@@ -50,15 +50,17 @@ export default function Home() {
         setTrending(data)
     }
 
-
+    console.log(props.user);
     useEffect(() => {
         getTopRated()
         getUpcoming()
         getTrending()
-        async function name() {
-            setUser(await getUser())
-        }
-        name()
+        props.bring()
+        // setUser(props.user)
+        // async function name() {
+        //     setUser(await getUser())
+        // }
+        // name()
     }, [])
 
 
@@ -74,7 +76,7 @@ export default function Home() {
 
     return (
         <>
-            <Header user={User} />
+            <Header user={props.user} />
             <div className="content">
                 <div className="banner">
                     <img src="/freepik-export-20240424163048WEsm.jpeg" alt='' />
@@ -88,7 +90,7 @@ export default function Home() {
                                     return
                                 }
                                 return (
-                                    <CardMovie movie={element} user={User} key={element.id} />
+                                    <CardMovie movie={element} user={props.user} bring={props.bring} key={element.id} />
                                 )
                             })
                         }
@@ -104,12 +106,12 @@ export default function Home() {
                                     return
                                 }
                                 return (
-                                    <CardMovie movie={element} user={User} key={element.id} />
+                                    <CardMovie key={element.id} movie={element} user={props.user} bring={props.bring} />
                                 )
                             })
                         }
                     </div>
-                    
+
                 </section>
                 <div className="banner">
                     <img src="https://skycms.s3.amazonaws.com/images/43136174/Banner_large.png" alt='' />
@@ -123,7 +125,7 @@ export default function Home() {
                                     return
                                 }
                                 return (
-                                    <CardMovie movie={element} user={User} key={element.id} />
+                                    <CardMovie key={element.id} movie={element} user={props.user} bring={props.bring} />
                                 )
                             })
                         }

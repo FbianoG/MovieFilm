@@ -8,14 +8,20 @@ export default function CardMovie(props) {
 
     function movieFilm(e, params) {
         if (e.target.id === 'btnLike') {
-            if (e.target.className === "fa-solid fa-heart") {
-                e.target.className = "fa-regular fa-heart"
-            } else {
-                e.target.className = "fa-solid fa-heart"
-            }
+            // if (e.target.className === "fa-solid fa-heart") {
+            //     e.target.className = "fa-regular fa-heart"
+            // } else {
+            //     e.target.className = "fa-solid fa-heart"
+            // }
             return
         }
         location.href = `/movie?id=${params}`
+    }
+
+
+    async function addFavorite(e) {
+         await includeFavorite(e)
+         await props.bring()
     }
 
 
@@ -23,11 +29,11 @@ export default function CardMovie(props) {
         <div className="cardMovie" onClick={(e) => movieFilm(e, props.movie.id)}>
             {props.user &&
                 props.user.like.some(element => (element.id === props.movie.id)) &&
-                <i className="fa-solid fa-heart" id='btnLike' onClick={() => includeFavorite(props.movie)}></i>
+                <i className="fa-solid fa-heart" id='btnLike' onClick={() => addFavorite(props.movie)}></i>
             }
             {props.user &&
                 !props.user.like.some(element => (element.id === props.movie.id)) &&
-                <i className="fa-regular fa-heart" id='btnLike' onClick={() => includeFavorite(props.movie)}></i>
+                <i className="fa-regular fa-heart" id='btnLike' onClick={() => addFavorite(props.movie)}></i>
             }
             <img src={"https://image.tmdb.org/t/p/w300/" + props.movie.poster_path} alt={props.movie.title} />
 

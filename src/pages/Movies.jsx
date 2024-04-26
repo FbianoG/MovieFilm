@@ -6,8 +6,9 @@ import CountPage from "../components/Common/CountPage";
 import Footer from "../components/Shared/Footer";
 import getUser from "../api/getUser";
 
-export default function TopRated() {
+export default function TopRated(props) {
 
+    
     const urlQuery = new URLSearchParams(window.location.search).get("category")
     const [Movies, setMovies] = useState(false)
     const [page, setpage] = useState(1)
@@ -29,10 +30,11 @@ export default function TopRated() {
 
     useEffect(() => {
         getMovies()
-        async function name() {
-            setUser(await getUser())
-        }
-        name()
+        props.bring()
+        // async function name() {
+        //     setUser(await getUser())
+        // }
+        // name()
     }, [page])
 
     // useEffect(() => {
@@ -53,13 +55,13 @@ export default function TopRated() {
 
     return (
         <>
-            <Header user={User} />
+            <Header user={props.user} />
             <div className="content">
                 <section>
                     <h1>{getTitle()}</h1>
                     <CountPage page={{ page, setpage }} />
                     <div className="listMovies">
-                        {Movies && Movies.results.map(element => <CardMovie movie={element} user={User} key={element.id} />)}
+                        {Movies && Movies.results.map(element => <CardMovie movie={element} user={props.user} bring={props.bring} key={element.id} />)}
                     </div>
                 </section>
             </div >

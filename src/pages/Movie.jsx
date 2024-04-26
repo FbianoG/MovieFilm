@@ -6,7 +6,8 @@ import getUser from '../api/getUser'
 import includeFavorite from '../api/includeFavorite'
 
 
-export default function Movie() {
+export default function Movie(props) {
+    console.log(props);
     const [User, setUser] = useState(false)
     const [Movie, setMovie] = useState(false)
     const [Actor, setActor] = useState(false)
@@ -41,27 +42,29 @@ export default function Movie() {
     useEffect(() => {
         getMovie()
         getActor()
-        async function name() {
-            setUser(await getUser())
-        }
-        name()
+        props.bring()
+        // async function name() {
+        //     setUser(await getUser())
+        // }
+        // name()
     }, [])
 
 
-    function changeUser(e) {
-        let newUser = { ...User }
-        if (User.like.some(element => element.id === e.id)) {
-            newUser.like = User.like.filter(element => element.id != e.id)
-        } else {
-            newUser.like.push(e)
-        }
-        setUser(newUser)
-        includeFavorite(e)
+    // function changeUser(e) {
+    //     let newUser = { ...User }
+    //     if (User.like.some(element => element.id === e.id)) {
+    //         newUser.like = User.like.filter(element => element.id != e.id)
+    //     } else {
+    //         newUser.like.push(e)
+    //     }
+    //     setUser(newUser)
+    //     includeFavorite(e)
+    // }
+
+    async function addFavorite(e) {
+        await includeFavorite(e)
+        await props.bring()
     }
-
-
-
-
 
     function formatarEmReais(numero) {
         const formatador = new Intl.NumberFormat('pt-BR', {
@@ -74,7 +77,7 @@ export default function Movie() {
 
     return (
         <>
-            <Header user={User} />
+            <Header user={props.user} />
 
             {Movie &&
                 <div className='movieContainer'>
@@ -93,8 +96,8 @@ export default function Movie() {
                         </div>
 
                         <p>{Movie.overview}</p>
-                        {User && User.like.some(element => element.id == Movie.id) && <button onClick={() => changeUser(Movie)}>Remover do Favoritos</button>}
-                        {User && !User.like.some(element => element.id == Movie.id) && <button onClick={() => changeUser(Movie)}>Adicionar ao Favoritos</button>}
+                        {props.user && props.user.like.some(element => element.id == Movie.id) && <button onClick={() => addFavorite(Movie)}>Remover do Favoritos</button>}
+                        {props.user && !props.user.like.some(element => element.id == Movie.id) && <button onClick={() => addFavorite(Movie)}>Adicionar ao Favoritos</button>}
                         {Movie.homepage && <a href={Movie.homepage} target='_blank'>{Movie.homepage}</a>}
                         <div className="movieCosts">
                             <p><i className="fa-regular fa-flag"></i>Origem:</p>

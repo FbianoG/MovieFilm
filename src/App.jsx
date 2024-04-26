@@ -6,18 +6,31 @@ import Movies from './pages/Movies'
 import Login from './pages/Login'
 import Favorites from './pages/Favotites'
 import Perfil from './pages/Perfil'
+import { useEffect, useState } from 'react'
+import getUser from './api/getUser'
 
 function App() {
+
+  const [User, setUser] = useState(false)
+
+  async function bringUser() {
+    setUser(await getUser())
+  }
+
+  useEffect(() => {
+    // bringUser()
+  }, [])
+
 
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/movie" element={<Movie />} />
-        <Route path="/movies" element={<Movies />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/favorites" element={<Favorites />} />
-        <Route path="/perfil" element={<Perfil />} />
+        <Route path="/" element={<Home user={User} bring={bringUser} />} />
+        <Route path="/movie" element={<Movie user={User} bring={bringUser} />} />
+        <Route path="/movies" element={<Movies user={User} bring={bringUser} />} />
+        <Route path="/login" element={<Login user={User} bring={bringUser} />} />
+        <Route path="/favorites" element={<Favorites user={User} bring={bringUser} />} />
+        <Route path="/perfil" element={<Perfil user={User} bring={bringUser} />} />
       </Routes>
     </Router>
   )
