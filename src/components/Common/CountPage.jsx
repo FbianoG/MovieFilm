@@ -13,7 +13,7 @@ export default function CountPage(props) {
         }
         // props.page.setPage(props.page.page -= 1)
         window.scrollTo({ top: 0 })
-        location.href = `/movies?category=popular&page=${props.page.page + 1}`
+        location.href = `/movies?category=popular&page=${props.page.page - 1}`
     }
 
     function nextPage() {

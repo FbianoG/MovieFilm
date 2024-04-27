@@ -36,8 +36,7 @@ export default function TopRated(props) {
             props.bring()
             return
         }
-        getMovies()
-        props.bring()
+            
     }, [page])
 
 
