@@ -11,15 +11,15 @@ export default function CountPage(props) {
         if (props.page.page - 1 === 0) {
             return
         }
-        props.page.setPage(props.page.page -= 1)
+        // props.page.setPage(props.page.page -= 1)
         window.scrollTo({ top: 0 })
-        location.href = `/movies?category=popular&page=${props.page.page}`
+        location.href = `/movies?category=popular&page=${props.page.page + 1}`
     }
 
     function nextPage() {
-        props.page.setPage(props.page.page += 1)
+        // props.page.setPage(props.page.page += 1)
         window.scrollTo({ top: 0 })
-        location.href = `/movies?category=popular&page=${props.page.page}`
+        location.href = `/movies?category=popular&page=${props.page.page + 1}`
     }
 
     function name() {
