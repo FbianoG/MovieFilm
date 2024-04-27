@@ -83,7 +83,7 @@ export default function Movie(props) {
     }
 
     async function getVideo() {
-        const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?language=pt_br`, {
+        const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?language=`, {
             method: 'GET',
             headers: {
                 accept: 'application/json',
@@ -187,31 +187,30 @@ export default function Movie(props) {
                 </div >
             }
 
-            {Video &&
-                <>
-                    <h2 className='titleList'>Videos</h2>
-                    <div className="listVideos">
+            <div className="content">
 
-                        {
-                            Video.map(element => {
-                                if (element.type === 'Trailer') {
-                                    return (
-                                        <div className="cardVideo" key={element.key} onClick={() => showVideo(element.key)}>
-                                            <img src={`https://img.youtube.com/vi/${element.key}/hqdefault.jpg`} alt={element.name} />
-                                            <span>{element.name}</span>
-                                            <div className="btnPlay">
-                                                <i className="fa-solid fa-play"></i>
+                {Video &&
+                    <section>
+                        <h2>Videos</h2>
+                        <div className="listVideos">
+
+                            {
+                                Video.map(element => {
+                                    if (element.type === 'Trailer') {
+                                        return (
+                                            <div className="cardVideo" key={element.key} onClick={() => showVideo(element.key)}>
+                                                <img src={`https://img.youtube.com/vi/${element.key}/hqdefault.jpg`} alt={element.name} />
+                                                <span>{element.name}</span>
+                                                <div className="btnPlay">
+                                                    <i className="fa-solid fa-play"></i>
+                                                </div>
                                             </div>
-                                        </div>
-                                    )
-                                }
-                            })
-                        }
-
-
-                    </div>
-                </>
-
+                                        )
+                                    }
+                                })
+                            }
+                        </div>
+                    </section>
             }
 
             {!hiddenVideo &&
@@ -229,39 +228,39 @@ export default function Movie(props) {
 
 
 
-            <div className="content">
-                <section className="movieActor">
-                    <h2>Elenco</h2>
-                    <div className="actorList">
-                        {Actor &&
-                            Actor.cast.map(element => {
-                                if (element.popularity > 20) {
-                                    return (
-                                        <div className="cardActor" key={element.id}>
-                                            <img src={`https://image.tmdb.org/t/p/w200/` + element.profile_path} alt={element.original_name} />
-                                            <h2>{element.original_name}</h2>
-                                            <h3>{element.character}</h3>
-                                        </div>
-                                    )
-                                }
-                            })
-                        }
-                    </div>
-                </section>
-                <section>
-                    <h2>Títulos Semelhantes</h2>
-                    <div className="actorList">
-                        {Similar && Similar.map(element => <CardMovie key={element.id} movie={element} user={props.user} bring={props.bring} />)}
-                    </div>
-                </section>
 
-                <section>
-                    <h2>Comentários</h2>
-                    <div className="commentList">
-                        {Comments && Comments.map(element => <CardComments key={element.id} comment={element} />)}
-                    </div>
-                </section>
-            </div>
+            <section className="movieActor">
+                <h2>Elenco</h2>
+                <div className="actorList">
+                    {Actor &&
+                        Actor.cast.map(element => {
+                            if (element.popularity > 20) {
+                                return (
+                                    <div className="cardActor" key={element.id}>
+                                        <img src={`https://image.tmdb.org/t/p/w200/` + element.profile_path} alt={element.original_name} />
+                                        <h2>{element.original_name}</h2>
+                                        <h3>{element.character}</h3>
+                                    </div>
+                                )
+                            }
+                        })
+                    }
+                </div>
+            </section>
+            <section>
+                <h2>Títulos Semelhantes</h2>
+                <div className="actorList">
+                    {Similar && Similar.map(element => <CardMovie key={element.id} movie={element} user={props.user} bring={props.bring} />)}
+                </div>
+            </section>
+
+            <section>
+                <h2>Comentários</h2>
+                <div className="commentList">
+                    {Comments && Comments.map(element => <CardComments key={element.id} comment={element} />)}
+                </div>
+            </section>
+        </div >
 
             <Footer />
         </>
