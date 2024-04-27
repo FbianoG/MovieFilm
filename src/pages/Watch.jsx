@@ -19,12 +19,14 @@ export default function Watch(props) {
         <>
             <Header user={props.user} />
             <div className="content">
-                <h1>Lista Para Assistir Depois</h1>
-                <div className="listMovies">
-                    {props.user && props.user.watch.length > 0 && props.user.watch.map(element => <CardMovie key={element.id} movie={element} user={props.user} bring={props.bring} />)}
-                    {props.user && props.user.watch.length === 0 && <p>Não há filmes salvos em seus favoritos.</p>}
-                    {!props.user && <p>Faça login para acessar esta página.</p>}
-                </div>
+                <section>
+                    <h1>Assistir Depois</h1>
+                    <div className="listMovies">
+                        {props.user && props.user.watch.length > 0 && props.user.watch.map(element => <CardMovie key={element.id} movie={element} user={props.user} bring={props.bring} />)}
+                        {props.user && props.user.watch.length === 0 && <p>Não há filmes salvos em seus favoritos.</p>}
+                        {!props.user && <p>Faça login para acessar esta página.</p>}
+                    </div>
+                </section>
             </div>
             <Footer />
         </>

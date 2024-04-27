@@ -51,6 +51,7 @@ section button:hover {
 }
 
 
+
 /* MB <= 767 - TB <= 1023 - */
 @media screen and (max-width: 767px) {
 
@@ -72,5 +73,8 @@ section button:hover {
 
   .listMovies {
     gap: 0;
+    width: 100%;
   }
+
+
 }
