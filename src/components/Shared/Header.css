@@ -233,6 +233,7 @@ header .logo {
 
 header #btnLogin {
   border: 1px solid #3fa897;
+  color: #fdfdfd;
   width: 100%;
   padding: 5px 0;
   display: flex;

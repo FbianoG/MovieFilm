@@ -8,6 +8,7 @@ import Favorites from './pages/Favotites'
 import Perfil from './pages/Perfil'
 import { useEffect, useState } from 'react'
 import getUser from './api/getUser'
+import Actor from './pages/Actor'
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
         <Route path="/login" element={<Login user={User} bring={bringUser} />} />
         <Route path="/favorites" element={<Favorites user={User} bring={bringUser} />} />
         <Route path="/perfil" element={<Perfil user={User} bring={bringUser} />} />
+        <Route path="/actor" element={<Actor user={User} bring={bringUser} />} />
       </Routes>
     </Router>
   )

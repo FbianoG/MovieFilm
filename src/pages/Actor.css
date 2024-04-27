@@ -1,0 +1,39 @@
+.containerActor {
+    display: flex;
+    gap: 20px;
+}
+
+.containerActor img {
+    border-radius: 15px;
+    max-height: 300px;
+    box-shadow: 3px 3px 5px #0003;
+}
+
+.actorData {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.actorData span {
+    font-size: 14px;
+    color: #3fa897;
+}
+
+.actorData p {
+    color: #bbb;
+}
+
+/* MB <= 767 - TB <= 1023 - */
+@media screen and (max-width: 767px) {
+    .containerActor {
+        flex-wrap: wrap;
+        margin: 0 0 50px;
+    }
+
+    .containerActor img {
+        margin: 0 auto;
+    }
+
+
+}

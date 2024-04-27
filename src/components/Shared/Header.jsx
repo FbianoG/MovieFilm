@@ -69,6 +69,11 @@ export default function Header(props) {
         searchInput.current.style.display = "none"
     }
 
+    function setLogin() {
+        sessionStorage.setItem('BackUrlPage', window.location.href)
+        location.href = '/login'
+    }
+
 
     return (
         <header>
@@ -85,7 +90,7 @@ export default function Header(props) {
                             <span>{props.user.name.slice(0, 1)}</span>
                             <p>{props.user.name.split(' ').slice(0, 2).join(' ')}</p>
                         </div>}
-                        {!props.user && <a href='/login' id='btnLogin'>Login</a>}
+                        {!props.user && <button id='btnLogin' onClick={setLogin} >Login</button>}
                         {props.user &&
                             <>
                                 <a href='/perfil'>Perfil</a>

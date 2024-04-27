@@ -54,7 +54,7 @@ export default function Login(props) {
             loginAlert.current.textContent = ""
             loginAlert.current.style.color = ''
             props.bring()
-            location.href = "/"
+            location.href = sessionStorage.getItem('BackUrlPage')
         } else {
             loginAlert.current.textContent = data.message
             loginAlert.current.style.color = ''

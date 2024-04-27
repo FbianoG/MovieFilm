@@ -212,43 +212,43 @@ export default function Movie(props) {
                             }
                         </div>
                     </section>
-            }
-            {!hiddenVideo &&
-                <div className="containerVideo" onClick={(e) => showVideo(e)} >
-                    <iframe src={`https://www.youtube.com/embed/${urlVideo}?autoplay=1;`} frameBorder="0" allow="accelerometer; clipboard-write; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe >
-                </div>
-            }
-            <section className="movieActor">
-                <h2>Elenco</h2>
-                <div className="actorList">
-                    {Actor &&
-                        Actor.cast.map(element => {
-                            if (element.popularity > 20) {
-                                return (
-                                    <div className="cardActor" key={element.id}>
-                                        <img src={`https://image.tmdb.org/t/p/w200/` + element.profile_path} alt={element.original_name} />
-                                        <h2>{element.original_name}</h2>
-                                        <h3>{element.character}</h3>
-                                    </div>
-                                )
-                            }
-                        })
-                    }
-                </div>
-            </section>
-            <section>
-                <h2>Títulos Semelhantes</h2>
-                <div className="actorList">
-                    {Similar && Similar.map(element => <CardMovie key={element.id} movie={element} user={props.user} bring={props.bring} />)}
-                </div>
-            </section>
-            <section>
-                <h2>Comentários</h2>
-                <div className="commentList">
-                    {Comments && Comments.map(element => <CardComments key={element.id} comment={element} />)}
-                </div>
-            </section>
-        </div >
+                }
+                {!hiddenVideo &&
+                    <div className="containerVideo" onClick={(e) => showVideo(e)} >
+                        <iframe src={`https://www.youtube.com/embed/${urlVideo}?autoplay=1;`} frameBorder="0" allow="accelerometer; clipboard-write; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe >
+                    </div>
+                }
+                <section className="movieActor">
+                    <h2>Elenco</h2>
+                    <div className="actorList">
+                        {Actor &&
+                            Actor.cast.map(element => {
+                                if (element.popularity > 20) {
+                                    return (
+                                        <div className="cardActor" key={element.id} onClick={() => location.href = `/actor?id=${element.id}`}>
+                                            <img src={`https://image.tmdb.org/t/p/w200/` + element.profile_path} alt={element.original_name} />
+                                            <h2>{element.original_name}</h2>
+                                            <h3>{element.character}</h3>
+                                        </div>
+                                    )
+                                }
+                            })
+                        }
+                    </div>
+                </section>
+                <section>
+                    <h2>Títulos Semelhantes</h2>
+                    <div className="actorList">
+                        {Similar && Similar.map(element => <CardMovie key={element.id} movie={element} user={props.user} bring={props.bring} />)}
+                    </div>
+                </section>
+                <section>
+                    <h2>Comentários</h2>
+                    <div className="commentList">
+                        {Comments && Comments.map(element => <CardComments key={element.id} comment={element} />)}
+                    </div>
+                </section>
+            </div >
             <Footer />
         </>
     )
