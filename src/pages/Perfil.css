@@ -231,6 +231,7 @@
 @media screen and (max-width: 767px) {
     .contentPerfil {
         display: block;
+        padding: 0 0 50px;
     }
 
     .content .perfilData {
