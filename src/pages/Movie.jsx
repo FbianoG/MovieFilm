@@ -15,6 +15,7 @@ export default function Movie(props) {
     const [Providers, setProviders] = useState(false)
     const [Similar, setSimilar] = useState(false)
     const [Comments, setComments] = useState(false)
+    const [Video, setVideo] = useState(false)
 
     async function getMovie() {
         const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?language=pt-BR`, {
@@ -79,6 +80,19 @@ export default function Movie(props) {
         setComments(data.results)
     }
 
+    async function getVideo() {
+        const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?language=pt_br`, {
+            method: 'GET',
+            headers: {
+                accept: 'application/json',
+                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNGU3MDE2YjAyYjdiYmI4ODEyODJlNzNjNGM4MWJmMSIsInN1YiI6IjY0ZjdkNWVjMWI3MjJjMDBlMzRlYWRmMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.3Ft4MagkdYM-1JNdJTiPpK6Er7VgEbUOQxC0_ZLX-SI'
+            }
+        })
+        const data = await response.json()
+        setVideo(data.results)
+        console.log(data.results[0]);
+    }
+
     async function addFavorite(e) {
         await includeFavorite(e)
         await props.bring()
@@ -99,6 +113,7 @@ export default function Movie(props) {
         getProviders()
         getSimilar()
         getComments()
+        getVideo()
         props.bring()
         // async function name() {
         //     setUser(await getUser())
@@ -157,6 +172,42 @@ export default function Movie(props) {
                     </div>
                 </div >
             }
+
+            {Video &&
+                <>
+                    <h2 className='titleList'>Videos</h2>
+                    <div className="listVideos">
+
+                        {
+                            Video.map(element => {
+                                if (element.type === 'Trailer') {
+                                    return (
+                                        <div className="cardVideo">
+                                            <img src={`https://img.youtube.com/vi/${element.key}/maxresdefault.jpg`} alt={element.name} onClick={() => openVideo(element.key)} />
+                                            <span>{element.name}</span>
+                                            <div className="btnPlay">
+                                                <i className="fa-solid fa-play"></i>
+
+                                            </div>
+                                        </div>
+                                    )
+                                }
+                            })
+                        }
+
+
+                    </div>
+                </>
+
+            }
+
+            {/* <iframe src={`https://www.youtube.com/embed/${element.key}?amp;controls=0`} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe >
+                                        <span>{element.name}</span> */}
+
+
+
+
+
             <div className="content">
                 <section className="movieActor">
                     <h2>Elenco</h2>
@@ -177,7 +228,7 @@ export default function Movie(props) {
                     </div>
                 </section>
                 <section>
-                    <h2>Semelhantes</h2>
+                    <h2>Títulos Semelhantes</h2>
                     <div className="actorList">
                         {Similar && Similar.map(element => <CardMovie key={element.id} movie={element} user={props.user} bring={props.bring} />)}
                     </div>
