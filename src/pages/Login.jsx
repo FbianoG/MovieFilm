@@ -5,7 +5,7 @@ import UrlBack from '../api/api.js'
 
 
 export default function Login(props) {
-    console.log(props.bring);
+   
     const [formCreateUser, setFormCreateUser] = useState(false)
     const loginAlert = useRef()
     const createEmail = useRef()

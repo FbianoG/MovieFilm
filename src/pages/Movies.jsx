@@ -8,11 +8,12 @@ import getUser from "../api/getUser";
 
 export default function TopRated(props) {
 
-    
+
     const urlQuery = new URLSearchParams(window.location.search).get("category")
+    const urlPage = new URLSearchParams(window.location.search).get("page")
+
     const [Movies, setMovies] = useState(false)
-    const [page, setpage] = useState(1)
-    const [User, setUser] = useState(false)
+    const [page, setPage] = useState(1)
 
 
     async function getMovies() {
@@ -29,20 +30,21 @@ export default function TopRated(props) {
 
 
     useEffect(() => {
+        if (urlPage) {
+            setPage(Number(urlPage))
+            getMovies()
+            props.bring()
+            return
+        }
         getMovies()
         props.bring()
-        // async function name() {
-        //     setUser(await getUser())
-        // }
-        // name()
     }, [page])
 
     // useEffect(() => {
-    //     async function name() {
-    //         setUser(await getUser())
-    //     }
-    //     name()
+
     // }, [])
+
+
 
     function getTitle(params) {
         if (urlQuery === 'top_rated') {
@@ -59,7 +61,7 @@ export default function TopRated(props) {
             <div className="content">
                 <section>
                     <h1>{getTitle()}</h1>
-                    <CountPage page={{ page, setpage }} />
+                    <CountPage page={{ page, setPage }} />
                     <div className="listMovies">
                         {Movies && Movies.results.map(element => <CardMovie movie={element} user={props.user} bring={props.bring} key={element.id} />)}
                     </div>

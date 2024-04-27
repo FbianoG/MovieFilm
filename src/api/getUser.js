@@ -8,6 +8,7 @@ export default async function getUser() {
         headers: { "Content-Type": "application/json" }
     })
     const data = await response.json()
+    console.log('la');
     if (response.ok) {
         return data
     }
