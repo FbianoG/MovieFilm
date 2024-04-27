@@ -137,16 +137,20 @@ export default function Movie(props) {
     }, [])
 
 
+    let sizeImage = 'original'
+    if (window.innerWidth <= 500) {
+        sizeImage = 'w500'
+    }
+
     return (
         <>
             <Header user={props.user} />
             {Movie &&
                 <div className='movieContainer'>
 
-                    <img src={"https://image.tmdb.org/t/p/original/" + Movie.backdrop_path} alt={Movie.title} />
+                    <img src={`https://image.tmdb.org/t/p/${sizeImage}/` + Movie.backdrop_path} alt={Movie.title} />
                     <div className="movieData">
                         <h1>{Movie.title}</h1>
-                        <h2>{Movie.tagline}</h2>
                         <div className="movieInfo">
                             <span>{Movie.release_date.slice(0, 4)}</span>
                             <span>|</span>

@@ -30,7 +30,7 @@
 .movieContainer h1 {
     font-size: 24px;
     color: #fdfdfd;
-
+    margin: 0 0 20px;
     font-weight: 500;
 }
 
@@ -308,6 +308,10 @@ iframe {
         max-height: fit-content;
     }
 
+    .movieContainer h1 {
+        margin: 15px 0 10px;
+    }
+
     .movieData {
         width: 100%;
         min-width: auto;
@@ -318,6 +322,7 @@ iframe {
 
     .movieContainer img {
         position: relative;
+        box-shadow: 0px 3px 10px #000;
     }
 
     .movieContainer p {
