@@ -133,15 +133,20 @@
     border: none;
     border-bottom: 1px solid #333;
     padding: 10px 3px;
-    margin: 0 0 20px;
+    margin: 0 0 10px;
     outline: none;
     text-align: center;
     font-size: 16px;
 }
 
 .perfilData button {
-    margin: 0 auto;
+    margin: 0 auto 10px;
     display: block;
+    background: none;
+    padding: 10px;
+    border: 1px solid #3fa897;
+    color: #fdfdfd;
+    font-weight: 400;
 
 }
 

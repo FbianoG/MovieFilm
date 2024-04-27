@@ -77,7 +77,7 @@ export default function Perfil() {
                             <div className="perfilData sectionPerfil" >
                                 <form onSubmit={gettCompare}>
                                     <input type='text' name='' ref={emailCompare} placeholder="Comparar com" />
-                                    {/* <button type="submit">Comparar</button> */}
+                                    <button type="submit">Comparar</button>
                                     {/* <input type='submit' name='' value='Comparar' /> */}
                                 </form>
 
