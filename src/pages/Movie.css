@@ -116,12 +116,19 @@
     border-radius: 15px;
     padding: 5px;
     box-shadow: 1px 1px 10px #0003;
+    cursor: pointer;
+
+}
+.cardActor:hover img {
+filter: brightness(0.5);
 
 }
 
 .cardActor img {
     width: 100%;
     border-radius: 15px;
+    transition: 250ms;
+    
 }
 
 .cardActor h2 {

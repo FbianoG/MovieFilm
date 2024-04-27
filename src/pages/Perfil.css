@@ -7,7 +7,7 @@
     width: auto;
     flex-wrap: wrap;
     gap: 30px;
-    grid-template-columns: minmax(300px, 300px) minmax(300px, 1fr)  minmax(300px, 1fr) ;
+    grid-template-columns: minmax(300px, 300px) minmax(300px, 1fr) minmax(300px, 1fr);
     grid-template-rows: 1fr 1fr;
 }
 
@@ -15,6 +15,7 @@
     background: #222;
     border-radius: 15px;
     padding: 20px;
+    position: relative;
 }
 
 .sidePerfil {
@@ -112,19 +113,113 @@
 }
 
 .perfilFavorites .listFavorites::-webkit-scrollbar {
-width: 10px;
+    width: 10px;
 }
 
 .perfilFavorites .listFavorites::-webkit-scrollbar-track {
-background: #333;
-border-radius: 10px;
+    background: #333;
+    border-radius: 10px;
 }
 
 .perfilFavorites .listFavorites::-webkit-scrollbar-thumb {
-background: #3fa897;
-border-radius: 10px;
+    background: #3fa897;
+    border-radius: 10px;
 
 }
+.perfilData input {
+    width: 100%;
+    background: none;
+    color: #ddd;
+    border: none;
+    border-bottom: 1px solid #333;
+    padding: 10px 3px;
+    margin: 0 0 20px;
+    outline: none;
+    text-align: center;
+    font-size: 16px;
+}
+
+.perfilData button {
+    margin: 0 auto;
+    display: block;
+
+}
+
+.dataCompare {
+    display: flex;
+}
+
+.infoCompare {
+    width: 50%;
+    text-align: center;
+}
+
+.infoCompare p {
+    color: #3fa897;
+    text-transform: capitalize;
+    font-weight: 500;
+}
+
+.infoCompare .resultCompare {
+    color: #ddd;
+    font-size: 24px;
+}
+
+.compare span {
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    display: block;
+}
+
+.totalCompare {
+    text-align: center;
+    font-size: 32px;
+    color: #3fa897;
+    font-weight: 500;
+}
+
+.compare h3 {
+    color: #ddd;
+    font-weight: 400;
+    font-size: 16px;
+    margin: 10px 0;
+}
+
+.listCompare {
+    width: 100%;
+    /* border: 1px solid red; */
+    display: flex;
+    /* flex-wrap: wrap; */
+    gap: 5px;
+    /* overflow-x: scroll; */
+    padding: 0 0 5px;
+
+}
+
+.listCompare::-webkit-scrollbar {
+    height: 7px;
+}
+
+.listCompare::-webkit-scrollbar-track {
+    background: #333;
+    border-radius: 10px;
+}
+
+.listCompare::-webkit-scrollbar-thumb {
+    background: #3fa897;
+    border-radius: 10px;
+}
+
+.listCompare img {
+    width: 80px;
+}
+
+
+
+
+
+
 
 
 /* MB <= 767 - TB <= 1023 - */
@@ -132,8 +227,10 @@ border-radius: 10px;
     .contentPerfil {
         display: block;
     }
-    .perfilData {
-        display: none;
+
+    .content .perfilData {
+        /* display: none; */
+        padding: 0;
     }
 
     .perfilFavorites {
@@ -141,6 +238,18 @@ border-radius: 10px;
     }
 
     .sidePerfil {
-        height: calc(100vh - 70px);
+        /* height: calc(100vh - 70px); */
+    }
+    .sidePerfil button {
+        /* display: none; */
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 50px;
+        border: none;
+    }
+
+    .sidePerfil .btnChangePassword {
+        display: none;
     }
 }

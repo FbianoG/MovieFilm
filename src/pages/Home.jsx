@@ -50,7 +50,6 @@ export default function Home(props) {
         setTrending(data)
     }
 
-    console.log(props.user);
     useEffect(() => {
         getTopRated()
         getUpcoming()
