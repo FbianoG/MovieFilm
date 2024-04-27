@@ -30,11 +30,14 @@ export default function TopRated(props) {
 
 
     useEffect(() => {
-        getMovies()
-        props.bring()
         if (urlPage) {
             setPage(Number(urlPage))
+            getMovies()
+            props.bring()
+            return
         }
+        getMovies()
+        props.bring()
     }, [page])
 
 
