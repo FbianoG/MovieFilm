@@ -329,6 +329,10 @@ iframe {
         margin: 0;
     }
 
+    .listVideos {
+        justify-content: flex-start;
+    }
+
     .cardVideo {
         min-width: 100%;
     }
