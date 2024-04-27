@@ -220,8 +220,8 @@
 }
 
 .cardVideo {
-    width: 50%;
-    min-width: 50%;
+    width: 45%;
+    min-width: 45%;
     /* min-width: 300px; */
     /* aspect-ratio: 16/9; */
     /* margin: 0 auto; */
@@ -229,6 +229,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    cursor: pointer;
 }
 
 .cardVideo span {
@@ -240,6 +241,7 @@
     width: 100%;
     aspect-ratio: 16/9;
     margin: 0 0 10px;
+    object-fit: cover;
 }
 
 .btnPlay {
@@ -264,11 +266,31 @@
 
 }
 
+.containerVideo {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 99;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.851);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
 iframe {
-    width: 100%;
-    margin: 0 0 10px;
+    width: 50%;
+    min-width: 350px;
     aspect-ratio: 16/9;
 }
+
+/* .containerVideo .btnExitVideo {
+    position: absolute;
+    
+} */
 
 
 

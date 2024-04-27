@@ -16,6 +16,8 @@ export default function Movie(props) {
     const [Similar, setSimilar] = useState(false)
     const [Comments, setComments] = useState(false)
     const [Video, setVideo] = useState(false)
+    const [hiddenVideo, setHiddenVideo] = useState(true)
+    const [urlVideo, setUrlVideo] = useState()
 
     async function getMovie() {
         const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?language=pt-BR`, {
@@ -106,6 +108,18 @@ export default function Movie(props) {
         return formatador.format(numero);
     }
 
+    function showVideo(e) {
+        // console.log(e.target.className);
+        if (typeof e === 'object') {
+
+            if (e.target.className === 'containerVideo') {
+                setHiddenVideo(true)
+                return
+            }
+        }
+        setHiddenVideo(false)
+        setUrlVideo(e)
+    }
 
     useEffect(() => {
         getMovie()
@@ -182,12 +196,11 @@ export default function Movie(props) {
                             Video.map(element => {
                                 if (element.type === 'Trailer') {
                                     return (
-                                        <div className="cardVideo">
-                                            <img src={`https://img.youtube.com/vi/${element.key}/maxresdefault.jpg`} alt={element.name} onClick={() => openVideo(element.key)} />
+                                        <div className="cardVideo" key={element.key} onClick={() => showVideo(element.key)}>
+                                            <img src={`https://img.youtube.com/vi/${element.key}/hqdefault.jpg`} alt={element.name} />
                                             <span>{element.name}</span>
                                             <div className="btnPlay">
                                                 <i className="fa-solid fa-play"></i>
-
                                             </div>
                                         </div>
                                     )
@@ -201,8 +214,16 @@ export default function Movie(props) {
 
             }
 
-            {/* <iframe src={`https://www.youtube.com/embed/${element.key}?amp;controls=0`} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe >
-                                        <span>{element.name}</span> */}
+            {!hiddenVideo &&
+
+                <div className="containerVideo" onClick={(e) => showVideo(e)} >
+                    <iframe src={`https://www.youtube.com/embed/${urlVideo}?autoplay=1;`} frameBorder="0" allow="accelerometer; clipboard-write; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe >
+                </div>
+
+            }
+
+
+            {/*  */}
 
 
 
