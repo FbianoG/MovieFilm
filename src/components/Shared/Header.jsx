@@ -94,7 +94,9 @@ export default function Header(props) {
                         {props.user &&
                             <>
                                 <a href='/perfil'>Perfil</a>
+                                
                                 <a href='/favorites'>Favoritos</a>
+                                <a href='/watch'>Assistir Depois</a>
                             </>
                         }
                         <h3>Filmes</h3>

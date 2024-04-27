@@ -5,6 +5,7 @@ import Header from '../components/Shared/Header'
 import Footer from '../components/Shared/Footer'
 
 import includeFavorite from '../api/includeFavorite'
+import includeWatch from '../api/includeWatch'
 import CardMovie from '../components/Layout/CardMovie'
 import CardComments from '../components/Layout/CardComments'
 
@@ -93,11 +94,14 @@ export default function Movie(props) {
         })
         const data = await response.json()
         setVideo(data.results)
-        console.log(data.results[0]);
     }
 
     async function addFavorite(e) {
         await includeFavorite(e)
+        await props.bring()
+    }
+    async function addWatch(e) {
+        await includeWatch(e)
         await props.bring()
     }
 
@@ -162,8 +166,13 @@ export default function Movie(props) {
                         </div>
 
                         <p>{Movie.overview}</p>
-                        {props.user && props.user.like.some(element => element.id == Movie.id) && <button onClick={() => addFavorite(Movie)}>Remover do Favoritos</button>}
-                        {props.user && !props.user.like.some(element => element.id == Movie.id) && <button onClick={() => addFavorite(Movie)}>Adicionar ao Favoritos</button>}
+                        <div className="btnControl">
+
+                            {props.user && props.user.like.some(element => element.id == Movie.id) && <button onClick={() => addFavorite(Movie)}>Remover do Favoritos</button>}
+                            {props.user && !props.user.like.some(element => element.id == Movie.id) && <button onClick={() => addFavorite(Movie)}>Adicionar ao Favoritos</button>}
+                            {props.user && props.user.watch.some(element => element.id == Movie.id) && <button onClick={() => addWatch(Movie)}>Não quero assistir</button>}
+                            {props.user && !props.user.watch.some(element => element.id == Movie.id) && <button onClick={() => addWatch(Movie)}>Assistir depois</button>}
+                        </div>
                         {Movie.homepage && <a href={Movie.homepage} target='_blank'>{Movie.homepage}</a>}
                         <div className="movieCosts">
                             <p><i className="fa-regular fa-flag"></i>Origem:</p>

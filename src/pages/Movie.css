@@ -58,6 +58,12 @@
     margin: 25px 0 0;
 }
 
+.btnControl {
+    display: flex;
+    gap: 20px;
+    margin: 20px 0;
+}
+
 .movieData button {
     padding: 10px 0;
     width: 150px;
@@ -66,7 +72,11 @@
     font-weight: 500;
     color: #fdfdfd;
     cursor: pointer;
-    margin: 10px 0;
+    transition: 250ms;
+}
+
+.movieData button:hover {
+    opacity: 0.5;
 }
 
 .movieContainer a {
