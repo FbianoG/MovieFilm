@@ -1,8 +1,9 @@
-import './Movie.css'
-import Header from '../components/Shared/Header'
 import { useEffect, useState } from 'react'
+import './Movie.css'
+
+import Header from '../components/Shared/Header'
 import Footer from '../components/Shared/Footer'
-import getUser from '../api/getUser'
+
 import includeFavorite from '../api/includeFavorite'
 import CardMovie from '../components/Layout/CardMovie'
 import CardComments from '../components/Layout/CardComments'
@@ -139,7 +140,6 @@ export default function Movie(props) {
     return (
         <>
             <Header user={props.user} />
-
             {Movie &&
                 <div className='movieContainer'>
 
@@ -186,14 +186,11 @@ export default function Movie(props) {
                     </div>
                 </div >
             }
-
             <div className="content">
-
                 {Video &&
                     <section>
                         <h2>Videos</h2>
                         <div className="listVideos">
-
                             {
                                 Video.map(element => {
                                     if (element.type === 'Trailer') {
@@ -212,23 +209,11 @@ export default function Movie(props) {
                         </div>
                     </section>
             }
-
             {!hiddenVideo &&
-
                 <div className="containerVideo" onClick={(e) => showVideo(e)} >
                     <iframe src={`https://www.youtube.com/embed/${urlVideo}?autoplay=1;`} frameBorder="0" allow="accelerometer; clipboard-write; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe >
                 </div>
-
             }
-
-
-            {/*  */}
-
-
-
-
-
-
             <section className="movieActor">
                 <h2>Elenco</h2>
                 <div className="actorList">
@@ -253,7 +238,6 @@ export default function Movie(props) {
                     {Similar && Similar.map(element => <CardMovie key={element.id} movie={element} user={props.user} bring={props.bring} />)}
                 </div>
             </section>
-
             <section>
                 <h2>Comentários</h2>
                 <div className="commentList">
@@ -261,7 +245,6 @@ export default function Movie(props) {
                 </div>
             </section>
         </div >
-
             <Footer />
         </>
     )
