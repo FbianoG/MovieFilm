@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import './CountPage.css'
 
 export default function CountPage(props) {
-
+    const urlQuery = new URLSearchParams(window.location.search).get("category")
     const showPage = useRef()
     const countPage = useRef()
     const conteinerCountPage = useRef()
@@ -13,13 +13,13 @@ export default function CountPage(props) {
         }
         // props.page.setPage(props.page.page -= 1)
         window.scrollTo({ top: 0 })
-        location.href = `/movies?category=popular&page=${props.page.page - 1}`
+        location.href = `/movies?category=${urlQuery}&page=${props.page.page - 1}`
     }
 
     function nextPage() {
         // props.page.setPage(props.page.page += 1)
         window.scrollTo({ top: 0 })
-        location.href = `/movies?category=popular&page=${props.page.page + 1}`
+        location.href = `/movies?category=${urlQuery}&page=${props.page.page + 1}`
     }
 
     function name() {
