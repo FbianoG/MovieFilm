@@ -373,7 +373,10 @@ iframe {
         flex-wrap: wrap;
     }
 
-
+.btnControl {
+    width: 100%;
+    justify-content: space-evenly;
+}
 
 
     .actorList .cardMovie #btnLike {
