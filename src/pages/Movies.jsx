@@ -12,9 +12,8 @@ export default function TopRated(props) {
     const urlQuery = new URLSearchParams(window.location.search).get("category")
     const urlPage = new URLSearchParams(window.location.search).get("page")
     const [Movies, setMovies] = useState(false)
-    const [page, setPage] = useState(1)
+    const [page, setPage] = useState(urlPage ? Number(urlPage) : 1)
     const [User, setUser] = useState(false)
-
 
     async function getMovies() {
         const response = await fetch(`https://api.themoviedb.org/3/movie/${urlQuery}?language=pt-BR&page=${page}&region=br`, {
@@ -30,13 +29,8 @@ export default function TopRated(props) {
 
 
     useEffect(() => {
-        if (urlPage) {
-            setPage(Number(urlPage))
-            getMovies()
-            props.bring()
-            return
-        }
-            
+        getMovies()
+        props.bring()
     }, [page])
 
 
