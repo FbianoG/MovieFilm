@@ -32,11 +32,17 @@ export default function CardMovie(props) {
             <img src={'https://image.tmdb.org/t/p/w300/' + props.movie.poster_path} alt={props.movie.title} />
 
             <div className='cardMovieData'>
-                <h3 className='cardMovieTitle'>{props.movie.title}</h3>
-                <div className='cardMovieVote'>
-                    <p>{props.movie.release_date.slice(0, 4)}</p>
-                    <span><i className='fa-solid fa-star'></i>{props.movie.vote_average.toFixed(1)}</span>
-                    <span><i className='fa-solid fa-ticket'></i>{props.movie.vote_count}</span>
+                <h3 >{props.movie.title}</h3>
+                <div className='cardMovieDataDetails'>
+                    <span>{props.movie.release_date.slice(0, 4)}</span>
+                    <div>
+                        <i className='fa-solid fa-star'></i>
+                        {props.movie.vote_average.toFixed(1)}
+                    </div>
+                    <div>
+                        <i className='fa-solid fa-ticket'></i>
+                        {props.movie.vote_count}
+                    </div>
                 </div>
             </div>
         </div>

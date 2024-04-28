@@ -83,7 +83,7 @@ export default function Home(props) {
 
                 <section>
                     <div className='listMovies'>
-                        <div className='infoSection'>
+                        <div className='listMoviesInfo'>
                             <h1>Filmes</h1>
                             <h1>em Alta</h1>
                             <h1>Acompanhe Agora</h1>
@@ -104,7 +104,7 @@ export default function Home(props) {
 
                 <section>
                     <div className='listMovies'>
-                        <div className='infoSection'>
+                        <div className='listMoviesInfo'>
                             <h1>Filmes</h1>
                             <h1>em Breve</h1>
                             <h1>Acompanhe Agora</h1>
@@ -132,7 +132,7 @@ export default function Home(props) {
                 <section>
 
                     <div className='listMovies'>
-                        <div className='infoSection'>
+                        <div className='listMoviesInfo'>
                             <h1>Filmes</h1>
                             <h1>Melhores Notas</h1>
                             <h1>Acompanhe Agora</h1>

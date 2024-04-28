@@ -35,9 +35,6 @@ section .btnEndViewMore:hover {
   transition: 250ms;
 }
 
-
-
-
 .searchBar input {
   color: #ddd;
   font-size: 17px;
@@ -45,6 +42,50 @@ section .btnEndViewMore:hover {
   border: none;
   outline: none;
 }
+
+.listMoviesInfo {
+  width: 400px;
+  padding: 0 50px 0 0;
+  height: 347px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.listMoviesInfo h1 {
+  color: #eee;
+  font-size: 32px;
+  font-weight: 500;
+}
+
+.listMoviesInfo p {
+  color: #3fa897;
+  border-bottom: 1px solid #444;
+  width: 100%;
+  padding: 40px 0 30px;
+}
+
+.listMoviesInfo a {
+  text-decoration: none;
+  color: #888;
+  letter-spacing: 2px;
+  margin: 10px 0 0;
+  transition: 250ms;
+}
+
+.listMoviesInfo a:hover {
+  letter-spacing: 3px;
+  opacity: 0.7;
+}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -56,6 +97,36 @@ section .btnEndViewMore:hover {
     height: auto;
     margin: 30px 0;
   }
+
+  .listMoviesInfo {
+    min-width: 100px;
+    padding: 0;
+    align-items: center;
+    height: max-content;
+    margin: 0 0 20px;
+  }
+
+  .listMoviesInfo h1:nth-child(3) {
+    display: none;
+  }
+
+  .listMoviesInfo p {
+    display: none;
+
+  }
+
+  .listMoviesInfo a {
+    border-bottom: 1px solid #444;
+    padding: 10px 30px;
+  }
+
+  section .btnEndViewMore {
+    /* position: absolute; */
+    top: 0;
+  }
+
+
+
 
 
 }

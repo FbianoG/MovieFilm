@@ -17,43 +17,6 @@ section {
   padding: 20px;
 }
 
-.infoSection {
-  width: 400px;
-  /* border: 1px solid red; */
-  padding: 0 50px 0 0;
-  height: 347px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.infoSection h1 {
-  color: #eee;
-  font-size: 32px;
-  font-weight: 500;
-}
-
-.infoSection p {
-  color: #3fa897;
-  border-bottom: 1px solid #444;
-  width: 100%;
-  /* margin: auto 0 0 ; */
-  padding: 40px 0 30px;
-
-}
-
-.infoSection a {
-  text-decoration: none;
-  color: #888;
-  letter-spacing: 2px;
-  margin: 10px 0 0;
-  transition: 250ms;
-}
-
-.infoSection a:hover {
-  letter-spacing: 3px;
-  opacity: 0.7;
-}
 
 section h1 {
   /* color: #ddd; */
@@ -99,7 +62,7 @@ section button:hover {
     padding: 0 5%;
     gap: 0;
   }
-  
+
 }
 
 /* MB <= 767 - TB <= 1023 - */
@@ -121,37 +84,8 @@ section button:hover {
     text-align: center;
   }
 
-  .listMovies {
-    gap: 0;
-    width: 100%;
-    padding: 40px 0;
-  }
 
 
-  .infoSection {
-    padding: 0;
-    align-items: center;
-    height: fit-content;
-    margin: 0 0 20px;
-  }
-
-  .infoSection h1:nth-child(3) {
-    display: none;
-  }
-
-  .infoSection p {
-    display: none;
-
-  }
-
-  .infoSection a {
-    border-bottom: 1px solid #444;
-    padding: 10px 30px;
-  }
-
-  section button {
-    top: 0;
-  }
 
 
 

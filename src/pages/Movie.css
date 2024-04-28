@@ -363,10 +363,7 @@ iframe {
         width: 150px;
     }
 
-    .actorList .cardMovie {
-        min-width: auto;
-        flex-direction: column;
-    }
+
 
     .actorList .cardMovie .cardMovieData .cardMovieVote {
         flex-direction: row;
