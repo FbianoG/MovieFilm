@@ -1,9 +1,8 @@
-
 .content {
   background: #292929;
   width: 90%;
   margin: 70px auto;
-  border-radius: 15px;
+  border-radius: 10px;
   padding: 40px;
 
   display: flex;
@@ -14,15 +13,55 @@
 
 section {
   background: #222;
-  border-radius: 15px;
+  border-radius: 10px;
   padding: 20px;
 }
 
-section h1 {
-  color: #ddd;
-  font-size: 40px;
-  margin: 0 0 30px;
+.infoSection {
+  width: 400px;
+  /* border: 1px solid red; */
+  padding: 0 50px 0 0;
+  height: 347px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
+
+.infoSection h1 {
+  color: #eee;
+  font-size: 32px;
+  font-weight: 500;
+}
+
+.infoSection p {
+  color: #3fa897;
+  border-bottom: 1px solid #444;
+  width: 100%;
+  /* margin: auto 0 0 ; */
+  padding: 40px 0 30px;
+
+}
+
+.infoSection a {
+  text-decoration: none;
+  color: #888;
+  letter-spacing: 2px;
+  margin: 10px 0 0;
+  transition: 250ms;
+}
+
+.infoSection a:hover {
+  letter-spacing: 3px;
+  opacity: 0.7;
+}
+
+section h1 {
+  /* color: #ddd; */
+  /* font-size: 40px; */
+  /* margin: 0 0 30px; */
+  /* width: 400px; */
+}
+
 section h2 {
   color: #fdfdfd;
 }
@@ -34,10 +73,10 @@ section button {
   top: 40px;
   height: 40px;
   width: 200px;
-  border-radius: 20px;
-  border: 1px solid transparent;
-  background: #3fa897;
-  color: #fdfdfd;
+  border-radius: 10px;
+  border: 1px solid #3fa897;
+  background: #222;
+  color: #ddd;
   font-weight: 500;
   font-size: 16px;
   transition: 250ms;
@@ -46,11 +85,22 @@ section button {
 
 section button:hover {
   background: #222;
-  border-color:#3fa897;
+  border-color: #3fa897;
   color: #3fa897;
 }
 
 
+
+/* MB <= 767 - TB <= 1023 - */
+@media screen and (max-width: 1023px) {
+  .content {
+    background: none;
+    width: 100%;
+    padding: 0 5%;
+    gap: 0;
+  }
+  
+}
 
 /* MB <= 767 - TB <= 1023 - */
 @media screen and (max-width: 767px) {
@@ -74,7 +124,43 @@ section button:hover {
   .listMovies {
     gap: 0;
     width: 100%;
+    padding: 40px 0;
   }
+
+
+  .infoSection {
+    padding: 0;
+    align-items: center;
+    height: fit-content;
+    margin: 0 0 20px;
+  }
+
+  .infoSection h1:nth-child(3) {
+    display: none;
+  }
+
+  .infoSection p {
+    display: none;
+
+  }
+
+  .infoSection a {
+    border-bottom: 1px solid #444;
+    padding: 10px 30px;
+  }
+
+  section button {
+    top: 0;
+  }
+
+
+
+
+
+
+
+
+
 
 
 }

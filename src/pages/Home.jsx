@@ -76,32 +76,44 @@ export default function Home(props) {
     return (
         <>
             <Header user={props.user} />
-            <div className="content">
-                <div className="banner">
-                    <img src="/freepik-export-20240424163048WEsm.jpeg" alt='' />
+            <div className='content'>
+                <div className='banner'>
+                    <img src='/freepik-export-20240424163048WEsm.jpeg' alt='' />
                 </div>
+
                 <section>
-                    <h1>Em Alta</h1>
-                    <div className="listMovies">
-                        {trending &&
-                            trending.results.map((element, index) => {
-                                if (index > 13) {
-                                    return
-                                }
-                                return (
-                                    <CardMovie movie={element} user={props.user} bring={props.bring} key={element.id} />
-                                )
-                            })
-                        }
+                    <div className='listMovies'>
+                        <div className='infoSection'>
+                            <h1>Filmes</h1>
+                            <h1>em Alta</h1>
+                            <h1>Acompanhe Agora</h1>
+                            <p>Mais assistidos da semana</p>
+                            <a href='/movies?category=popular'>Veja mais</a>
+                        </div>
+                        {trending && trending.results.map((element, index) => {
+                            if (index > 11) {
+                                return
+                            }
+                            return (
+                                <CardMovie movie={element} user={props.user} bring={props.bring} key={element.id} />
+                            )
+                        })}
                     </div>
-                    <button onClick={() => moreMovies('popular')}>Veja mais...</button>
+                    <a href='/movies?category=popular' className='btnEndViewMore'>Veja mais</a>
                 </section>
+
                 <section>
-                    <h1>Em Breve</h1>
-                    <div className="listMovies">
+                    <div className='listMovies'>
+                        <div className='infoSection'>
+                            <h1>Filmes</h1>
+                            <h1>em Breve</h1>
+                            <h1>Acompanhe Agora</h1>
+                            <p>Próximos lançamentos</p>
+                            <a href='/'>Veja mais</a>
+                        </div>
                         {upcomingMovies &&
                             upcomingMovies.results.map((element, index) => {
-                                if (index > 13) {
+                                if (index > 11) {
                                     return
                                 }
                                 return (
@@ -112,15 +124,24 @@ export default function Home(props) {
                     </div>
 
                 </section>
-                <div className="banner">
-                    <img src="https://skycms.s3.amazonaws.com/images/43136174/Banner_large.png" alt='' />
+
+                <div className='banner'>
+                    <img src='https://skycms.s3.amazonaws.com/images/43136174/Banner_large.png' alt='' />
                 </div>
+
                 <section>
-                    <h1>Melhores Filmes</h1>
-                    <div className="listMovies">
+
+                    <div className='listMovies'>
+                        <div className='infoSection'>
+                            <h1>Filmes</h1>
+                            <h1>Melhores Notas</h1>
+                            <h1>Acompanhe Agora</h1>
+                            <p>Maiores notas de todos os tempos</p>
+                            <a href='/movies?category=top_rated'>Veja mais</a>
+                        </div>
                         {topMovies &&
                             topMovies.results.map((element, index) => {
-                                if (index > 13) {
+                                if (index > 11) {
                                     return
                                 }
                                 return (
@@ -129,7 +150,7 @@ export default function Home(props) {
                             })
                         }
                     </div>
-                    <button onClick={() => moreMovies('top_rated')}>Veja mais...</button>
+                    <a href='/movies?category=top_rated' className='btnEndViewMore'>Veja mais</a>
                 </section>
             </div>
             <Footer />
