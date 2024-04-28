@@ -75,7 +75,9 @@ export default function Header(props) {
     // }
 
     function logout() {
-        // localStorage.clear()
+        const url = location.href
+        localStorage.clear()
+        location.href = url
     }
 
     const userAccountOptions = useRef()
@@ -141,7 +143,7 @@ export default function Header(props) {
                             <a href='/perfil'><i className='fa-solid fa-user'></i>Perfil</a>
                             <a href='/favorites'><i className='fa-regular fa-heart'></i>Favoritos</a>
                             <a href='/watch'><i className='fa-regular fa-eye'></i>Assistir Depois</a>
-                            <a href={location.href} id='userAccountOptionsBtnLogout' onClick={localStorage.clear}><i className='fa-solid fa-arrow-right-from-bracket'></i>Logout</a>
+                            <a id='userAccountOptionsBtnLogout' onClick={logout}><i className='fa-solid fa-arrow-right-from-bracket'></i>Logout</a>
                             <span></span>
                         </nav>
                     </>

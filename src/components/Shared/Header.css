@@ -134,6 +134,7 @@ header .logo {
 
 #userAccountOptionsBtnLogout {
   color: #d71e1e;
+  cursor: pointer;
 }
 
 .userAccountOptions span {
