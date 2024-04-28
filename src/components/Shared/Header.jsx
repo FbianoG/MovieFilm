@@ -51,9 +51,10 @@ export default function Header(props) {
     }
 
     function hiddenMenu() {
-        sideMenu.current.style.left = '-100%'
+        // sideMenu.current.style.left = '-100%'
+        // console.log('11');
         setTimeout(() => {
-            sideMenu.current.style.display = 'none'
+            // sideMenu.current.style.display = 'none'
         }, 400)
     }
 

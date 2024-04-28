@@ -7,14 +7,10 @@
 }
 
 .cardMovie {
-  /* border: 1px solid red; */
-  /* width: 200px; */
   min-width: 200px;
   width: 200px;
   position: relative;
   cursor: pointer;
-  /* overflow: hidden; */
-  /* height: auto; */
 }
 
 .cardMovie img {
@@ -22,7 +18,11 @@
   min-height: 300px;
   object-fit: cover;
   border-radius: 5px;
-  /* box-shadow: 3px 3px 5px #0003; */
+}
+
+.cardMovie:hover img {
+  transition: 250ms;
+  filter: brightness(0.7);
 }
 
 .cardMovieData {
@@ -67,8 +67,8 @@
   color: #3fa897;
 }
 
-.cardMovie  #btnLike {
-  width: 35px; 
+.cardMovie #btnLike {
+  width: 35px;
   height: 35px;
   background: #292929;
   border-radius: 50%;
@@ -82,7 +82,7 @@
   /* background: red; */
   font-size: 20px;
   /* color: #3fa897; */
-  box-shadow: 3px 3px 5px #000; 
+  box-shadow: 3px 3px 5px #000;
   /* cursor: pointer; */
 }
 
