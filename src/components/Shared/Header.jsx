@@ -55,8 +55,13 @@ export default function Header(props) {
             return
         }
         logo.current.style.display = "none"
-        searchInput.current.style.width = "200px"
+        searchInput.current.style.width = "100%"
+        searchBar.current.style.width = "100%"
         searchInput.current.style.display = "block"
+        searchInput.current.focus()
+        if (searchInput.current.value.trim() !== '') {
+            searchList.current.style.display = "flex"
+        }
         // searchBar.current.style.display = "none"
     }
 
@@ -65,14 +70,11 @@ export default function Header(props) {
             return
         }
         logo.current.style.display = "block"
+        searchBar.current.style.width = ""
         searchInput.current.style.width = ""
         searchInput.current.style.display = "none"
+        searchList.current.style.display = "none"
     }
-
-    // function setLogin() {
-    //     sessionStorage.setItem('BackUrlPage', window.location.href)
-    //     location.href = '/login'
-    // }
 
     function logout() {
         const url = location.href
@@ -114,8 +116,8 @@ export default function Header(props) {
 
             <div className='logo' ref={logo}>MovieFilm</div>
 
-            <div className="searchBar" ref={searchBar}>
-                <i className="fa-solid fa-magnifying-glass" onClick={showInput} ></i>
+            <div className="searchBar" ref={searchBar} onClick={showInput}>
+                <i className="fa-solid fa-magnifying-glass"  ></i>
                 <input type='text' name='' placeholder='Pesquisar' onChange={searchMovie} onBlur={hiddenInput} ref={searchInput} />
 
 

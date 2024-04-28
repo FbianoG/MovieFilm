@@ -63,6 +63,8 @@ header .logo {
   border-radius: 10px;
 }
 
+
+
 .cardMovieSearch {
   display: flex;
   height: 100px;
@@ -87,6 +89,8 @@ header .logo {
   font-weight: 400;
 
 }
+
+
 
 .userAccount {
   position: relative;

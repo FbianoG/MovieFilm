@@ -265,6 +265,8 @@ filter: brightness(0.5);
     aspect-ratio: 16/9;
     margin: 0 0 10px;
     object-fit: cover;
+    border-radius: 10px;
+
 }
 
 .btnPlay {
