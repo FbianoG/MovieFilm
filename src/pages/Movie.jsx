@@ -114,7 +114,6 @@ export default function Movie(props) {
     }
 
     function showVideo(e) {
-        // console.log(e.target.className);
         if (typeof e === 'object') {
 
             if (e.target.className === 'containerVideo') {
@@ -134,10 +133,6 @@ export default function Movie(props) {
         getComments()
         getVideo()
         props.bring()
-        // async function name() {
-        //     setUser(await getUser())
-        // }
-        // name()
     }, [])
 
 
@@ -211,9 +206,9 @@ export default function Movie(props) {
                                             <div className="cardVideo" key={element.key} onClick={() => showVideo(element.key)}>
                                                 <img src={`https://img.youtube.com/vi/${element.key}/hqdefault.jpg`} alt={element.name} />
                                                 <span>{element.name}</span>
-                                                <div className="btnPlay">
-                                                    <i className="fa-solid fa-play"></i>
-                                                </div>
+                                        
+                                                    <i className="fa-solid fa-play btnPlay"></i>
+                                                
                                             </div>
                                         )
                                     }

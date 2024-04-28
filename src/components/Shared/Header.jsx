@@ -10,8 +10,10 @@ export default function Header(props) {
     const sideMenu = useRef()
     const logo = useRef()
     const searchBar = useRef()
+    const userAccountOptions = useRef()
 
     const [searchMovies, setSearchMovies] = useState(false)
+
 
     async function searchMovie() { // ! criar arquivo para separar function
         if (searchInput.current.value.trim() === '') {
@@ -35,18 +37,37 @@ export default function Header(props) {
     }
 
     function showMenu() {
-
         if (sideMenu.current.style.left === '0px') {
             sideMenu.current.style.left = '-100%'
             setTimeout(() => {
                 sideMenu.current.style.display = 'none'
-            }, 400);
-
+            }, 400)
         } else {
             sideMenu.current.style.display = ''
             setTimeout(() => {
                 sideMenu.current.style.left = '0'
-            }, 0);
+            }, 0)
+        }
+    }
+
+    function hiddenMenu() {
+        sideMenu.current.style.left = '-100%'
+        setTimeout(() => {
+            sideMenu.current.style.display = 'none'
+        }, 400)
+    }
+
+    function logout() {
+        const url = location.href
+        localStorage.clear()
+        location.href = url
+    }
+
+    function showUserAccount() {
+        if (userAccountOptions.current.style.display === 'none' || userAccountOptions.current.style.display === '') {
+            userAccountOptions.current.style.display = 'flex'
+        } else {
+            userAccountOptions.current.style.display = 'none'
         }
     }
 
@@ -62,7 +83,6 @@ export default function Header(props) {
         if (searchInput.current.value.trim() !== '') {
             searchList.current.style.display = "flex"
         }
-        // searchBar.current.style.display = "none"
     }
 
     function hiddenInput() {
@@ -73,29 +93,14 @@ export default function Header(props) {
         searchBar.current.style.width = ""
         searchInput.current.style.width = ""
         searchInput.current.style.display = "none"
-        searchList.current.style.display = "none"
-    }
-
-    function logout() {
-        const url = location.href
-        localStorage.clear()
-        location.href = url
-    }
-
-    const userAccountOptions = useRef()
-
-    function showUserAccount() {
-
-        if (userAccountOptions.current.style.display === 'none' || userAccountOptions.current.style.display === '') {
-            userAccountOptions.current.style.display = 'flex'
-        } else {
-            userAccountOptions.current.style.display = 'none'
-        }
+        setTimeout(() => { // usado para garantir que "movieFilm" seja executada antes de fechar a lista
+            searchList.current.style.display = "none"
+        }, 0);
     }
 
     return (
         <header>
-            <div className="menu" onClick={showMenu}>
+            <div className="menu" onClick={showMenu} onBlur={hiddenMenu}>
                 <button>
                     <span></span>
                     <span></span>
@@ -113,17 +118,14 @@ export default function Header(props) {
                 </aside>
             </div>
 
-
             <div className='logo' ref={logo}>MovieFilm</div>
 
-            <div className="searchBar" ref={searchBar} onClick={showInput}>
+            <div className="searchBar" ref={searchBar} onClick={showInput}  >
                 <i className="fa-solid fa-magnifying-glass"  ></i>
-                <input type='text' name='' placeholder='Pesquisar' onChange={searchMovie} onBlur={hiddenInput} ref={searchInput} />
-
-
+                <input type='text' name='' placeholder='Pesquisar' onChange={searchMovie} ref={searchInput} onBlur={hiddenInput} />
                 <div className='listSearchMovies' ref={searchList}>
                     {searchMovies && searchMovies.results.map(element => (
-                        <div className='cardMovieSearch' key={element.id} onClick={() => movieFilm(element.id)} >
+                        <div className='cardMovieSearch' key={element.id} onClick={() => movieFilm(element.id)} tabIndex="0">
                             <img src={'https://image.tmdb.org/t/p/w200/' + element.poster_path} alt={element.title} />
                             <h3>{element.title}</h3>
                         </div>
@@ -131,9 +133,6 @@ export default function Header(props) {
                     }
                 </div>
             </div>
-
-
-
 
             <div className='userAccount' onClick={showUserAccount}>
                 {props.user &&
@@ -157,6 +156,8 @@ export default function Header(props) {
                         </div>
                         <div className='userAccountOptions' ref={userAccountOptions}>
                             <a href='/login' onClick={sessionStorage.setItem('BackUrlPage', window.location.href)}>Fazer Login <i className='fa-solid fa-arrow-right-to-bracket'></i></a>
+                            <span></span>
+
                         </div>
                     </>
                 }

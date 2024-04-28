@@ -49,7 +49,7 @@
 
 .movieInfo span {
     color: #aaa;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .movieContainer p {
@@ -95,7 +95,6 @@
 
 }
 
-
 .actorList {
     display: flex;
     gap: 15px;
@@ -129,6 +128,7 @@
     cursor: pointer;
 
 }
+
 .cardActor:hover img {
 filter: brightness(0.5);
 
@@ -195,7 +195,6 @@ filter: brightness(0.5);
 .movieProduction img {
     width: 50px;
     height: 50px;
-    /* height: 80px; */
     position: relative;
     z-index: 1;
     object-fit: contain;
@@ -221,9 +220,7 @@ filter: brightness(0.5);
 }
 
 .containerVideos h2 {
-
     margin: 0 0 25px;
-
 }
 
 .listVideos::-webkit-scrollbar {
@@ -243,15 +240,11 @@ filter: brightness(0.5);
 .cardVideo {
     width: 49%;
     min-width: 49%;
-    /* min-width: 300px; */
-    /* aspect-ratio: 16/9; */
-    /* margin: 0 auto; */
     color: #ddd;
     position: relative;
     display: flex;
     flex-direction: column;
     cursor: pointer;
-    /* border: 1px solid red; */
 }
 
 .cardVideo span {
@@ -261,34 +254,25 @@ filter: brightness(0.5);
 .cardVideo img {
     display: block;
     width: 100%;
-    /* min-width: 100%; */
     aspect-ratio: 16/9;
     margin: 0 0 10px;
     object-fit: cover;
     border-radius: 10px;
-
 }
 
 .btnPlay {
+    width: 45px;
+    height: 45px;
     position: absolute;
-    bottom: 50px;
-    left: 20px;
-    background: #eee;
-    width: 50px;
-    height: 50px;
-    box-shadow: 3px 3px 5px #0003;
-    border-radius: 50%;
-}
-
-.btnPlay i {
-    height: 100%;
+    bottom: 65px;
+    left: 15px;
     display: flex;
-    justify-content: center;
     align-items: center;
-    font-size: 24px;
+    justify-content: center;
     color: #3fa897;
-    text-shadow: 1px 1px 5px #0003;
-
+    background: #222;
+    border-radius: 50%;
+    box-shadow: 3px 3px 5px #0003;
 }
 
 .containerVideo {
@@ -305,19 +289,11 @@ filter: brightness(0.5);
 
 }
 
-
 iframe {
     width: 50%;
     min-width: 350px;
     aspect-ratio: 16/9;
 }
-
-/* .containerVideo .btnExitVideo {
-    position: absolute;
-    
-} */
-
-
 
 
 /* MB <= 767 - TB <= 1023 - */
