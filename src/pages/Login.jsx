@@ -5,7 +5,7 @@ import UrlBack from '../api/api.js'
 
 
 export default function Login(props) {
-   
+
     const [formCreateUser, setFormCreateUser] = useState(false)
     const loginAlert = useRef()
     const createEmail = useRef()
@@ -69,7 +69,7 @@ export default function Login(props) {
 
                 {formCreateUser &&
                     <form onSubmit={createUser}>
-                        <div className="logo">MovieFilm</div>
+                        <div className="logo"><img src='https://fontmeme.com/permalink/240429/bf281d3de2ec95229df9488c262ebe50.png' alt='MovieFilm' /></div>
                         <h3>Crie sua conta</h3>
                         <input type='text' name='' placeholder='Email' ref={createEmail} />
                         <input type='password' name='' placeholder='Senha' ref={createPassword} />
@@ -82,7 +82,7 @@ export default function Login(props) {
                 }
                 {!formCreateUser &&
                     <form onSubmit={doLogin}>
-                        <div className="logo">MovieFilm</div>
+                        <div className="logo"><img src='https://fontmeme.com/permalink/240429/bf281d3de2ec95229df9488c262ebe50.png' alt='MovieFilm' /></div>
                         <h3>Acesse sua conta</h3>
                         <input type='text' name='' placeholder='Email' ref={inputEmail} />
                         <input type='password' name='' placeholder='Senha' ref={inputPassword} />
