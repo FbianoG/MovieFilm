@@ -44,8 +44,6 @@ export default function Login(props) {
         }, 7000);
     }
 
-
-
     async function doLogin(e) {
         e.preventDefault()
         setBtnStatus(false)
