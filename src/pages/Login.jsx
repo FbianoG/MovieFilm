@@ -1,64 +1,77 @@
 import { useRef, useState } from 'react'
+import axios from 'axios'
 import './Login.css'
 import UrlBack from '../api/api.js'
-
 
 
 export default function Login(props) {
 
     const [formCreateUser, setFormCreateUser] = useState(false)
     const loginAlert = useRef()
-    const createEmail = useRef()
-    const createPassword = useRef()
-    const createName = useRef()
-    const createDate = useRef()
-    const inputEmail = useRef()
-    const inputPassword = useRef()
-
+    const [createEmail, setCreateEmail] = useState('')
+    const [createPassword, setCreatePassword] = useState('')
+    const [createName, setCreateName] = useState('')
+    const [createDate, setCreateDate] = useState('')
+    const [inputEmail, setInputEmail] = useState('')
+    const [inputPassword, setInputPassword] = useState('')
+    const [btnStatus, setBtnStatus] = useState(true)
+    const [statusLoginAlert, setStatusLoginAlert] = useState(false)
+    const [loginAlertText, setLoginAlertText] = useState('')
 
     async function createUser(e) {
         e.preventDefault()
-        const email = createEmail.current.value
-        const password = createPassword.current.value
-        const name = createName.current.value
-        const date = createDate.current.value
-        const response = await fetch(`${UrlBack}/createUser`, {
-            method: "POST",
-            body: JSON.stringify({ email, password, name, date }),
-            headers: { "Content-Type": "application/json" }
-        })
-        const data = await response.json()
-        if (response.ok) {
+        setBtnStatus(false)
+        try {
+            if (createEmail.trim() === '' || createPassword.trim() === '' || createName.trim() === '' || createDate.trim() === '') {
+                throw new Error('Preencha todos os campos.')
+            }
+            const response = await axios.post(`${UrlBack}/createUser`, { email: createEmail, password: createPassword, name: createName, date: createDate })
             setFormCreateUser(false)
-            loginAlert.current.textContent = data.message
-            loginAlert.current.style.color = 'green'
-        } else {
-            loginAlert.current.textContent = data.message
-            loginAlert.current.style.color = ''
+        } catch (error) {
+            console.log(error);
+            if (error.response) {
+                setLoginAlertText(error.response.data.message)
+            } else if (error.request) {
+                setLoginAlertText('Erro de rede. Tente novamente.')
+            } else {
+                setLoginAlertText(error.message)
+            }
+            setStatusLoginAlert(true)
         }
+        setBtnStatus(true)
+        setTimeout(() => {
+            setStatusLoginAlert(false)
+        }, 7000);
     }
+
+
 
     async function doLogin(e) {
         e.preventDefault()
-        const email = inputEmail.current.value
-        const password = inputPassword.current.value
-        const response = await fetch(`${UrlBack}/login`, {
-            method: "POST",
-            body: JSON.stringify({ email, password }),
-            headers: { "Content-Type": "application/json" }
-        })
-        const data = await response.json()
-        if (response.ok) {
-            setFormCreateUser(false)
-            localStorage.setItem("Token", data.token)
-            loginAlert.current.textContent = ""
-            loginAlert.current.style.color = ''
-            props.bring()
+        setBtnStatus(false)
+        try {
+            if (inputEmail.trim() === '' || inputPassword.trim() === '') {
+                throw new Error('Preencha todos os campos.')
+            }
+            const response = await axios.post(`${UrlBack}/login`, { email: inputEmail, password: inputPassword })
+            localStorage.setItem("Token", response.data.token)
+            await props.bring()
             location.href = sessionStorage.getItem('BackUrlPage')
-        } else {
-            loginAlert.current.textContent = data.message
-            loginAlert.current.style.color = ''
+        } catch (error) {
+            console.log(error);
+            if (error.response) {
+                setLoginAlertText(error.response.data.message);
+            } else if (error.request) {
+                setLoginAlertText('Erro de rede. Tente novamente.');
+            } else {
+                setLoginAlertText(error.message);
+            }
+            setStatusLoginAlert(true);
         }
+        setBtnStatus(true);
+        setTimeout(() => {
+            setStatusLoginAlert(false);
+        }, 7000);
     }
 
 
@@ -66,7 +79,6 @@ export default function Login(props) {
         <div className="loginContainer">
             <div className="loginSideApresentation">
                 <img src='https://c.wallhere.com/photos/e5/9b/movie_poster_people-1698949.jpg!d' alt='MovieFilm' />
-
                 <ul>
                     <li>Encontre as melhores estreias e notícias do mundo do cinema.</li>
                     <li>Explore listas de filmes por gênero e popularidade em nosso site.</li>
@@ -75,32 +87,48 @@ export default function Login(props) {
                 </ul>
             </div>
             <div className="formLogin">
-
                 {formCreateUser &&
                     <form onSubmit={createUser}>
                         <div className="logo"><img src='https://fontmeme.com/permalink/240429/bf281d3de2ec95229df9488c262ebe50.png' alt='MovieFilm' /></div>
                         <h3>Crie sua conta</h3>
-                        <input type='text' name='' placeholder='Email' ref={createEmail} />
-                        <input type='password' name='' placeholder='Senha' ref={createPassword} />
-                        <input type='text' name='' placeholder='Nome Completo' ref={createName} />
+                        <input type='text' placeholder='Email' value={createEmail} onChange={(e) => setCreateEmail(e.target.value)} />
+                        <input type='password' placeholder='Senha' value={createPassword} onChange={(e) => setCreatePassword(e.target.value)} />
+                        <input type='text' placeholder='Nome Completo' value={createName} onChange={(e) => setCreateName(e.target.value)} />
                         <label htmlFor=''>Data de Nascimento</label>
-                        <input type='date' name='' ref={createDate} />
+                        <input type='date' value={createDate} onChange={(e) => setCreateDate(e.target.value)} />
                         <a onClick={() => setFormCreateUser(false)}>Cancelar</a>
-                        <button type='submit' >Criar</button>
+                        {btnStatus &&
+                            <button type='submit'>Criar Conta</button>
+                        }
+                        {!btnStatus &&
+                            <button type='submit' disabled><i className="fa-solid fa-spinner fa-spin"></i> Criando...</button>
+                        }
                     </form>
                 }
                 {!formCreateUser &&
                     <form onSubmit={doLogin}>
                         <div className="logo"><img src='https://fontmeme.com/permalink/240429/bf281d3de2ec95229df9488c262ebe50.png' alt='MovieFilm' /></div>
                         <h3>Acesse sua conta</h3>
-                        <input type='text' name='' placeholder='Email' ref={inputEmail} />
-                        <input type='password' name='' placeholder='Senha' ref={inputPassword} />
+                        <input type='text' placeholder='Email' value={inputEmail} onChange={(e) => setInputEmail(e.target.value)} />
+                        <input type='password' placeholder='Senha' value={inputPassword} onChange={(e) => setInputPassword(e.target.value)} />
                         <a onClick={() => setFormCreateUser(true)}>Cria nova conta</a>
-                        <button type='submit'>Entrar</button>
+                        {btnStatus &&
+                            <button type='submit'>Acessar</button>
+                        }
+                        {!btnStatus &&
+                            <button type='submit' disabled><i className="fa-solid fa-spinner fa-spin"></i> Acessando</button>
+                        }
                     </form>
                 }
-
-                <span className='loginAlert' ref={loginAlert}></span>
+                {statusLoginAlert &&
+                    <div className='loginAlert' ref={loginAlert}>
+                        <i className="fa-solid fa-circle-exclamation"></i>
+                        <div className="loginAlertData">
+                            <h3>Ocorreu algum erro.</h3>
+                            <span>{loginAlertText}</span>
+                        </div>
+                    </div>
+                }
             </div>
         </div>
     )

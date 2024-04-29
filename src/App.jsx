@@ -28,17 +28,17 @@ function App() {
 
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<Home user={User} bring={bringUser} />} />
-        <Route path="/movie" element={<Movie user={User} bring={bringUser} />} />
-        <Route path="/movies" element={<Movies user={User} bring={bringUser} />} />
-        <Route path="/login" element={<Login user={User} bring={bringUser} />} />
-        <Route path="/favorites" element={<Favorites user={User} bring={bringUser} />} />
-        <Route path="/watch" element={<Watch user={User} bring={bringUser} />} />
-        <Route path="/perfil" element={<Perfil user={User} bring={bringUser} />} />
-        <Route path="/actor" element={<Actor user={User} bring={bringUser} />} />
-      </Routes>
-    </Router>
+        <Routes>
+          <Route path="/" element={<Home user={User} bring={bringUser} />} />
+          <Route path="/movie" element={<Movie user={User} bring={bringUser} />} />
+          <Route path="/movies" element={<Movies user={User} bring={bringUser} />} />
+          <Route path="/login" element={<Login user={User} bring={bringUser} />} />
+          <Route path="/favorites" element={<Favorites user={User} bring={bringUser} />} />
+          <Route path="/watch" element={<Watch user={User} bring={bringUser} />} />
+          <Route path="/perfil" element={<Perfil user={User} bring={bringUser} />} />
+          <Route path="/actor" element={<Actor user={User} bring={bringUser} />} />
+        </Routes>
+      </Router>
   )
 }
 

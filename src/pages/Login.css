@@ -107,8 +107,48 @@
 }
 
 .loginAlert {
-    height: 21px;
-    color: red;
+    width: 350px;
+    height: 75px;
+    background: #c53030;
+    padding: 10px 20px;
+    display: flex;
+    gap: 20px;
+    border-radius: 10px;
+    animation: show 800ms ease both;
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.loginAlertData {
+    height: 100%;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.loginAlertData h3 {
+    font-weight: 600;
+    font-size: 16px;
+    color: #fff;
+}
+
+.loginAlert i {
+    color: #fff;
+    font-size: 20px;
+ }
+
+
+@keyframes show {
+    0% {opacity: 0;}
+
+    100% {
+        opacity: 1;
+        bottom: 15px;
+    }
 }
 
 
@@ -130,7 +170,7 @@
     .loginSideApresentation ul {
         gap: 20px;
         text-align: center;
-        
+
     }
 
     .loginSideApresentation li {
