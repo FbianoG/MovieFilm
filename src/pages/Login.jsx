@@ -66,10 +66,13 @@ export default function Login(props) {
         <div className="loginContainer">
             <div className="loginSideApresentation">
                 <img src='https://c.wallhere.com/photos/e5/9b/movie_poster_people-1698949.jpg!d' alt='MovieFilm' />
-                <p>Texto do parágrafo</p>
-                <p>Texto do parágrafo</p>
-                <p>Texto do parágrafo</p>
-                <p>Texto do parágrafo</p>
+
+                <ul>
+                    <li>Encontre as melhores estreias e notícias do mundo do cinema.</li>
+                    <li>Explore listas de filmes por gênero e popularidade em nosso site.</li>
+                    <li>Curta seus filmes favoritos e organize listas personalizadas facilmente.</li>
+                    <li>Mantenha-se atualizado com lançamentos e eventos especiais de filmes.</li>
+                </ul>
             </div>
             <div className="formLogin">
 
