@@ -1,35 +1,38 @@
 import { useEffect, useRef, useState } from 'react';
 import './Header.css'
-import UrlBack from '../../api/api.js'
 
+import UrlBack from '../../api/api.js'
+import { getSearchMovies } from '../../api/getSearchMovies.js';
 
 export default function Header(props) {
     const token = localStorage.getItem('Token')
-    const searchInput = useRef()
     const searchList = useRef()
     const sideMenu = useRef()
     const logo = useRef()
     const searchBar = useRef()
+    const searchInput = useRef()
     const userAccountOptions = useRef()
 
-    const [searchMovies, setSearchMovies] = useState(false)
+    const [findMovies, setFindMovies] = useState(null)
+    const [showUserAccountOption, setShowUserAccountOption] = useState(false)
 
 
-    async function searchMovie() { // ! criar arquivo para separar function
-        if (searchInput.current.value.trim() === '') {
-            searchList.current.style.display = ''
+    async function searchMovies(e) {
+        if (e.target.value.trim() === '') {
+            setFindMovies(null)
             return
         }
-        const response = await fetch(`https://api.themoviedb.org/3/search/movie?query=${searchInput.current.value}&language=pt-BR`, {
-            method: 'GET',
-            headers: {
-                accept: 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNGU3MDE2YjAyYjdiYmI4ODEyODJlNzNjNGM4MWJmMSIsInN1YiI6IjY0ZjdkNWVjMWI3MjJjMDBlMzRlYWRmMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.3Ft4MagkdYM-1JNdJTiPpK6Er7VgEbUOQxC0_ZLX-SI'
-            }
-        })
-        const data = await response.json()
-        setSearchMovies(data)
-        searchList.current.style.display = 'flex'
+        const response = await getSearchMovies(e.target.value)
+        if (!response) {
+            setFindMovies(null)
+        } else if (response.status >= 500 || response.status === 0) {
+            console.log('Erro de rede. Tente novamente.');
+        } else if (response.status >= 300) {
+            console.log(response.data);
+            console.log('not found?');
+        } else {
+            setFindMovies(response.results)
+        }
     }
 
     function movieFilm(params) {
@@ -50,14 +53,6 @@ export default function Header(props) {
         }
     }
 
-    function hiddenMenu() {
-        // sideMenu.current.style.left = '-100%'
-        // console.log('11');
-        setTimeout(() => {
-            // sideMenu.current.style.display = 'none'
-        }, 400)
-    }
-
     function logout() {
         const url = location.href
         localStorage.clear()
@@ -65,10 +60,10 @@ export default function Header(props) {
     }
 
     function showUserAccount() {
-        if (userAccountOptions.current.style.display === 'none' || userAccountOptions.current.style.display === '') {
-            userAccountOptions.current.style.display = 'flex'
+        if (showUserAccountOption) {
+            setShowUserAccountOption(false)
         } else {
-            userAccountOptions.current.style.display = 'none'
+            setShowUserAccountOption(true)
         }
     }
 
@@ -101,7 +96,7 @@ export default function Header(props) {
 
     return (
         <header>
-            <div className="menu" onClick={showMenu} onBlur={hiddenMenu}>
+            <div className="menu" onClick={showMenu}>
                 <button>
                     <span></span>
                     <span></span>
@@ -123,24 +118,27 @@ export default function Header(props) {
 
             <div className="searchBar" ref={searchBar} onClick={showInput}  >
                 <i className="fa-solid fa-magnifying-glass"  ></i>
-                <input type='text' name='' placeholder='Pesquisar' onChange={searchMovie} ref={searchInput} onBlur={hiddenInput} />
-                <div className='listSearchMovies' ref={searchList}>
-                    {searchMovies && searchMovies.results.map(element => (
-                        <div className='cardMovieSearch' key={element.id} onClick={() => movieFilm(element.id)} tabIndex="0">
-                            <img src={'https://image.tmdb.org/t/p/w200/' + element.poster_path} alt={element.title} />
-                            <h3>{element.title}</h3>
-                        </div>
-                    ))
-                    }
-                </div>
+                <input type='text' placeholder='Pesquisar Filme' ref={searchInput} onChange={(e) => searchMovies(e)} />
+
+                {findMovies &&
+                    <div className='listSearchMovies'>
+                        {findMovies.map(element => (
+                            <div className='cardMovieSearch' key={element.id} onClick={() => movieFilm(element.id)} tabIndex="0">
+                                <img src={'https://image.tmdb.org/t/p/w200/' + element.poster_path} alt={element.title} />
+                                <h3>{element.title}</h3>
+                            </div>
+                        ))
+                        }
+                    </div>
+                }
             </div>
 
             <div className='userAccount' onClick={showUserAccount}>
-                {props.user &&
+                <div className='userAccountIcon'>
+                    <span>{props.user ? props.user.name.slice(0, 1).toUpperCase() : <i className='fa-solid fa-user'></i>}</span>
+                </div>
+                {props.user && showUserAccountOption &&
                     <>
-                        <div className='userAccountIcon'>
-                            <span>{props.user.name.slice(0, 1).toUpperCase()}</span>
-                        </div>
                         <nav className='userAccountOptions' ref={userAccountOptions}>
                             <a href='/perfil'><i className='fa-solid fa-user'></i>Perfil</a>
                             <a href='/favorites'><i className='fa-regular fa-heart'></i>Favoritos</a>
@@ -150,15 +148,11 @@ export default function Header(props) {
                         </nav>
                     </>
                 }
-                {!props.user &&
+                {!props.user && showUserAccountOption &&
                     <>
-                        <div className='userAccountIcon'>
-                            <i className='fa-solid fa-user'></i>
-                        </div>
                         <div className='userAccountOptions' ref={userAccountOptions}>
                             <a href='/login' onClick={sessionStorage.setItem('BackUrlPage', window.location.href)}>Fazer Login <i className='fa-solid fa-arrow-right-to-bracket'></i></a>
                             <span></span>
-
                         </div>
                     </>
                 }

@@ -48,8 +48,6 @@ header .logo {
   overflow: auto;
   gap: 5px;
   flex-wrap: wrap;
-  display: none;
-  /* border-radius: 15px; */
   box-shadow: 5px 5px 10px #0003;
 }
 
@@ -115,7 +113,7 @@ header .logo {
 .userAccountOptions {
   width: 200px;
   padding: 20px;
-  display: none;
+  display: flex;
   flex-direction: column;
   gap: 20px;
   position: absolute;

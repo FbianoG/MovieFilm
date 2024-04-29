@@ -18,21 +18,10 @@ export default function TopRated(props) {
     const [User, setUser] = useState(false)
     const [LoadingMovies, setLoadingMovies] = useState(false)
 
-    // async function getMovies() {
-    //     const response = await fetch(`https://api.themoviedb.org/3/movie/${urlQuery}?language=pt-BR&page=${page}&region=br`, {
-    //         method: 'GET',
-    //         headers: {
-    //             accept: 'application/json',
-    //             Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNGU3MDE2YjAyYjdiYmI4ODEyODJlNzNjNGM4MWJmMSIsInN1YiI6IjY0ZjdkNWVjMWI3MjJjMDBlMzRlYWRmMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.3Ft4MagkdYM-1JNdJTiPpK6Er7VgEbUOQxC0_ZLX-SI'
-    //         }
-    //     })
-    //     const data = await response.json()
-    //     setMovies(data)
-    // }
-
 
     useEffect(() => {
         async function loadMovies(e, n) {
+            console.log(n);
             setLoadingMovies(true)
             const response = await getMovies(e, n)
             if (!response) {

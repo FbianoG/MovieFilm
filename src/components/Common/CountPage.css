@@ -13,10 +13,8 @@
     justify-content: space-between;
     align-items: center;
     gap: 10px;
-    border-radius: 15px;
     overflow: hidden;
     background: #333;
-    background: ;
 }
 
 .countPage span {

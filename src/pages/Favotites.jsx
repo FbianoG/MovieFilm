@@ -5,22 +5,15 @@ import getUser from '../api/getUser'
 import Header from '../components/Shared/Header'
 import CardMovie from '../components/Layout/CardMovie'
 import Footer from '../components/Shared/Footer'
+import Loading from '../components/Common/Loading'
 
 
 
 export default function Favorites(props) {
-    const [User, setUser] = useState(false)
 
     useEffect(() => {
         props.bring()
-        // async function name(params) {
-        //     setUser(await getUser())
-        // }
-        // name()
     }, [])
-
-
-
 
     return (
         <>
@@ -30,10 +23,9 @@ export default function Favorites(props) {
                 <div className="listMovies">
                     {props.user && props.user.like.length > 0 && props.user.like.map(element => <CardMovie key={element.id} movie={element} user={props.user} bring={props.bring} />)}
                     {props.user && props.user.like.length === 0 && <p>Não há filmes salvos em seus favoritos.</p>}
-                    {!props.user && <p>Faça login para acessar esta página.</p>}
+                    {!props.user && <Loading />}
                 </div>
             </div>
-
             <Footer />
         </>
     )

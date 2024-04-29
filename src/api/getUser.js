@@ -8,7 +8,6 @@ export default async function getUser() {
             throw new Error('Usuário não conectado.')
         }
         const response = await axios.post(`${UrlBack}/getUser`, { token })
-        // console.log(response);
         return response.data
     } catch (error) {
         if (error.response) {

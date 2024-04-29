@@ -1,59 +1,40 @@
 import { useEffect, useState, useRef } from 'react'
 import './Home.css'
+
 import Header from '../components/Shared/Header'
 import CardMovie from '../components/Layout/CardMovie'
-import MiniCardFavorite from '../components/Layout/MiniCardFavorite'
 import Footer from '../components/Shared/Footer'
-import getUser from '../api/getUser'
 import Loading from '../components/Common/Loading'
 
+import getMovies from '../api/getMovies'
+
 export default function Home(props) {
-    const [topMovies, setTopMovies] = useState(false)
-    const [LoadingMovies, setLoadingMovies] = useState(false)
-    const [upcomingMovies, setUpcomingMovies] = useState(false)
     const [trending, setTrending] = useState(false)
+    const [upcomingMovies, setUpcomingMovies] = useState(false)
+    const [topMovies, setTopMovies] = useState(false)
 
 
-    async function getTopRated() {
-        const response = await fetch(`https://api.themoviedb.org/3/movie/top_rated?language=pt-BR`, {
-            method: 'GET',
-            headers: {
-                accept: 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNGU3MDE2YjAyYjdiYmI4ODEyODJlNzNjNGM4MWJmMSIsInN1YiI6IjY0ZjdkNWVjMWI3MjJjMDBlMzRlYWRmMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.3Ft4MagkdYM-1JNdJTiPpK6Er7VgEbUOQxC0_ZLX-SI'
-            }
-        })
-        const data = await response.json()
-        setTopMovies(data)
+    async function loadMovies(e, n) {
+        const response = await getMovies(e, n)
+        if (!response) {
+            console.log('Não possui query');
+        } else if (response.status === 0 || response.status >= 500) {
+            console.log('Erro de rede. Tente novamente.');
+        } else if (response.status >= 300) {
+            console.log(response.data);
+        } else {
+            return response
+        }
     }
 
-    async function getUpcoming() {
-        const response = await fetch('https://api.themoviedb.org/3/movie/upcoming?language=pt-br&region=br', {
-            method: 'GET',
-            headers: {
-                accept: 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNGU3MDE2YjAyYjdiYmI4ODEyODJlNzNjNGM4MWJmMSIsInN1YiI6IjY0ZjdkNWVjMWI3MjJjMDBlMzRlYWRmMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.3Ft4MagkdYM-1JNdJTiPpK6Er7VgEbUOQxC0_ZLX-SI'
-            }
-        })
-        const data = await response.json()
-        setUpcomingMovies(data)
-    }
-
-    async function getTrending() {
-        const response = await fetch('https://api.themoviedb.org/3/trending/movie/week?language=pt-BR', {
-            method: 'GET',
-            headers: {
-                accept: 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNGU3MDE2YjAyYjdiYmI4ODEyODJlNzNjNGM4MWJmMSIsInN1YiI6IjY0ZjdkNWVjMWI3MjJjMDBlMzRlYWRmMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.3Ft4MagkdYM-1JNdJTiPpK6Er7VgEbUOQxC0_ZLX-SI'
-            }
-        })
-        const data = await response.json()
-        setTrending(data)
-    }
 
     useEffect(() => {
-        getTopRated()
-        getUpcoming()
-        getTrending()
+        async function getAllMovies() {
+            setTrending(await loadMovies('popular', 1))
+            setUpcomingMovies(await loadMovies('upcoming', 1))
+            setTopMovies(await loadMovies('top_rated', 1))
+        }
+        getAllMovies()
         props.bring()
     }, [])
 
@@ -99,7 +80,6 @@ export default function Home(props) {
                         })}
                         {!upcomingMovies && <Loading />}
                     </div>
-
                 </section>
 
                 <div className='banner'>
@@ -107,7 +87,6 @@ export default function Home(props) {
                 </div>
 
                 <section>
-
                     <div className='listMovies'>
                         <div className='listMoviesInfo'>
                             <h1>Filmes</h1>

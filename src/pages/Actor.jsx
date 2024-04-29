@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react';
-import Header from '../components/Shared/Header'
 import './Actor.css'
+
+import Header from '../components/Shared/Header'
 import CardMovie from '../components/Layout/CardMovie';
 import Footer from '../components/Shared/Footer';
+import Loading from '../components/Common/Loading.jsx';
 
+import { getActor, getActorMovies } from '../api/getActorAndMovies.js'
 
 
 
@@ -13,33 +16,36 @@ export default function Actor(props) {
     const [AllMovies, setAllMovies] = useState()
     const [Actor, setActor] = useState()
 
-    async function getMoviesActor() {
-        const response = await fetch(`https://api.themoviedb.org/3/person/${actorId}/credits?language=pt-BR`, {
-            method: 'GET',
-            headers: {
-                accept: 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNGU3MDE2YjAyYjdiYmI4ODEyODJlNzNjNGM4MWJmMSIsInN1YiI6IjY0ZjdkNWVjMWI3MjJjMDBlMzRlYWRmMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.3Ft4MagkdYM-1JNdJTiPpK6Er7VgEbUOQxC0_ZLX-SI'
-            }
-        })
-        const data = await response.json()
-        setAllMovies(data.cast.filter(element => element.popularity >= 30))
+
+    async function actorMovies() { // Busca todos os filmes do ator
+        const actorMovies = await getActorMovies(actorId)
+        if (!actorMovies) {
+            console.log('nao tem id');
+        } else if (actorMovies.status >= 500 || actorMovies.status === 0) {
+            console.log('Erro de rede. Tente novamente.')
+        } else if (actorMovies.status >= 300) {
+            console.log('não encontrado');
+        } else {
+            setAllMovies(actorMovies)
+        }
     }
 
-    async function getActor() {
-        const response = await fetch(`https://api.themoviedb.org/3/person/${actorId}?language=pt-br`, {
-            method: 'GET',
-            headers: {
-                accept: 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNGU3MDE2YjAyYjdiYmI4ODEyODJlNzNjNGM4MWJmMSIsInN1YiI6IjY0ZjdkNWVjMWI3MjJjMDBlMzRlYWRmMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.3Ft4MagkdYM-1JNdJTiPpK6Er7VgEbUOQxC0_ZLX-SI'
-            }
-        })
-        const data = await response.json()
-        setActor(data);
+    async function actor() { // Busca detalhes do ator
+        const actorMovies = await getActor(actorId)
+        if (!actorMovies) {
+            console.log('nao tem id');
+        } else if (actorMovies.status >= 500 || actorMovies.status === 0) {
+            console.log('Erro de rede. Tente novamente.')
+        } else if (actorMovies.status >= 300) {
+            console.log('não encontrado');
+        } else {
+            setActor(actorMovies)
+        }
     }
 
     useEffect(() => {
-        getMoviesActor()
-        getActor()
+        actor()
+        actorMovies()
         props.bring()
     }, [])
 
@@ -61,11 +67,13 @@ export default function Actor(props) {
                         </div>
                     }
                 </section>
+
                 <section>
                     <h2>Principais Filmes</h2>
                     <div className="actorList">
                         {AllMovies && AllMovies.map(element => <CardMovie key={element.id} movie={element} user={props.user} bring={props.bring} />)}
                     </div>
+                    {!AllMovies && <Loading />}
                 </section>
             </div>
             <Footer />
