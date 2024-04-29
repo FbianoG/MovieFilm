@@ -5,6 +5,8 @@ import './Movies.css'
 import CountPage from "../components/Common/CountPage";
 import Footer from "../components/Shared/Footer";
 import getUser from "../api/getUser";
+import getMovies from "../api/getMovies";
+import Loading from "../components/Common/Loading";
 
 export default function TopRated(props) {
 
@@ -14,22 +16,37 @@ export default function TopRated(props) {
     const [Movies, setMovies] = useState(false)
     const [page, setPage] = useState(urlPage ? Number(urlPage) : 1)
     const [User, setUser] = useState(false)
+    const [LoadingMovies, setLoadingMovies] = useState(false)
 
-    async function getMovies() {
-        const response = await fetch(`https://api.themoviedb.org/3/movie/${urlQuery}?language=pt-BR&page=${page}&region=br`, {
-            method: 'GET',
-            headers: {
-                accept: 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNGU3MDE2YjAyYjdiYmI4ODEyODJlNzNjNGM4MWJmMSIsInN1YiI6IjY0ZjdkNWVjMWI3MjJjMDBlMzRlYWRmMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.3Ft4MagkdYM-1JNdJTiPpK6Er7VgEbUOQxC0_ZLX-SI'
-            }
-        })
-        const data = await response.json()
-        setMovies(data)
-    }
+    // async function getMovies() {
+    //     const response = await fetch(`https://api.themoviedb.org/3/movie/${urlQuery}?language=pt-BR&page=${page}&region=br`, {
+    //         method: 'GET',
+    //         headers: {
+    //             accept: 'application/json',
+    //             Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNGU3MDE2YjAyYjdiYmI4ODEyODJlNzNjNGM4MWJmMSIsInN1YiI6IjY0ZjdkNWVjMWI3MjJjMDBlMzRlYWRmMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.3Ft4MagkdYM-1JNdJTiPpK6Er7VgEbUOQxC0_ZLX-SI'
+    //         }
+    //     })
+    //     const data = await response.json()
+    //     setMovies(data)
+    // }
 
 
     useEffect(() => {
-        getMovies()
+        async function loadMovies(e, n) {
+            setLoadingMovies(true)
+            const response = await getMovies(e, n)
+            if (!response) {
+                console.log('Não possui query');
+            } else if (response.status === 0 || response.status >= 500) {
+                console.log('Erro de rede. Tente novamente.');
+            } else if (response.status >= 300) {
+                console.log(response.data);
+            } else {
+                setMovies(response)
+            }
+            setLoadingMovies(false)
+        }
+        loadMovies(urlQuery, page)
         props.bring()
     }, [page])
 
@@ -43,6 +60,10 @@ export default function TopRated(props) {
     }
 
 
+
+
+
+
     return (
         <>
             <Header user={props.user} />
@@ -52,6 +73,7 @@ export default function TopRated(props) {
                     <CountPage page={{ page, setPage }} />
                     <div className="listMovies">
                         {Movies && Movies.results.map(element => <CardMovie movie={element} user={props.user} bring={props.bring} key={element.id} />)}
+                        {!Movies && LoadingMovies && <Loading />}
                     </div>
                 </section>
             </div >
