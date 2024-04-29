@@ -119,7 +119,7 @@ export default function Header(props) {
                 </aside>
             </div>
 
-            <div className='logo' ref={logo}>MovieFilm</div>
+            <div className='logo' ref={logo} onClick={() => location.href = '/'}><img src='https://fontmeme.com/permalink/240429/d77e0c85700fb42079d0035f0ca94a4f.png' alt='MovieFilm' /></div>
 
             <div className="searchBar" ref={searchBar} onClick={showInput}  >
                 <i className="fa-solid fa-magnifying-glass"  ></i>

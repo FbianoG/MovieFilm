@@ -6,7 +6,7 @@ export default function Footer() {
 
     return (
         <footer>
-            <div className="logo">MovieFilm</div>
+            <div className="logo"><img src='https://fontmeme.com/permalink/240429/9c83adb04a2b4ecd8df59128915eb8af.png' alt='MovieFilm' /></div>
             <div className="footerDescription">
             Com acesso direto à extensa base de dados do The Movie Database (TMDb), nosso site oferece informações detalhadas e atualizadas sobre uma ampla gama de filmes, de blockbusters recém-lançados a preciosidades clássicas.
             </div>

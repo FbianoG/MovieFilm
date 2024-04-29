@@ -15,10 +15,11 @@ header {
 }
 
 header .logo {
-  color: #3fa897;
-  font-size: 30px;
   margin: 0 auto 0 0;
-  /* font-weight: 400; */
+  cursor: pointer;
+  display: flex;
+  position: relative;
+  top: 4px;
 }
 
 .searchBar {

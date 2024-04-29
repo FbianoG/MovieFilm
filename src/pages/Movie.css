@@ -53,20 +53,20 @@
 }
 
 .movieContainer p {
-    color: #fdfdfd;
+    color: #eee;
     font-size: 16px;
     margin: 25px 0 0;
 }
 
 .btnControl {
     display: flex;
-    gap: 20px;
+    gap: 10px;
     margin: 20px 0;
 }
 
 .movieData button {
     padding: 10px 0;
-    width: 150px;
+    width: 180px;
     background: none;
     border: 1px solid #3fa897;
     font-weight: 500;
