@@ -1,0 +1,22 @@
+.loading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    animation: pulse 2s ease infinite;
+}
+
+@keyframes pulse {
+    0%{}
+    50%{opacity: 0.5;}
+}
+
+.loading  i {
+    font-size: 50px;    
+    color: #3fa897;
+}
+
+.loading span {
+    color: #ddd;
+}

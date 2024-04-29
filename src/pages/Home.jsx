@@ -5,10 +5,11 @@ import CardMovie from '../components/Layout/CardMovie'
 import MiniCardFavorite from '../components/Layout/MiniCardFavorite'
 import Footer from '../components/Shared/Footer'
 import getUser from '../api/getUser'
-
+import Loading from '../components/Common/Loading'
 
 export default function Home(props) {
     const [topMovies, setTopMovies] = useState(false)
+    const [LoadingMovies, setLoadingMovies] = useState(false)
     const [upcomingMovies, setUpcomingMovies] = useState(false)
     const [trending, setTrending] = useState(false)
 
@@ -75,13 +76,10 @@ export default function Home(props) {
                             <a href='/movies?category=popular'>Veja mais <i className="fa-solid fa-chevron-right"></i></a>
                         </div>
                         {trending && trending.results.map((element, index) => {
-                            if (index > 11) {
-                                return
-                            }
-                            return (
-                                <CardMovie movie={element} user={props.user} bring={props.bring} key={element.id} />
-                            )
+                            if (index > 11) return
+                            return <CardMovie movie={element} user={props.user} bring={props.bring} key={element.id} />
                         })}
+                        {!trending && <Loading />}
                     </div>
                     <a href='/movies?category=popular' className='btnEndViewMore'>Veja mais</a>
                 </section>
@@ -95,16 +93,11 @@ export default function Home(props) {
                             <p>Próximos lançamentos</p>
                             <a href='/'>Veja mais <i className="fa-solid fa-chevron-right"></i></a>
                         </div>
-                        {upcomingMovies &&
-                            upcomingMovies.results.map((element, index) => {
-                                if (index > 11) {
-                                    return
-                                }
-                                return (
-                                    <CardMovie key={element.id} movie={element} user={props.user} bring={props.bring} />
-                                )
-                            })
-                        }
+                        {upcomingMovies && upcomingMovies.results.map((element, index) => {
+                            if (index > 11) return
+                            return <CardMovie key={element.id} movie={element} user={props.user} bring={props.bring} />
+                        })}
+                        {!upcomingMovies && <Loading />}
                     </div>
 
                 </section>
@@ -123,16 +116,11 @@ export default function Home(props) {
                             <p>Maiores notas de todos os tempos</p>
                             <a href='/movies?category=top_rated'>Veja mais <i className="fa-solid fa-chevron-right"></i></a>
                         </div>
-                        {topMovies &&
-                            topMovies.results.map((element, index) => {
-                                if (index > 11) {
-                                    return
-                                }
-                                return (
-                                    <CardMovie key={element.id} movie={element} user={props.user} bring={props.bring} />
-                                )
-                            })
-                        }
+                        {topMovies && topMovies.results.map((element, index) => {
+                            if (index > 11) return
+                            return <CardMovie key={element.id} movie={element} user={props.user} bring={props.bring} />
+                        })}
+                        {!topMovies && <Loading />}
                     </div>
                     <a href='/movies?category=top_rated' className='btnEndViewMore'>Veja mais</a>
                 </section>

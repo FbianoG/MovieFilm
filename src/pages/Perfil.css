@@ -126,6 +126,7 @@
     border-radius: 10px;
 
 }
+
 .perfilData input {
     width: 100%;
     background: none;
@@ -226,7 +227,6 @@
 
 
 
-
 /* MB <= 767 - TB <= 1023 - */
 @media screen and (max-width: 767px) {
     .contentPerfil {
@@ -246,6 +246,7 @@
     .sidePerfil {
         /* height: calc(100vh - 70px); */
     }
+
     .sidePerfil button {
         /* display: none; */
         position: absolute;

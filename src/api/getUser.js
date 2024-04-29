@@ -1,14 +1,22 @@
+import axios from 'axios'
 import UrlBack from './api'
 
 export default async function getUser() {
     const token = localStorage.getItem('Token')
-    const response = await fetch(`${UrlBack}/getUser`, {
-        method: "POST",
-        body: JSON.stringify({ token }),
-        headers: { "Content-Type": "application/json" }
-    })
-    const data = await response.json()
-    if (response.ok) {
-        return data
+    try {
+        if (!token || token.trim() === '') {
+            throw new Error('Usuário não conectado.')
+        }
+        const response = await axios.post(`${UrlBack}/getUser`, { token })
+        // console.log(response);
+        return response.data
+    } catch (error) {
+        if (error.response) {
+            return error.response
+        } else if (error.request) {
+            return error.request
+        } else {
+            return false
+        }
     }
 }
