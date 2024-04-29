@@ -11,7 +11,6 @@ export default function Home(props) {
     const [topMovies, setTopMovies] = useState(false)
     const [upcomingMovies, setUpcomingMovies] = useState(false)
     const [trending, setTrending] = useState(false)
-    // const [User, setUser] = useState(false)
 
 
     async function getTopRated() {
@@ -55,22 +54,7 @@ export default function Home(props) {
         getUpcoming()
         getTrending()
         props.bring()
-        // setUser(props.user)
-        // async function name() {
-        //     setUser(await getUser())
-        // }
-        // name()
     }, [])
-
-
-
-
-    function moreMovies(params) {
-        location.href = `/movies?category=${params}`
-    }
-
-
-
 
 
     return (
@@ -88,7 +72,7 @@ export default function Home(props) {
                             <h1>em Alta</h1>
                             <h1>Acompanhe Agora</h1>
                             <p>Mais assistidos da semana</p>
-                            <a href='/movies?category=popular'>Veja mais</a>
+                            <a href='/movies?category=popular'>Veja mais <i className="fa-solid fa-chevron-right"></i></a>
                         </div>
                         {trending && trending.results.map((element, index) => {
                             if (index > 11) {
@@ -109,7 +93,7 @@ export default function Home(props) {
                             <h1>em Breve</h1>
                             <h1>Acompanhe Agora</h1>
                             <p>Próximos lançamentos</p>
-                            <a href='/'>Veja mais</a>
+                            <a href='/'>Veja mais <i className="fa-solid fa-chevron-right"></i></a>
                         </div>
                         {upcomingMovies &&
                             upcomingMovies.results.map((element, index) => {
@@ -137,7 +121,7 @@ export default function Home(props) {
                             <h1>Melhores Notas</h1>
                             <h1>Acompanhe Agora</h1>
                             <p>Maiores notas de todos os tempos</p>
-                            <a href='/movies?category=top_rated'>Veja mais</a>
+                            <a href='/movies?category=top_rated'>Veja mais <i className="fa-solid fa-chevron-right"></i></a>
                         </div>
                         {topMovies &&
                             topMovies.results.map((element, index) => {

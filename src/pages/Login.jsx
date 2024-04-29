@@ -64,7 +64,13 @@ export default function Login(props) {
 
     return (
         <div className="loginContainer">
-            <div className="loginSideApresentation"></div>
+            <div className="loginSideApresentation">
+                <img src='https://c.wallhere.com/photos/e5/9b/movie_poster_people-1698949.jpg!d' alt='MovieFilm' />
+                <p>Texto do parágrafo</p>
+                <p>Texto do parágrafo</p>
+                <p>Texto do parágrafo</p>
+                <p>Texto do parágrafo</p>
+            </div>
             <div className="formLogin">
 
                 {formCreateUser &&

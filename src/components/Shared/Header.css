@@ -229,6 +229,15 @@ header .logo {
     z-index: 10;
   }
 
+  header .logo {
+    width: 150px;
+  }
+
+  header .logo img{
+    width: 100%;
+  }
+
+
   header .mainNav {
     display: none;
   }
@@ -254,6 +263,8 @@ header .logo {
     display: none;
   }
 }
+
+
 
 .miniPerfil {
   width: fit-content;
