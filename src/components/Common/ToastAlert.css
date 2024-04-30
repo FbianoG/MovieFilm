@@ -14,22 +14,22 @@
     transform: translateX(-50%);
 }
 
-.toastAlertData {
+.toastAlert-data {
     height: 100%;
     color: #fff;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    gap: 5px;
+    gap: 10px;
 }
 
-.toastAlertData h3 {
+.toastAlert-title {
     font-weight: 600;
     font-size: 16px;
     color: #fff;
 }
 
-.toastAlert i {
+.toastAlert-icon {
     color: #fff;
     font-size: 20px;
 }

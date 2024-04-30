@@ -19,10 +19,10 @@ export default function ToastAlert(props) {
 
     return (
         <div className='toastAlert' style={toastBg}>
-            <i className='fa-solid fa-circle-exclamation'></i>
-            <div className='toastAlertData'>
-                <h3>{title}</h3>
-                <span>{props.text}</span>
+            <i className='fa-solid fa-circle-exclamation toastAlert-icon'></i>
+            <div className='toastAlert-data'>
+                <h3 className='toastAlert-title'>{title}</h3>
+                <span className='toastAlert-text'>{props.text}</span>
             </div>
         </div >
     )

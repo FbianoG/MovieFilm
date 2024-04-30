@@ -9,20 +9,12 @@
   gap: 50px;
 }
 
-
 section {
   background: #222;
   border-radius: 10px;
   padding: 20px;
 }
 
-
-section h1 {
-  /* color: #ddd; */
-  /* font-size: 40px; */
-  /* margin: 0 0 30px; */
-  /* width: 400px; */
-}
 
 section h2 {
   color: #fdfdfd;
@@ -82,18 +74,10 @@ section button:hover {
   section h1 {
     text-align: center;
   }
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+:root {
+  --cor-primary: #3fa897;
+  --cor-secondary: #
+  --cor-tertiary:
 }

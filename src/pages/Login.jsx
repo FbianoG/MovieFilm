@@ -114,8 +114,8 @@ export default function Login(props) {
                         }
                     </form>
                 }
-                {statusLoginAlert && <ToastAlert text={alertText} type={alertType} />}
             </div>
+                {statusLoginAlert && <ToastAlert text={alertText} type={alertType} />}
         </div>
     )
 

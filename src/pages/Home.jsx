@@ -55,7 +55,7 @@ export default function Home(props) {
                             <a href='/movies?list=popular'>Veja mais <i className="fa-solid fa-chevron-right"></i></a>
                         </div>
                         {trending && trending.results.map((element, index) => {
-                            if (index > 13) return
+                            if (index > 11) return
                             return <CardMovie movie={element} user={props.user} bring={props.bring} key={element.id} />
                         })}
                         {!trending && <Loading />}
@@ -73,7 +73,7 @@ export default function Home(props) {
                             <a href='/'>Veja mais <i className="fa-solid fa-chevron-right"></i></a>
                         </div>
                         {upcomingMovies && upcomingMovies.results.map((element, index) => {
-                            if (index > 13) return
+                            if (index > 11) return
                             return <CardMovie key={element.id} movie={element} user={props.user} bring={props.bring} />
                         })}
                         {!upcomingMovies && <Loading />}
@@ -94,7 +94,7 @@ export default function Home(props) {
                             <a href='/movies?list=top_rated'>Veja mais <i className="fa-solid fa-chevron-right"></i></a>
                         </div>
                         {topMovies && topMovies.results.map((element, index) => {
-                            if (index > 13) return
+                            if (index > 11) return
                             return <CardMovie key={element.id} movie={element} user={props.user} bring={props.bring} />
                         })}
                         {!topMovies && <Loading />}
