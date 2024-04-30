@@ -13,7 +13,6 @@ export default async function getCompare(email) {
     } catch (error) {
         if (error.request) throw error
         else throw false
-
     }
 
 }

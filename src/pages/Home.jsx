@@ -5,14 +5,12 @@ import Header from '../components/Shared/Header'
 import CardMovie from '../components/Layout/CardMovie'
 import Footer from '../components/Shared/Footer'
 import Loading from '../components/Common/Loading'
-
 import getMovies from '../api/getMovies'
 
 export default function Home(props) {
     const [trending, setTrending] = useState(false)
     const [upcomingMovies, setUpcomingMovies] = useState(false)
     const [topMovies, setTopMovies] = useState(false)
-
 
     async function loadMovies(e, n) {
         try {
@@ -30,12 +28,10 @@ export default function Home(props) {
         setUpcomingMovies(await loadMovies('upcoming', 1))
         setTopMovies(await loadMovies('top_rated', 1))
     }
-
     useEffect(() => {
         getAllMovies()
         props.bring()
     }, [])
-
 
     return (
         <>
