@@ -17,20 +17,35 @@ function App() {
   const [User, setUser] = useState(null)
 
   async function bringUser() {
-    const response = await getUser()
-    if (!response) {
-      return
-    } else if (response.status >= 500 || response.status === 0) {
-      console.log(response)
-    } else if (response.status >= 300) {
-      if (response.status === 401) {
-        localStorage.clear()
-      }
-      console.log(response)
-    } else {
+    try {
+      const response = await getUser()
       setUser(response)
+    } catch (error) {
+      setUser(null)
+      if (!error) {
+        return { auth: false, status: 401, error: 'Necessário fazer login.' }
+      }
+      else if (!error.response) {
+        return { auth: false, status: 500, error: 'Erro de rede. Tente novamente.' }
+      }
+      else if (error.response.status === 401) {
+        localStorage.clear()
+        return { auth: false, status: 401, error: 'Sessão expirada.' }
+      }
     }
-    console.log('teste getuser');
+
+    // if (!response) {
+    //   return
+    // } else if (response.status >= 500 || response.status === 0) {
+    //   console.log(response)
+    // } else if (response.status >= 300) {
+    //   if (response.status === 401) {
+    //     localStorage.clear()
+    //   }
+    //   console.log(response)
+    // } else {
+
+    // }
   }
 
 

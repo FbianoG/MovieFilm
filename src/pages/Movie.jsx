@@ -199,21 +199,17 @@ export default function Movie(props) {
                     <section>
                         <h2>Videos</h2>
                         <div className="listVideos">
-                            {
-                                Video.map(element => {
-                                    if (element.type === 'Trailer') {
-                                        return (
-                                            <div className="cardVideo" key={element.key} onClick={() => showVideo(element.key)}>
-                                                <img src={`https://img.youtube.com/vi/${element.key}/hqdefault.jpg`} alt={element.name} />
-                                                <span>{element.name}</span>
-                                        
-                                                    <i className="fa-solid fa-play btnPlay"></i>
-                                                
-                                            </div>
-                                        )
-                                    }
-                                })
-                            }
+                            {Video.map(element => {
+                                if (element.type === 'Trailer') {
+                                    return (
+                                        <div className="cardVideo" key={element.key} onClick={() => showVideo(element.key)}>
+                                            <img src={`https://img.youtube.com/vi/${element.key}/hqdefault.jpg`} alt={element.name} />
+                                            <span>{element.name}</span>
+                                            <i className="fa-solid fa-play btnPlay"></i>
+                                        </div>
+                                    )
+                                }
+                            })}
                         </div>
                     </section>
                 }
@@ -257,3 +253,6 @@ export default function Movie(props) {
         </>
     )
 }
+
+
+

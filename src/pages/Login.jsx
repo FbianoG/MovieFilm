@@ -2,6 +2,7 @@ import { useRef, useState } from 'react'
 import axios from 'axios'
 import './Login.css'
 import UrlBack from '../api/api.js'
+import ToastAlert from '../components/Common/ToastAlert.jsx'
 
 
 export default function Login(props) {
@@ -26,6 +27,7 @@ export default function Login(props) {
                 throw new Error('Preencha todos os campos.')
             }
             const response = await axios.post(`${UrlBack}/createUser`, { email: createEmail, password: createPassword, name: createName, date: createDate })
+            console.log(response)
             setFormCreateUser(false)
         } catch (error) {
             console.log(error);
@@ -34,7 +36,7 @@ export default function Login(props) {
             } else if (error.request) {
                 setLoginAlertText('Erro de rede. Tente novamente.')
             } else {
-                setLoginAlertText(error.message)
+                setLoginAlertText('error.message')
             }
             setStatusLoginAlert(true)
         }
@@ -52,7 +54,7 @@ export default function Login(props) {
                 throw new Error('Preencha todos os campos.')
             }
             const response = await axios.post(`${UrlBack}/login`, { email: inputEmail, password: inputPassword })
-            localStorage.setItem("Token", response.data.token)
+            localStorage.setItem('Token', response.data.token)
             await props.bring()
             location.href = sessionStorage.getItem('BackUrlPage')
         } catch (error) {
@@ -118,15 +120,7 @@ export default function Login(props) {
                         }
                     </form>
                 }
-                {statusLoginAlert &&
-                    <div className='loginAlert' ref={loginAlert}>
-                        <i className="fa-solid fa-circle-exclamation"></i>
-                        <div className="loginAlertData">
-                            <h3>Ocorreu algum erro.</h3>
-                            <span>{loginAlertText}</span>
-                        </div>
-                    </div>
-                }
+                {statusLoginAlert && <ToastAlert text={loginAlertText} />}
             </div>
         </div>
     )

@@ -11,7 +11,6 @@ import { getSearchMoviesCategory } from "../api/getSearchMovies";
 
 export default function TopRated(props) {
 
-
     const urlQuery = new URLSearchParams(window.location.search).get('list')
     const urlQuery2 = new URLSearchParams(window.location.search).get('category')
     const urlPage = new URLSearchParams(window.location.search).get("page")
@@ -40,13 +39,6 @@ export default function TopRated(props) {
         setLoadingMovies(false)
     }
 
-
-    useEffect(() => {
-        loadMovies(urlQuery ? urlQuery : urlQuery2, page)
-        props.bring()
-    }, [page])
-
-
     function getTitle(params) {
         if (urlQuery === 'top_rated') return 'Melhores Filmes'
         else if (urlQuery === 'popular') return 'Populares'
@@ -60,11 +52,12 @@ export default function TopRated(props) {
         else if (urlQuery2 == 10752) return 'Filmes Guerra'
     }
 
+    useEffect(() => {
+        loadMovies(urlQuery ? urlQuery : urlQuery2, page)
+        props.bring()
+    }, [page])
 
-
-
-
-
+    
     return (
         <>
             <Header user={props.user} />

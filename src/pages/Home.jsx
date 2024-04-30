@@ -27,13 +27,13 @@ export default function Home(props) {
         }
     }
 
+    async function getAllMovies() {
+        setTrending(await loadMovies('popular', 1))
+        setUpcomingMovies(await loadMovies('upcoming', 1))
+        setTopMovies(await loadMovies('top_rated', 1))
+    }
 
     useEffect(() => {
-        async function getAllMovies() {
-            setTrending(await loadMovies('popular', 1))
-            setUpcomingMovies(await loadMovies('upcoming', 1))
-            setTopMovies(await loadMovies('top_rated', 1))
-        }
         getAllMovies()
         props.bring()
     }, [])
@@ -44,7 +44,7 @@ export default function Home(props) {
             <Header user={props.user} />
             <div className='content'>
                 <div className='banner'>
-                    <img src='/freepik-export-20240424163048WEsm.jpeg' alt='' />
+                    <img src='https://skycms.s3.amazonaws.com/images/43136174/Banner_large.png' alt='' />
                 </div>
 
                 <section>
@@ -57,7 +57,7 @@ export default function Home(props) {
                             <a href='/movies?category=popular'>Veja mais <i className="fa-solid fa-chevron-right"></i></a>
                         </div>
                         {trending && trending.results.map((element, index) => {
-                            if (index > 11) return
+                            if (index > 13) return
                             return <CardMovie movie={element} user={props.user} bring={props.bring} key={element.id} />
                         })}
                         {!trending && <Loading />}
@@ -75,7 +75,7 @@ export default function Home(props) {
                             <a href='/'>Veja mais <i className="fa-solid fa-chevron-right"></i></a>
                         </div>
                         {upcomingMovies && upcomingMovies.results.map((element, index) => {
-                            if (index > 11) return
+                            if (index > 13) return
                             return <CardMovie key={element.id} movie={element} user={props.user} bring={props.bring} />
                         })}
                         {!upcomingMovies && <Loading />}
@@ -90,13 +90,13 @@ export default function Home(props) {
                     <div className='listMovies'>
                         <div className='listMoviesInfo'>
                             <h1>Filmes</h1>
-                            <h1>Melhores Notas</h1>
+                            <h1 >Melhores Notas</h1>
                             <h1>Acompanhe Agora</h1>
                             <p>Maiores notas de todos os tempos</p>
                             <a href='/movies?category=top_rated'>Veja mais <i className="fa-solid fa-chevron-right"></i></a>
                         </div>
                         {topMovies && topMovies.results.map((element, index) => {
-                            if (index > 11) return
+                            if (index > 13) return
                             return <CardMovie key={element.id} movie={element} user={props.user} bring={props.bring} />
                         })}
                         {!topMovies && <Loading />}

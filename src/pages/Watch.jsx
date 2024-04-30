@@ -11,7 +11,7 @@ import Loading from '../components/Common/Loading'
 export default function Watch(props) {
 
     useEffect(() => {
-        props.bring()
+        // props.bring()
     }, [])
 
 
