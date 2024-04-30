@@ -59,15 +59,6 @@ export default function Login(props) {
             if (!error.request) setAlertText(error.message)
             else if (!error.response) setAlertText('Erro de rede. Tenten nomamente.')
             else setAlertText(error.response.data.message)
-
-
-            // if (error.response) {
-            //     setAlertText(error.response.data.message);
-            // } else if (error.request) {
-            //     setAlertText('Erro de rede. Tente novamente.');
-            // } else {
-            //     setAlertText(error.message);
-            // }
             setStatusLoginAlert(true);
             setAlertType('error')
         }
