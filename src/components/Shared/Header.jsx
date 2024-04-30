@@ -82,6 +82,7 @@ export default function Header(props) {
     }
 
     function hiddenInput() {
+        setFindMovies(null)
         if (window.innerWidth > 767) {
             return
         }
@@ -107,18 +108,25 @@ export default function Header(props) {
                     <nav>
                         <h3>Filmes</h3>
                         <a href='/'>Início</a>
-                        <a href='/movies?category=popular'>Populares</a>
-                        <a href='/movies?category=top_rated'>Melhores Filmes</a>
-                        <a href=''>Mais Votados</a>
+                        <a href='/movies?list=popular'>Populares</a>
+                        <a href='/movies?list=top_rated'>Melhores Filmes</a>
+                        <h3>Categorias</h3>
+                        <a href='/movies?category=28'>Ação</a>
+                        <a href='/movies?category=16'>Animação</a>
+                        <a href='/movies?category=35'>Comédia</a>
+                        <a href='/movies?category=18'>Drama</a>
+                        <a href='/movies?category=878'>Ficção</a>
+                        <a href='/movies?category=10752'>Guerra</a>
+                        <a href='/movies?category=27'>Terror</a>
                     </nav>
                 </aside>
             </div>
 
             <div className='logo' ref={logo} onClick={() => location.href = '/'}><img src='https://fontmeme.com/permalink/240429/d77e0c85700fb42079d0035f0ca94a4f.png' alt='MovieFilm' /></div>
 
-            <div className="searchBar" ref={searchBar} onClick={showInput}  >
+            <div className="searchBar" ref={searchBar} onClick={showInput} >
                 <i className="fa-solid fa-magnifying-glass"  ></i>
-                <input type='text' placeholder='Pesquisar Filme' ref={searchInput} onChange={(e) => searchMovies(e)} />
+                <input type='text' placeholder='Pesquisar Filme' ref={searchInput} onChange={(e) => searchMovies(e)} onBlur={hiddenInput} />
 
                 {findMovies &&
                     <div className='listSearchMovies'>
