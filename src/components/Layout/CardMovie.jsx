@@ -24,7 +24,6 @@ export default function CardMovie(props) {
         e.target.className = verifyClass(e.target.className)
         try {
             const response = await includeFavorite(movie)
-            console.log(response);
         } catch (error) {
             console.log(error);
             e.target.className = verifyClass(e.target.className)

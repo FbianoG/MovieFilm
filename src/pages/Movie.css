@@ -258,6 +258,11 @@ filter: brightness(0.5);
     margin: 0 0 10px;
     object-fit: cover;
     border-radius: 10px;
+    transition: 250ms;
+}
+
+.cardVideo:hover img {
+    filter: brightness(0.8);
 }
 
 .btnPlay {

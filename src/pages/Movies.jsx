@@ -33,9 +33,9 @@ export default function TopRated(props) {
             console.log('Erro de rede. Tente novamente.');
         } else if (response.status >= 300) {
             console.log(response.data);
-        } else {
-            setMovies(response)
         }
+        console.log(urlQuery);
+        setMovies(response)
         setLoadingMovies(false)
     }
 

@@ -8,6 +8,7 @@ import includeFavorite from '../api/includeFavorite'
 import includeWatch from '../api/includeWatch'
 import CardMovie from '../components/Layout/CardMovie'
 import CardComments from '../components/Layout/CardComments'
+import ToastAlert from '../components/Common/ToastAlert'
 
 export default function Movie(props) {
 
@@ -20,6 +21,10 @@ export default function Movie(props) {
     const [Video, setVideo] = useState(false)
     const [hiddenVideo, setHiddenVideo] = useState(true)
     const [urlVideo, setUrlVideo] = useState()
+
+    const [textAlert, setTextAlert] = useState('')
+    const [typeAlert, setTypeAlert] = useState('')
+    const [showAlert, setShowAlert] = useState(false)
 
     async function getMovie() {
         const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?language=pt-BR`, {
@@ -97,12 +102,35 @@ export default function Movie(props) {
     }
 
     async function addFavorite(e) {
-        await includeFavorite(e)
-        await props.bring()
+        try {
+            const response = await includeFavorite(e)
+            await props.bring()
+            setTypeAlert('success')
+            setTextAlert(response.message)
+        } catch (error) {
+            if (!error) setTextAlert('Faça login novamente.')
+            else if (!error.response) setTextAlert('Erro de rede. Tente novamente.')
+            else setTextAlert(error.response.data.message)
+            console.log(error);
+            setTypeAlert('error')
+        }
+        toastShow() // mostrar o alerta
     }
+
     async function addWatch(e) {
-        await includeWatch(e)
-        await props.bring()
+        try {
+            const response = await includeWatch(e)
+            await props.bring()
+            setTypeAlert('success')
+            setTextAlert(response.message)
+        } catch (error) {
+            if (!error) setTextAlert('Faça login novamente.')
+            else if (!error.response) setTextAlert('Erro de rede. Tente novamente.')
+            else setTextAlert(error.response.data.message)
+            console.log(error);
+            setTypeAlert('error')
+        }
+        toastShow() // mostrar o alerta
     }
 
     function formatMoney(numero) {
@@ -123,6 +151,13 @@ export default function Movie(props) {
         }
         setHiddenVideo(false)
         setUrlVideo(e)
+    }
+
+    function toastShow() {
+        setShowAlert(true)
+        setTimeout(() => {
+            setShowAlert(false)
+        }, 7000)
     }
 
     useEffect(() => {
@@ -250,6 +285,7 @@ export default function Movie(props) {
                 </section>
             </div >
             <Footer />
+            {showAlert && <ToastAlert text={textAlert} type={typeAlert} />}
         </>
     )
 }

@@ -13,13 +13,8 @@ export default async function getMovies(urlQuery, page) {
         })
         return response.data
     } catch (error) {
-        if (error.response) {
-            return error.response
-        } else if (error.request) {
-            return error.request
-        } else {
-            return false
-        }
+        if (error.resquest) throw error
+        else throw false
     }
 
 }

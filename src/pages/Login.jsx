@@ -17,7 +17,8 @@ export default function Login(props) {
     const [inputPassword, setInputPassword] = useState('')
     const [btnStatus, setBtnStatus] = useState(true)
     const [statusLoginAlert, setStatusLoginAlert] = useState(false)
-    const [loginAlertText, setLoginAlertText] = useState('')
+    const [alertText, setAlertText] = useState('')
+    const [alertType, setAlertType] = useState('')
 
     async function createUser(e) {
         e.preventDefault()
@@ -27,19 +28,16 @@ export default function Login(props) {
                 throw new Error('Preencha todos os campos.')
             }
             const response = await axios.post(`${UrlBack}/createUser`, { email: createEmail, password: createPassword, name: createName, date: createDate })
-            console.log(response)
             setFormCreateUser(false)
+            setAlertText('Cadastro criado com sucesso.')
+            setAlertType('success')
         } catch (error) {
-            console.log(error);
-            if (error.response) {
-                setLoginAlertText(error.response.data.message)
-            } else if (error.request) {
-                setLoginAlertText('Erro de rede. Tente novamente.')
-            } else {
-                setLoginAlertText('error.message')
-            }
-            setStatusLoginAlert(true)
+            if (!error.request) setAlertText(error.message)
+            else if (!error.response) setAlertText('Erro de rede. Tente novamente.')
+            else setAlertText(error.response.data.message)
+            setAlertType('error')
         }
+        setStatusLoginAlert(true)
         setBtnStatus(true)
         setTimeout(() => {
             setStatusLoginAlert(false)
@@ -58,15 +56,20 @@ export default function Login(props) {
             await props.bring()
             location.href = sessionStorage.getItem('BackUrlPage')
         } catch (error) {
-            console.log(error);
-            if (error.response) {
-                setLoginAlertText(error.response.data.message);
-            } else if (error.request) {
-                setLoginAlertText('Erro de rede. Tente novamente.');
-            } else {
-                setLoginAlertText(error.message);
-            }
+            if (!error.request) setAlertText(error.message)
+            else if (!error.response) setAlertText('Erro de rede. Tenten nomamente.')
+            else setAlertText(error.response.data.message)
+
+
+            // if (error.response) {
+            //     setAlertText(error.response.data.message);
+            // } else if (error.request) {
+            //     setAlertText('Erro de rede. Tente novamente.');
+            // } else {
+            //     setAlertText(error.message);
+            // }
             setStatusLoginAlert(true);
+            setAlertType('error')
         }
         setBtnStatus(true);
         setTimeout(() => {
@@ -120,7 +123,7 @@ export default function Login(props) {
                         }
                     </form>
                 }
-                {statusLoginAlert && <ToastAlert text={loginAlertText} />}
+                {statusLoginAlert && <ToastAlert text={alertText} type={alertType} />}
             </div>
         </div>
     )

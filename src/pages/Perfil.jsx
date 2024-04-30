@@ -36,8 +36,11 @@ export default function Perfil(props) {
     const [showAlert, setShowAlert] = useState(false)
 
 
-    function toasShow() {
-
+    function toastShow() {
+        setShowAlert(true)
+        setTimeout(() => {
+            setShowAlert(false)
+        }, 6000);
     }
 
     async function gettCompare(e) {
@@ -52,15 +55,10 @@ export default function Perfil(props) {
             else if (!error.response) setTextAlert('Erro de rede. Tente novamente.')
             else if (error.response) setTextAlert(error.response.data.message)
             setTypeAlert('error')
-            setShowAlert(true)
-            setTimeout(() => {
-                setShowAlert(false)
-            }, 6000);
+            toastShow()
         }
         setLoadCompare(false)
-
     }
-
 
 
     useEffect(() => {  // ! mexer nesse código depois

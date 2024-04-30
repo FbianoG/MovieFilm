@@ -15,15 +15,13 @@ export default function Home(props) {
 
 
     async function loadMovies(e, n) {
-        const response = await getMovies(e, n)
-        if (!response) {
-            console.log('Não possui query');
-        } else if (response.status === 0 || response.status >= 500) {
-            console.log('Erro de rede. Tente novamente.');
-        } else if (response.status >= 300) {
-            console.log(response.data);
-        } else {
+        try {
+            const response = await getMovies(e, n)
             return response
+        } catch (error) {
+            if (!error) return null
+            else if (!error.response) return null
+            else return null
         }
     }
 
@@ -54,7 +52,7 @@ export default function Home(props) {
                             <h1>em Alta</h1>
                             <h1>Acompanhe Agora</h1>
                             <p>Mais assistidos da semana</p>
-                            <a href='/movies?category=popular'>Veja mais <i className="fa-solid fa-chevron-right"></i></a>
+                            <a href='/movies?list=popular'>Veja mais <i className="fa-solid fa-chevron-right"></i></a>
                         </div>
                         {trending && trending.results.map((element, index) => {
                             if (index > 13) return
@@ -62,7 +60,7 @@ export default function Home(props) {
                         })}
                         {!trending && <Loading />}
                     </div>
-                    <a href='/movies?category=popular' className='btnEndViewMore'>Veja mais</a>
+                    <a href='/movies?list=popular' className='btnEndViewMore'>Veja mais</a>
                 </section>
 
                 <section>
@@ -93,7 +91,7 @@ export default function Home(props) {
                             <h1 >Melhores Notas</h1>
                             <h1>Acompanhe Agora</h1>
                             <p>Maiores notas de todos os tempos</p>
-                            <a href='/movies?category=top_rated'>Veja mais <i className="fa-solid fa-chevron-right"></i></a>
+                            <a href='/movies?list=top_rated'>Veja mais <i className="fa-solid fa-chevron-right"></i></a>
                         </div>
                         {topMovies && topMovies.results.map((element, index) => {
                             if (index > 13) return
@@ -101,7 +99,7 @@ export default function Home(props) {
                         })}
                         {!topMovies && <Loading />}
                     </div>
-                    <a href='/movies?category=top_rated' className='btnEndViewMore'>Veja mais</a>
+                    <a href='/movies?list=top_rated' className='btnEndViewMore'>Veja mais</a>
                 </section>
             </div>
             <Footer />

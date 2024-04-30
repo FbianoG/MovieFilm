@@ -11,22 +11,20 @@ import Loading from '../components/Common/Loading'
 export default function Watch(props) {
 
     useEffect(() => {
-        // props.bring()
+        props.bring()
     }, [])
 
-
+ 
     return (
         <>
             <Header user={props.user} />
             <div className="content">
-                <section>
-                    <h1>Assistir Depois</h1>
-                    <div className="listMovies">
-                        {props.user && props.user.watch.length > 0 && props.user.watch.map(element => <CardMovie key={element.id} movie={element} user={props.user} bring={props.bring} />)}
-                        {props.user && props.user.watch.length === 0 && <p>Não há filmes salvos em seus favoritos.</p>}
-                        {!props.user && <Loading />}
-                    </div>
-                </section>
+                <h1>Assistir Mais Tarde</h1>
+                <div className="listMovies">
+                    {props.user && props.user.watch.length > 0 && props.user.watch.map(element => <CardMovie key={element.id} movie={element} user={props.user} bring={props.bring} />)}
+                    {props.user && props.user.watch.length === 0 && <p>Não há filmes salvos em seus favoritos.</p>}
+                    {!props.user && <Loading />}
+                </div>
             </div>
             <Footer />
         </>
