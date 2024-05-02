@@ -82,7 +82,6 @@ export default function Header(props) {
     }
 
     function hiddenInput() {
-        setFindMovies(null)
         if (window.innerWidth > 767) {
             return
         }
@@ -92,6 +91,8 @@ export default function Header(props) {
         searchInput.current.style.display = "none"
         setTimeout(() => { // usado para garantir que "movieFilm" seja executada antes de fechar a lista
             searchList.current.style.display = "none"
+            setFindMovies(null)
+
         }, 0);
     }
 
