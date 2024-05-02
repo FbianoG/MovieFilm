@@ -40,7 +40,6 @@ export default function Home(props) {
                 <div className='banner'>
                     <img src='https://skycms.s3.amazonaws.com/images/43136174/Banner_large.png' alt='' />
                 </div>
-
                 <section>
                     <div className='listMovies'>
                         <div className='listMoviesInfo'>
@@ -58,7 +57,6 @@ export default function Home(props) {
                     </div>
                     <a href='/movies?list=popular' className='btnEndViewMore'>Veja mais</a>
                 </section>
-
                 <section>
                     <div className='listMovies'>
                         <div className='listMoviesInfo'>
@@ -75,11 +73,9 @@ export default function Home(props) {
                         {!upcomingMovies && <Loading />}
                     </div>
                 </section>
-
                 <div className='banner'>
                     <img src='https://skycms.s3.amazonaws.com/images/43136174/Banner_large.png' alt='' />
                 </div>
-
                 <section>
                     <div className='listMovies'>
                         <div className='listMoviesInfo'>

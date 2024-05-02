@@ -18,7 +18,6 @@ export default function TopRated(props) {
     const [page, setPage] = useState(urlPage ? Number(urlPage) : 1)
     const [LoadingMovies, setLoadingMovies] = useState(false)
 
-
     async function loadMovies(e, n) {
         setLoadingMovies(true)
         let response = null
@@ -34,7 +33,6 @@ export default function TopRated(props) {
         } else if (response.status >= 300) {
             console.log(response.data);
         }
-        console.log(urlQuery);
         setMovies(response)
         setLoadingMovies(false)
     }

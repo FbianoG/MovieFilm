@@ -2,8 +2,8 @@ import { useRef } from 'react'
 import './CountPage.css'
 
 export default function CountPage(props) {
-    const urlQuery = new URLSearchParams(window.location.search).get("category")
-    const showPage = useRef()
+    const urlQuery = new URLSearchParams(window.location.search).get("list")
+    const urlQuery2 = new URLSearchParams(window.location.search).get("category")
     const countPage = useRef()
     const conteinerCountPage = useRef()
 
@@ -11,15 +11,15 @@ export default function CountPage(props) {
         if (props.page.page - 1 === 0) {
             return
         }
-        // props.page.setPage(props.page.page -= 1)
         window.scrollTo({ top: 0 })
-        location.href = `/movies?category=${urlQuery}&page=${props.page.page - 1}`
+        if (urlQuery) location.href = `/movies?list=${urlQuery}&page=${props.page.page - 1}`
+        else location.href = `/movies?category=${urlQuery2}&page=${props.page.page - 1}`
     }
 
     function nextPage() {
-        // props.page.setPage(props.page.page += 1)
         window.scrollTo({ top: 0 })
-        location.href = `/movies?category=${urlQuery}&page=${props.page.page + 1}`
+        if (urlQuery) location.href = `/movies?list=${urlQuery}&page=${props.page.page + 1}`
+        else location.href = `/movies?category=${urlQuery2}&page=${props.page.page + 1}`
     }
 
     function name() {
@@ -48,8 +48,6 @@ export default function CountPage(props) {
 
     return (
         <div className="contentCount">
-
-
             <div className="containerCountPage" ref={conteinerCountPage}>
                 <div className="countPage" ref={countPage}>
                     <button onClick={returnPage}>Return</button>

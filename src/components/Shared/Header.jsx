@@ -104,7 +104,6 @@ export default function Header(props) {
                     <span></span>
                     <span></span>
                 </button>
-
                 <aside className="sideMenu" ref={sideMenu}>
                     <nav>
                         <h3>Filmes</h3>
@@ -122,13 +121,10 @@ export default function Header(props) {
                     </nav>
                 </aside>
             </div>
-
             <div className='logo' ref={logo} onClick={() => location.href = '/'}><img src='https://fontmeme.com/permalink/240429/d77e0c85700fb42079d0035f0ca94a4f.png' alt='MovieFilm' /></div>
-
             <div className="searchBar" ref={searchBar} onClick={showInput} >
                 <i className="fa-solid fa-magnifying-glass"  ></i>
                 <input type='text' placeholder='Pesquisar Filme' ref={searchInput} onChange={(e) => searchMovies(e)} onBlur={hiddenInput} />
-
                 {findMovies &&
                     <div className='listSearchMovies'>
                         {findMovies.map(element => (
@@ -141,7 +137,6 @@ export default function Header(props) {
                     </div>
                 }
             </div>
-
             <div className='userAccount' onClick={showUserAccount}>
                 <div className='userAccountIcon'>
                     <span>{props.user ? props.user.name.slice(0, 1).toUpperCase() : <i className='fa-solid fa-user'></i>}</span>
