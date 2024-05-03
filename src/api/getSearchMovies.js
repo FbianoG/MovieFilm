@@ -4,7 +4,7 @@ import axios from "axios"
 async function getSearchMoviesCategory(genres, page) {
     try {
         const response = await axios.get(`https://api.themoviedb.org/3/discover/movie?include_adult=true&include_video=false&language=pt-br&page=${page}&sort_by=popularity.desc&with_genres=${genres}`, {
-            headers: { Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNGU3MDE2YjAyYjdiYmI4ODEyODJlNzNjNGM4MWJmMSIsInN1YiI6IjY0ZjdkNWVjMWI3MjJjMDBlMzRlYWRmMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.3Ft4MagkdYM-1JNdJTiPpK6Er7VgEbUOQxC0_ZLX-SI' }
+            headers: { Authorization: `Bearer ${import.meta.env.VITE_API_KEY}` }
         })
         return response.data
     } catch (error) {
@@ -24,7 +24,7 @@ async function getSearchMovies(keywords) {
             throw new Error('Não tem input')
         }
         const response = await axios.get(`https://api.themoviedb.org/3/search/movie?query=${keywords}&language=pt-br`, {
-            headers: { Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNGU3MDE2YjAyYjdiYmI4ODEyODJlNzNjNGM4MWJmMSIsInN1YiI6IjY0ZjdkNWVjMWI3MjJjMDBlMzRlYWRmMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.3Ft4MagkdYM-1JNdJTiPpK6Er7VgEbUOQxC0_ZLX-SI' }
+            headers: { Authorization: `Bearer ${import.meta.env.VITE_API_KEY}` }
         })
         console.log(response.data)
         return response.data
