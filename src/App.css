@@ -15,7 +15,6 @@ section {
   padding: 20px;
 }
 
-
 section h2 {
   color: #fdfdfd;
 }
@@ -42,7 +41,6 @@ section button:hover {
   border-color: #3fa897;
   color: #3fa897;
 }
-
 
 
 /* MB <= 767 - TB <= 1023 - */

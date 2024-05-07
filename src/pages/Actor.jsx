@@ -17,35 +17,12 @@ export default function Actor(props) {
     const [Actor, setActor] = useState()
 
 
-    async function actorMovies() { // Busca todos os filmes do ator
-        const actorMovies = await getActorMovies(actorId)
-        if (!actorMovies) {
-            console.log('nao tem id');
-        } else if (actorMovies.status >= 500 || actorMovies.status === 0) {
-            console.log('Erro de rede. Tente novamente.')
-        } else if (actorMovies.status >= 300) {
-            console.log('não encontrado');
-        } else {
-            setAllMovies(actorMovies)
-        }
-    }
-
-    async function actor() { // Busca detalhes do ator
-        const actorMovies = await getActor(actorId)
-        if (!actorMovies) {
-            console.log('nao tem id');
-        } else if (actorMovies.status >= 500 || actorMovies.status === 0) {
-            console.log('Erro de rede. Tente novamente.')
-        } else if (actorMovies.status >= 300) {
-            console.log('não encontrado');
-        } else {
-            setActor(actorMovies)
-        }
-    }
-
     useEffect(() => {
-        actor()
-        actorMovies()
+        async function getAllData() {
+            setActor(await getActor(actorId))
+            setAllMovies(await getActorMovies(actorId))
+        }
+        getAllData()
         props.bring()
     }, [])
 
