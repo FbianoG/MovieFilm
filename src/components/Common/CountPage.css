@@ -13,7 +13,7 @@
     color: #ddd;
 }
 
-.css-rppfq7-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected { 
+.css-rppfq7-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
     background: #3fa897 !important;
     color: #fdfdfd !important;
 }
@@ -30,4 +30,17 @@
 .css-1scal0h-MuiPaginationItem-root {
     padding: 0 !important;
     min-width: 13px !important;
+}
+
+.css-1qpp9n8 {
+    color: #ddd !important;
+}
+
+.css-1qpp9n8.Mui-selected {
+    background: #3fa897 !important;
+}
+
+.css-ezc4fw {
+    padding: 0 !important;
+    font-size: 13px !important;
 }
