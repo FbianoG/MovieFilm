@@ -38,9 +38,11 @@
 
 .css-1qpp9n8.Mui-selected {
     background: #3fa897 !important;
+    color: #fdfdfd !important;
 }
 
 .css-ezc4fw {
     padding: 0 !important;
-    font-size: 13px !important;
+    min-width: 13px !important;
+    color: #ddd;
 }
