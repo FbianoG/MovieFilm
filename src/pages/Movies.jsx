@@ -1,13 +1,11 @@
-import { useEffect, useState, useRef } from "react";
-import Header from "../components/Shared/Header";
-import CardMovie from "../components/Layout/CardMovie";
-import './Movies.css'
-import CountPage from "../components/Common/CountPage";
-import Footer from "../components/Shared/Footer";
-import getUser from "../api/getUser";
-import getMovies from "../api/getMovies";
-import Loading from "../components/Common/Loading";
-import { getSearchMoviesCategory } from "../api/getSearchMovies";
+import { useEffect, useState, useRef } from "react"
+import { getSearchMoviesCategory, getMovies } from "../api/api"
+
+import Header from "../components/Shared/Header"
+import CardMovie from "../components/Layout/CardMovie"
+import CountPage from "../components/Common/CountPage"
+import Loading from "../components/Common/Loading"
+import Footer from "../components/Shared/Footer"
 
 export default function TopRated(props) {
 
@@ -21,18 +19,12 @@ export default function TopRated(props) {
     async function loadMovies(e, n) {
         setLoadingMovies(true)
         let response = null
-        if (urlQuery) {
-            response = await getMovies(e, n)
-        } else {
-            response = await getSearchMoviesCategory(e, n)
-        }
-        if (!response) {
-            console.log('Não possui query');
-        } else if (response.status === 0 || response.status >= 500) {
-            console.log('Erro de rede. Tente novamente.');
-        } else if (response.status >= 300) {
-            console.log(response.data);
-        }
+        if (urlQuery) response = await getMovies(e, n)
+        else response = await getSearchMoviesCategory(e, n)
+
+        if (!response) console.log('Não possui query')
+        else if (response.status === 0 || response.status >= 500) console.log('Erro de rede. Tente novamente.')
+        else if (response.status >= 300) console.log(response.data)
         setMovies(response)
         setLoadingMovies(false)
     }
@@ -54,7 +46,6 @@ export default function TopRated(props) {
         loadMovies(urlQuery ? urlQuery : urlQuery2, page)
         props.bring()
     }, [page])
-    console.log(Movies);
 
     return (
         <>

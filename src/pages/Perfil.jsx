@@ -1,13 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import Header from "../components/Shared/Header";
-import getUser from "../api/getUser";
+import axios from "axios";
 import './Perfil.css'
-import MiniCardFavorite from "../components/Layout/MiniCardFavorite";
-import getCompare from "../api/compareUser";
+
+import Header from "../components/Shared/Header";
 import Loading from "../components/Common/Loading";
 import ToastAlert from "../components/Common/ToastAlert";
-import axios from "axios";
-import UrlBack from "../api/api";
+import { UrlBack, getCompare } from "../api/api";
 
 
 export default function Perfil(props) {
@@ -36,7 +34,7 @@ export default function Perfil(props) {
 
     const [textAlert, setTextAlert] = useState('')
     const [typeAlert, setTypeAlert] = useState('')
-    const [showAlert, setShowAlert] = useState(false)
+    const [showAlert, setShowAlert] = useState({ show: false, text: '', type: '' })
 
     function toastShow() {
         setShowAlert(true)
@@ -81,21 +79,19 @@ export default function Perfil(props) {
     async function getAllUser() {
         const response = await axios.post(`${UrlBack}/getAllUser`, { token: localStorage.getItem('Token') })
         setAllUser(response.data)
-        console.log(response);
     }
-
-    function showAllUser() {
-    }
-
-
-
 
     useEffect(() => {
         setLoadUser(true)
         getAllUser()
         async function name() {
-            const response = await props.bring()
-            await setLoadUser(false)
+            try {
+                const response = await props.bring()
+            } catch (error) {
+                console.log(error.message);
+                setShowAlert({ show: true, text: error.message, type: 'error' })
+            }
+            setLoadUser({ show: false })
         }
         name()
     }, [])
@@ -118,7 +114,7 @@ export default function Perfil(props) {
 
                         <div className="perfilData sectionPerfil" >
                             <form onSubmit={gettCompare}>
-                                <input type='text' value={inputEmail} onChange={(e) => setInputEmail(e.target.value)} onFocus={showAllUser} placeholder="Comparar com" />
+                                <input type='text' value={inputEmail} onChange={(e) => setInputEmail(e.target.value)} placeholder="Comparar com" />
                                 <button type="submit">Comparar</button>
                                 {/* <input type='submit' name='' value='Comparar' /> */}
                             </form>
@@ -169,7 +165,7 @@ export default function Perfil(props) {
                 }
                 {LoadUser && <Loading />}
             </div >
-            {showAlert && <ToastAlert text={textAlert} type={typeAlert} />}
+            {showAlert.show && <ToastAlert text={showAlert.text} type={showAlert.type} />}
         </>
     )
 }

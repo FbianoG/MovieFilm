@@ -6,7 +6,7 @@ import CardMovie from '../components/Layout/CardMovie';
 import Footer from '../components/Shared/Footer';
 import Loading from '../components/Common/Loading.jsx';
 
-import { getActor, getActorMovies } from '../api/getActorAndMovies.js'
+import { getActor, getActorMovies } from '../api/api.js'
 
 
 

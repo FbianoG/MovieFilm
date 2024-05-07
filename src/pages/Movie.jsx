@@ -1,14 +1,12 @@
 import { useEffect, useState } from 'react'
+import { includeFavorite, includeWatch, getMovie, getElenco, getProviders, getSimilar, getComments, getVideos } from '../api/api'
 import './Movie.css'
 
 import Header from '../components/Shared/Header'
-import Footer from '../components/Shared/Footer'
-
-import includeFavorite from '../api/includeFavorite'
-import includeWatch from '../api/includeWatch'
 import CardMovie from '../components/Layout/CardMovie'
 import CardComments from '../components/Layout/CardComments'
 import ToastAlert from '../components/Common/ToastAlert'
+import Footer from '../components/Shared/Footer'
 
 export default function Movie(props) {
 
@@ -22,118 +20,31 @@ export default function Movie(props) {
     const [hiddenVideo, setHiddenVideo] = useState(true)
     const [urlVideo, setUrlVideo] = useState()
 
-    const [textAlert, setTextAlert] = useState('')
-    const [typeAlert, setTypeAlert] = useState('')
     const [showAlert, setShowAlert] = useState(false)
 
-    async function getMovie() {
-        const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?language=pt-BR`, {
-            method: 'GET',
-            headers: {
-                accept: 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNGU3MDE2YjAyYjdiYmI4ODEyODJlNzNjNGM4MWJmMSIsInN1YiI6IjY0ZjdkNWVjMWI3MjJjMDBlMzRlYWRmMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.3Ft4MagkdYM-1JNdJTiPpK6Er7VgEbUOQxC0_ZLX-SI'
-            }
-        })
-        const data = await response.json()
-        setMovie(data)
-        // console.log(data);
-    }
-
-    async function getActor() {
-        const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/credits?language=pt-BR`, {
-            method: 'GET',
-            headers: {
-                accept: 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNGU3MDE2YjAyYjdiYmI4ODEyODJlNzNjNGM4MWJmMSIsInN1YiI6IjY0ZjdkNWVjMWI3MjJjMDBlMzRlYWRmMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.3Ft4MagkdYM-1JNdJTiPpK6Er7VgEbUOQxC0_ZLX-SI'
-            }
-        })
-        const data = await response.json()
-        setActor(data)
-        // console.log(data);
-    }
-
-    async function getProviders() {
-        const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/watch/providers`, {
-            method: 'GET',
-            headers: {
-                accept: 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNGU3MDE2YjAyYjdiYmI4ODEyODJlNzNjNGM4MWJmMSIsInN1YiI6IjY0ZjdkNWVjMWI3MjJjMDBlMzRlYWRmMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.3Ft4MagkdYM-1JNdJTiPpK6Er7VgEbUOQxC0_ZLX-SI'
-            }
-        })
-        const data = await response.json()
-        setProviders(data.results.BR.rent)
-    }
-
-    async function getSimilar() {
-        const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/similar?language=pt-br`, {
-            method: 'GET',
-            headers: {
-                accept: 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNGU3MDE2YjAyYjdiYmI4ODEyODJlNzNjNGM4MWJmMSIsInN1YiI6IjY0ZjdkNWVjMWI3MjJjMDBlMzRlYWRmMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.3Ft4MagkdYM-1JNdJTiPpK6Er7VgEbUOQxC0_ZLX-SI'
-            }
-        })
-        const data = await response.json()
-        // console.log(data.results);
-        setSimilar(data.results)
-    }
-
-    async function getComments() {
-        const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/reviews?language=pt-br`, {
-            method: 'GET',
-            headers: {
-                accept: 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNGU3MDE2YjAyYjdiYmI4ODEyODJlNzNjNGM4MWJmMSIsInN1YiI6IjY0ZjdkNWVjMWI3MjJjMDBlMzRlYWRmMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.3Ft4MagkdYM-1JNdJTiPpK6Er7VgEbUOQxC0_ZLX-SI'
-            }
-        })
-        const data = await response.json()
-        setComments(data.results)
-    }
-
-    async function getVideo() {
-        const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?language=`, {
-            method: 'GET',
-            headers: {
-                accept: 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNGU3MDE2YjAyYjdiYmI4ODEyODJlNzNjNGM4MWJmMSIsInN1YiI6IjY0ZjdkNWVjMWI3MjJjMDBlMzRlYWRmMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.3Ft4MagkdYM-1JNdJTiPpK6Er7VgEbUOQxC0_ZLX-SI'
-            }
-        })
-        const data = await response.json()
-        setVideo(data.results)
-    }
-
-    async function addFavorite(e) {
+    async function addFavorite(e) { // Adicionar 'Favoritos'
         try {
             const response = await includeFavorite(e)
             await props.bring()
-            setTypeAlert('success')
-            setTextAlert(response.message)
+            setShowAlert({ show: true, text: response.message, type: 'alert' })
         } catch (error) {
-            if (!error) setTextAlert('Faça login novamente.')
-            else if (!error.response) setTextAlert('Erro de rede. Tente novamente.')
-            else setTextAlert(error.response.data.message)
-            console.log(error);
-            setTypeAlert('error')
+            setShowAlert({ show: true, text: error.message, type: 'error' })
         }
-        toastShow() // mostrar o alerta
+        setTimeout(() => setShowAlert(false), 6000)
     }
 
-    async function addWatch(e) {
+    async function addWatch(e) { // Adicionar 'Assistir Depois'
         try {
             const response = await includeWatch(e)
             await props.bring()
-            setTypeAlert('success')
-            setTextAlert(response.message)
+            setShowAlert({ show: true, text: response.message, type: 'alert' })
         } catch (error) {
-            if (!error) setTextAlert('Faça login novamente.')
-            else if (!error.response) setTextAlert('Erro de rede. Tente novamente.')
-            else setTextAlert(error.response.data.message)
-            console.log(error);
-            setTypeAlert('error')
+            setShowAlert({ show: true, text: error.message, type: 'error' })
         }
-        toastShow() // mostrar o alerta
+        setTimeout(() => setShowAlert(false), 6000)
     }
 
-    function formatMoney(numero) {
+    function formatMoney(numero) { // Converte númbero em real
         const formatador = new Intl.NumberFormat('pt-BR', {
             style: 'currency',
             currency: 'BRL'
@@ -141,9 +52,8 @@ export default function Movie(props) {
         return formatador.format(numero);
     }
 
-    function showVideo(e) {
+    function showVideo(e) { // Modal vídeos
         if (typeof e === 'object') {
-
             if (e.target.className === 'containerVideo') {
                 setHiddenVideo(true)
                 return
@@ -153,24 +63,20 @@ export default function Movie(props) {
         setUrlVideo(e)
     }
 
-    function toastShow() {
-        setShowAlert(true)
-        setTimeout(() => {
-            setShowAlert(false)
-        }, 7000)
-    }
-
     useEffect(() => {
-        getMovie()
-        getActor()
-        getProviders()
-        getSimilar()
-        getComments()
-        getVideo()
+        async function getAllData() {
+            setMovie(await getMovie(movieId))
+            setActor(await getElenco(movieId))
+            setProviders(await getProviders(movieId))
+            setSimilar(await getSimilar(movieId))
+            setComments(await getComments(movieId))
+            setVideo(await getVideos(movieId))
+        }
+        getAllData()
         props.bring()
     }, [])
 
-
+    // Carrega imagem menor em mobile
     let sizeImage = 'original'
     if (window.innerWidth <= 500) {
         sizeImage = 'w500'
@@ -285,7 +191,7 @@ export default function Movie(props) {
                 </section>
             </div >
             <Footer />
-            {showAlert && <ToastAlert text={textAlert} type={typeAlert} />}
+            {showAlert.show && <ToastAlert text={showAlert.text} type={showAlert.type} />}
         </>
     )
 }

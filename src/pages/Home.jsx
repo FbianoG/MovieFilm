@@ -5,7 +5,7 @@ import Header from '../components/Shared/Header'
 import CardMovie from '../components/Layout/CardMovie'
 import Footer from '../components/Shared/Footer'
 import Loading from '../components/Common/Loading'
-import getMovies from '../api/getMovies'
+import { getMovies } from '../api/api'
 
 export default function Home(props) {
     const [trending, setTrending] = useState(false)
@@ -28,6 +28,8 @@ export default function Home(props) {
         setUpcomingMovies(await loadMovies('upcoming', 1))
         setTopMovies(await loadMovies('top_rated', 1))
     }
+
+
     useEffect(() => {
         getAllMovies()
         props.bring()

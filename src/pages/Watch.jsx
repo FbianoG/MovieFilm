@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react'
-import './Watch.css'
-import includeFavorite from '../api/includeFavorite'
-import getUser from '../api/getUser'
+
 import Header from '../components/Shared/Header'
 import CardMovie from '../components/Layout/CardMovie'
 import Footer from '../components/Shared/Footer'

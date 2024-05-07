@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import './Header.css'
 
-import UrlBack from '../../api/api.js'
-import { getSearchMovies } from '../../api/getSearchMovies.js';
+import { getSearchMovies } from '../../api/api.js'
 
 export default function Header(props) {
     const token = localStorage.getItem('Token')

@@ -1,14 +1,13 @@
 import { useRef, useState } from 'react'
 import axios from 'axios'
 import './Login.css'
-import UrlBack from '../api/api.js'
+import { UrlBack } from '../api/api.js'
 import ToastAlert from '../components/Common/ToastAlert.jsx'
 
 
 export default function Login(props) {
 
     const [formCreateUser, setFormCreateUser] = useState(false)
-    const loginAlert = useRef()
     const [createEmail, setCreateEmail] = useState('')
     const [createPassword, setCreatePassword] = useState('')
     const [createName, setCreateName] = useState('')
@@ -20,7 +19,7 @@ export default function Login(props) {
     const [alertText, setAlertText] = useState('')
     const [alertType, setAlertType] = useState('')
 
-    async function createUser(e) {
+    async function createUser(e) { // Criar Usuário
         e.preventDefault()
         setBtnStatus(false)
         try {
@@ -44,7 +43,7 @@ export default function Login(props) {
         }, 7000);
     }
 
-    async function doLogin(e) {
+    async function doLogin(e) { // Fazer Login
         e.preventDefault()
         setBtnStatus(false)
         try {
@@ -68,7 +67,6 @@ export default function Login(props) {
         }, 7000);
     }
 
-
     return (
         <div className="loginContainer">
             <div className="loginSideApresentation">
@@ -85,7 +83,7 @@ export default function Login(props) {
                     <form onSubmit={createUser}>
                         <div className="logo"><img src='https://fontmeme.com/permalink/240429/bf281d3de2ec95229df9488c262ebe50.png' alt='MovieFilm' /></div>
                         <h3>Crie sua conta</h3>
-                        <input type='text' placeholder='Email' value={createEmail} onChange={(e) => setCreateEmail(e.target.value)} />
+                        <input type='email' placeholder='Email' value={createEmail} onChange={(e) => setCreateEmail(e.target.value)} />
                         <input type='password' placeholder='Senha' value={createPassword} onChange={(e) => setCreatePassword(e.target.value)} />
                         <input type='text' placeholder='Nome Completo' value={createName} onChange={(e) => setCreateName(e.target.value)} />
                         <label htmlFor=''>Data de Nascimento</label>
@@ -103,7 +101,7 @@ export default function Login(props) {
                     <form onSubmit={doLogin}>
                         <div className="logo"><img src='https://fontmeme.com/permalink/240429/bf281d3de2ec95229df9488c262ebe50.png' alt='MovieFilm' /></div>
                         <h3>Acesse sua conta</h3>
-                        <input type='text' placeholder='Email' value={inputEmail} onChange={(e) => setInputEmail(e.target.value)} />
+                        <input type='email' placeholder='Email' value={inputEmail} onChange={(e) => setInputEmail(e.target.value)} />
                         <input type='password' placeholder='Senha' value={inputPassword} onChange={(e) => setInputPassword(e.target.value)} />
                         <a onClick={() => setFormCreateUser(true)}>Cria nova conta</a>
                         {btnStatus &&
@@ -115,7 +113,7 @@ export default function Login(props) {
                     </form>
                 }
             </div>
-                {statusLoginAlert && <ToastAlert text={alertText} type={alertType} />}
+            {statusLoginAlert && <ToastAlert text={alertText} type={alertType} />}
         </div>
     )
 

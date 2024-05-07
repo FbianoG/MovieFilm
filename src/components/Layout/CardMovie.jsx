@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import './CardMovie.css'
-import includeFavorite from '../../api/includeFavorite'
+import {includeFavorite} from '../../api/api'
 
 
 
