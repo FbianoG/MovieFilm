@@ -179,7 +179,7 @@ header .logo {
 
 .sideMenu {
   position: fixed;
-  background: #222;
+  background: #090909;
   height: calc(100vh - 70px);
   top: 70px;
   left: -100%;
@@ -213,6 +213,16 @@ header .logo {
 
 .sideMenu nav a:hover {
   opacity: 0.6;
+}
+
+.backdrop {
+  position: fixed;
+  z-index: -1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #000b;
 }
 
 

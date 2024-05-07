@@ -12,6 +12,7 @@ export default function Header(props) {
     const searchBar = useRef()
     const searchInput = useRef()
     const userAccountOptions = useRef()
+    const [backdrop, setBackdrop] = useState(false)
 
     const [findMovies, setFindMovies] = useState(null)
     const [showUserAccountOption, setShowUserAccountOption] = useState(false)
@@ -42,11 +43,13 @@ export default function Header(props) {
     function showMenu() {
         if (sideMenu.current.style.left === '0px') {
             sideMenu.current.style.left = '-100%'
+            setBackdrop(false)
             setTimeout(() => {
                 sideMenu.current.style.display = 'none'
             }, 400)
         } else {
             sideMenu.current.style.display = ''
+            setBackdrop(true)
             setTimeout(() => {
                 sideMenu.current.style.left = '0'
             }, 0)
@@ -161,6 +164,8 @@ export default function Header(props) {
                     </>
                 }
             </div>
+            {backdrop && <div className="backdrop" onClick={() => showMenu()}></div>}
+
 
         </header>
     )

@@ -1,40 +1,33 @@
-.containerCountPage {
-    width: fit-content;
-    margin: 0 auto 50px;
-    display: flex;
-    justify-content: center;
+.Container__count {
+
+    height: 100px;
+    display: grid;
     align-items: center;
-    align-content: center;
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(1px);
 }
 
-.countPage {
-    width: 200px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-    overflow: hidden;
-    background: #333;
+.MuiStack-root {
+    width: max-content;
+    margin: 0 auto;
+    color: #ddd;
 }
 
-.countPage span {
-    font-size: 20px;
-    color: #fdfdfd;
-    font-weight: 500;
-    width: 50px;
-    text-align: center;
+.css-rppfq7-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected { 
+    background: #3fa897 !important;
+    color: #fdfdfd !important;
 }
 
-.countPage button {
-    top: 0;
-    border-radius: 0;
+.css-rppfq7-MuiButtonBase-root-MuiPaginationItem-root {
+    color: #ddd !important;
+    padding: 0 !important;
 }
 
-.countPage button:hover {
-    border: none;
+.css-1scal0h-MuiPaginationItem-root {
+    color: #ddd !important;
 }
 
-
-.contentCount {
-    height: 90px;
+.css-1scal0h-MuiPaginationItem-root {
+    padding: 0 !important;
+    min-width: 13px !important;
 }

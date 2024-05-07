@@ -1,28 +1,19 @@
-import { useRef } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import './CountPage.css'
+
+import Typography from '@mui/material/Typography';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 
 export default function CountPage(props) {
     const urlQuery = new URLSearchParams(window.location.search).get("list")
     const urlQuery2 = new URLSearchParams(window.location.search).get("category")
-    const countPage = useRef()
     const conteinerCountPage = useRef()
+    const [muda, setmuda] = useState(false)
+    const [page, setPage] = useState(props.page.page);
 
-    function returnPage() {
-        if (props.page.page - 1 === 0) {
-            return
-        }
-        window.scrollTo({ top: 0 })
-        if (urlQuery) location.href = `/movies?list=${urlQuery}&page=${props.page.page - 1}`
-        else location.href = `/movies?category=${urlQuery2}&page=${props.page.page - 1}`
-    }
 
-    function nextPage() {
-        window.scrollTo({ top: 0 })
-        if (urlQuery) location.href = `/movies?list=${urlQuery}&page=${props.page.page + 1}`
-        else location.href = `/movies?category=${urlQuery2}&page=${props.page.page + 1}`
-    }
-
-    function name() {
+    function fixedPagination() {
         if (window.scrollY > 70) {
             conteinerCountPage.current.style.width = "100%"
             conteinerCountPage.current.style.padding = "20px 0 "
@@ -44,17 +35,30 @@ export default function CountPage(props) {
         }
     }
 
-    window.addEventListener('scroll', name)
+    function handleChange(e, value) {
+        setPage(value);
+        setmuda(true)
+    }
+
+    window.addEventListener('scroll', fixedPagination)
+
+    useEffect(() => {
+        if (muda) {
+            window.scrollTo({ top: 0 })
+            if (urlQuery) location.href = `/movies?list=${urlQuery}&page=${page}`
+            else location.href = `/movies?category=${urlQuery2}&page=${page}`
+            setmuda(false)
+        }
+    }, [muda])
 
     return (
-        <div className="contentCount">
-            <div className="containerCountPage" ref={conteinerCountPage}>
-                <div className="countPage" ref={countPage}>
-                    <button onClick={returnPage}>Return</button>
-                    <span>{props.page.page}</span>
-                    <button onClick={nextPage}>Next</button>
-                </div>
-            </div>
+        <div className="Container__count" ref={conteinerCountPage}>
+
+            <Stack spacing={2}>
+                <Pagination count={500} size='large' page={page} onChange={handleChange} />
+            </Stack>
         </div>
+
+
     )
 }

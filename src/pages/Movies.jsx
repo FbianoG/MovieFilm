@@ -41,7 +41,7 @@ export default function TopRated(props) {
         if (urlQuery === 'top_rated') return 'Melhores Filmes'
         else if (urlQuery === 'popular') return 'Populares'
 
-        else if(urlQuery2 == 28) return 'Filmes Ação'
+        else if (urlQuery2 == 28) return 'Filmes Ação'
         else if (urlQuery2 == 16) return 'Filmes Animação'
         else if (urlQuery2 == 35) return 'Filmes Comédia'
         else if (urlQuery2 == 18) return 'Filmes Drama'
@@ -54,15 +54,15 @@ export default function TopRated(props) {
         loadMovies(urlQuery ? urlQuery : urlQuery2, page)
         props.bring()
     }, [page])
+    console.log(Movies);
 
-    
     return (
         <>
             <Header user={props.user} />
             <div className="content">
                 <section>
                     <h2>{getTitle()}</h2>
-                    <CountPage page={{ page, setPage }} />
+                    <CountPage page={{ page, setPage, }} />
                     <div className="listMovies">
                         {Movies && Movies.results.map(element => <CardMovie movie={element} user={props.user} bring={props.bring} key={element.id} />)}
                         {!Movies && LoadingMovies && <Loading />}

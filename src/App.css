@@ -20,7 +20,7 @@ section h2 {
   color: #fdfdfd;
 }
 
-section button {
+.btnEndViewMore{
   display: block;
   margin: 0 auto;
   position: relative;

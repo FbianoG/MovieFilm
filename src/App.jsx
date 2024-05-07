@@ -12,6 +12,7 @@ import Watch from './pages/Watch'
 import Perfil from './pages/Perfil'
 import getUser from './api/getUser'
 import Actor from './pages/Actor'
+import Teste from './pages/Teste'
 
 function App() {
   const [User, setUser] = useState(null)
@@ -60,6 +61,7 @@ function App() {
         <Route path="/watch" element={<Watch user={User} bring={bringUser} />} />
         <Route path="/perfil" element={<Perfil user={User} bring={bringUser} />} />
         <Route path="/actor" element={<Actor user={User} bring={bringUser} />} />
+        <Route path="/teste" element={<Teste user={User} bring={bringUser} />} />
       </Routes>
     </Router>
   )

@@ -6,6 +6,8 @@ import MiniCardFavorite from "../components/Layout/MiniCardFavorite";
 import getCompare from "../api/compareUser";
 import Loading from "../components/Common/Loading";
 import ToastAlert from "../components/Common/ToastAlert";
+import axios from "axios";
+import UrlBack from "../api/api";
 
 
 export default function Perfil(props) {
@@ -15,6 +17,7 @@ export default function Perfil(props) {
     const [Compare, setCompare] = useState(false)
     const [checkCompare, setCheckCompare] = useState(false)
     const [inputEmail, setInputEmail] = useState('')
+    const [allUser, setAllUser] = useState([])
 
     const otherCompare = useRef()
     const myCompare = useRef()
@@ -35,7 +38,6 @@ export default function Perfil(props) {
     const [typeAlert, setTypeAlert] = useState('')
     const [showAlert, setShowAlert] = useState(false)
 
-
     function toastShow() {
         setShowAlert(true)
         setTimeout(() => {
@@ -43,12 +45,12 @@ export default function Perfil(props) {
         }, 6000);
     }
 
-    async function gettCompare(e) {
+    async function gettCompare(e, email) {
         e.preventDefault()
         setCompare(false)
         setLoadCompare(true)
         try {
-            const response = await getCompare(inputEmail)
+            const response = await getCompare(email ? email : inputEmail)
             setCompare(response)
         } catch (error) {
             if (!error) setTextAlert('Faça login novamente.')
@@ -59,7 +61,6 @@ export default function Perfil(props) {
         }
         setLoadCompare(false)
     }
-
 
     useEffect(() => {  // ! mexer nesse código depois
         if (Compare) {
@@ -76,8 +77,22 @@ export default function Perfil(props) {
 
     }, [Compare])
 
+
+    async function getAllUser() {
+        const response = await axios.post(`${UrlBack}/getAllUser`, { token: localStorage.getItem('Token') })
+        setAllUser(response.data)
+        console.log(response);
+    }
+
+    function showAllUser() {
+    }
+
+
+
+
     useEffect(() => {
         setLoadUser(true)
+        getAllUser()
         async function name() {
             const response = await props.bring()
             await setLoadUser(false)
@@ -103,7 +118,7 @@ export default function Perfil(props) {
 
                         <div className="perfilData sectionPerfil" >
                             <form onSubmit={gettCompare}>
-                                <input type='text' value={inputEmail} onChange={(e) => setInputEmail(e.target.value)} placeholder="Comparar com" />
+                                <input type='text' value={inputEmail} onChange={(e) => setInputEmail(e.target.value)} onFocus={showAllUser} placeholder="Comparar com" />
                                 <button type="submit">Comparar</button>
                                 {/* <input type='submit' name='' value='Comparar' /> */}
                             </form>
@@ -135,16 +150,21 @@ export default function Perfil(props) {
                             {LoadCompare && <Loading />}
 
                         </div>
-                        <div className="perfilData sectionPerfil">
 
+                        <div className="perfilData sectionPerfil" >
+                            <h3 className="perfilData__title">Comparar com </h3>
+                            {allUser.map(element => (
+                                <div className="allUser" onClick={(e) => gettCompare(e, element.email)}>
+                                    <div className="allUser__avatar">{element.name.slice(0, 1)}</div>
+                                    <div className="allUser__data">
+                                        <span className="allUser__dataName">{element.name.split(' ').slice(0, 2).join(' ')}</span>
+                                        <span className="allUser__dataEmail">{element.email}</span>
+                                    </div>
+                                </div>
+                            ))}
                         </div>
-                        <div className="perfilFavorites sectionPerfil">
-                            <h1>Favoritos</h1>
-                            {/* <input type='search' name='' placeholder="" /> */}
-                            <div className="listFavorites">
-                                {props.user.like.map(element => <MiniCardFavorite key={element.id} movie={element} />)}
-                            </div>
-                        </div>
+
+
                     </div>
                 }
                 {LoadUser && <Loading />}
